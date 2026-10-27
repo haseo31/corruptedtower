@@ -1,0 +1,70 @@
+{
+	"challenges": [
+		{
+			"evidence_id": "ledger_page",
+			"claim": "A ledger page shows the road project cost far more than the announced budget. Which source should you NOT trust?",
+			"options": [
+				"The official budget announcement on the city's website",
+				"A cropped screenshot from an anonymous chat, with no author or date",
+				"The government auditor's published report"
+			],
+			"fake_index": 1,
+			"explanation": "A screenshot with no author, date or original source cannot be checked. Official records and audit reports can be traced back to who published them."
+		},
+		{
+			"evidence_id": "meeting_photo",
+			"claim": "A photo is said to show the official meeting the contractor. Which statement about it is unreliable?",
+			"options": [
+				"The photo's metadata shows the date and place, matching the restaurant's own post",
+				"A post says 'everyone knows this is the contractor' but gives no name or source",
+				"A news outlet identified both people and named its source"
+			],
+			"fake_index": 1,
+			"explanation": "'Everyone knows' is a rumor, not a source. A claim should name who said it and how they know."
+		},
+		{
+			"evidence_id": "text_messages",
+			"claim": "Text messages seem to arrange a payment before the contract was awarded. Which source is the fake or unreliable one?",
+			"options": [
+				"Messages retrieved with a court order and entered as evidence",
+				"The contractor's signed statement confirming the messages are real",
+				"A typed 'transcript' of the messages posted by an account created yesterday"
+			],
+			"fake_index": 2,
+			"explanation": "A new account posting a retyped transcript could have changed the words. Original, authenticated messages are far more trustworthy."
+		},
+		{
+			"evidence_id": "original_statement",
+			"claim": "A spokesperson says the Secretary 'fully supports' the bill, quoting one line. Which version should you NOT trust?",
+			"options": [
+				"The full original statement published on the agency's own site",
+				"One line cut from the middle of the statement, shared without the rest",
+				"The agency's official transcript of the press briefing"
+			],
+			"fake_index": 1,
+			"explanation": "A single cut-out line can reverse a meaning. Check the full original, with its date and author."
+		},
+		{
+			"evidence_id": "bot_list",
+			"claim": "A page says thousands of citizens support the project. Which source is unreliable?",
+			"options": [
+				"Hundreds of posts from brand-new accounts that all repeat the same sentence",
+				"A signed petition whose names were verified by the city clerk",
+				"A survey that publishes its method and sample size"
+			],
+			"fake_index": 0,
+			"explanation": "Many new accounts repeating one sentence look like a coordinated campaign, not real people. Verified signatures and open methods can be checked."
+		},
+		{
+			"evidence_id": "edited_clip",
+			"claim": "A video seems to show the official saying nothing was wrong. What should you NOT trust?",
+			"options": [
+				"The full, unedited recording from the broadcaster's archive",
+				"A short clip with jump cuts and no source, reposted by an anonymous account",
+				"The broadcaster's published editing log"
+			],
+			"fake_index": 1,
+			"explanation": "Jump cuts and a missing source mean you cannot tell what was left out. Go back to the full original recording."
+		}
+	]
+}

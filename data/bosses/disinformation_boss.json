@@ -1,0 +1,23 @@
+{
+	"id": "disinformation_boss",
+	"display_name": "The Spokesperson",
+	"cover_up_max": 3,
+	"wrong_evidence_penalty": 1,
+	"lies": [
+		{
+			"id": "lie_context",
+			"text": "That quote was not taken out of context. It says what it says.",
+			"counter_evidence_ids": ["original_statement"]
+		},
+		{
+			"id": "lie_support",
+			"text": "Thousands of ordinary citizens have spoken up in our favor.",
+			"counter_evidence_ids": ["bot_list"]
+		},
+		{
+			"id": "lie_video",
+			"text": "The video is real and has never been edited.",
+			"counter_evidence_ids": ["edited_clip"]
+		}
+	]
+}

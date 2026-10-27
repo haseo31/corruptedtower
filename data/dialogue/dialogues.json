@@ -1,0 +1,136 @@
+{
+	"dialogues": [
+		{
+			"id": "clerk",
+			"start": "greet",
+			"nodes": {
+				"greet": {
+					"speaker": "Clerk",
+					"lines": [
+						"You are not on the visitor list.",
+						"The budget office is busy. What do you want?"
+					],
+					"choices": [
+						{"text": "Ask about the road project budget", "next": "budget"},
+						{"text": "Ask who approved the payments", "next": "approver"},
+						{"text": "Say goodbye"}
+					]
+				},
+				"budget": {
+					"speaker": "Clerk",
+					"redirect_if_has": {"evidence": "ledger_page", "node": "already_gave"},
+					"lines": [
+						"I should not say this, but the ledger does not match the announcement.",
+						"Here, take this page. Please do not tell anyone where you got it."
+					],
+					"give_evidence": "ledger_page"
+				},
+				"approver": {
+					"speaker": "Clerk",
+					"lines": [
+						"Everything is signed by the deputy director.",
+						"That is all I am allowed to say."
+					],
+					"next": "greet"
+				},
+				"already_gave": {
+					"speaker": "Clerk",
+					"lines": ["I already gave you that page. Please leave before someone sees us."]
+				}
+			}
+		},
+		{
+			"id": "janitor",
+			"start": "greet",
+			"nodes": {
+				"greet": {
+					"speaker": "Janitor",
+					"lines": ["Mind the wet floor. I clean this lobby every night."],
+					"choices": [
+						{"text": "Ask what he saw last night", "next": "saw"},
+						{"text": "Ask about the lobby", "next": "lobby"}
+					]
+				},
+				"saw": {
+					"speaker": "Janitor",
+					"redirect_if_has": {"evidence": "text_messages", "node": "already_gave"},
+					"lines": [
+						"A man left his phone in the meeting room, still open on his messages.",
+						"I printed them out. Someone should read them, and it should not be me."
+					],
+					"give_evidence": "text_messages"
+				},
+				"lobby": {
+					"speaker": "Janitor",
+					"lines": ["Marble floors, no budget for new mops. Funny, that."]
+				},
+				"already_gave": {
+					"speaker": "Janitor",
+					"lines": ["You have the printout already. Be careful with it."]
+				}
+			}
+		},
+		{
+			"id": "archivist",
+			"start": "greet",
+			"nodes": {
+				"greet": {
+					"speaker": "Archivist",
+					"lines": ["Records Room. Everything here is filed, dated and signed."],
+					"choices": [
+						{"text": "Ask for the Spokesperson's original statement", "next": "file"},
+						{"text": "Ask how records are kept", "next": "records"}
+					]
+				},
+				"file": {
+					"speaker": "Archivist",
+					"redirect_if_has": {"evidence": "original_statement", "node": "already_gave"},
+					"lines": [
+						"The Spokesperson's original statement is filed here. His public version quotes only half of it.",
+						"Read the whole thing. Take a copy."
+					],
+					"give_evidence": "original_statement"
+				},
+				"records": {
+					"speaker": "Archivist",
+					"lines": ["Every record has an author and a date. A record with neither is not a record."]
+				},
+				"already_gave": {
+					"speaker": "Archivist",
+					"lines": ["You already have a copy of that statement."]
+				}
+			}
+		},
+		{
+			"id": "intern",
+			"start": "greet",
+			"nodes": {
+				"greet": {
+					"speaker": "Intern",
+					"lines": ["Please do not tell my boss I am talking to you."],
+					"choices": [
+						{"text": "Ask about the department's social media", "next": "social"},
+						{"text": "Ask about the coffee machine", "next": "coffee"}
+					]
+				},
+				"social": {
+					"speaker": "Intern",
+					"redirect_if_has": {"evidence": "bot_list", "node": "already_gave"},
+					"lines": [
+						"Most of our 'supporters' are accounts we made ourselves. I keep the list.",
+						"I copied it for you. I did not know where else to take it."
+					],
+					"give_evidence": "bot_list"
+				},
+				"coffee": {
+					"speaker": "Intern",
+					"lines": ["It has been broken since March. Nobody is allowed to say so."]
+				},
+				"already_gave": {
+					"speaker": "Intern",
+					"lines": ["You have the list. Please keep my name out of it."]
+				}
+			}
+		}
+	]
+}

@@ -1,0 +1,35 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/world/floor_scene.gd" id="1_floor"]
+[ext_resource type="Script" path="res://src/world/floor_player.gd" id="2_player"]
+[ext_resource type="PackedScene" path="res://src/dialogue/dialogue_box.tscn" id="3_dialogue"]
+[ext_resource type="PackedScene" path="res://src/ui/evidence_screen.tscn" id="4_evidence"]
+[ext_resource type="PackedScene" path="res://src/showdown/showdown_screen.tscn" id="5_showdown"]
+
+[node name="Floor" type="Node2D"]
+script = ExtResource("1_floor")
+
+[node name="Player" type="Node2D" parent="."]
+script = ExtResource("2_player")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position_smoothing_enabled = true
+
+[node name="Hud" type="CanvasLayer" parent="."]
+
+[node name="FloorName" type="Label" parent="Hud"]
+offset_left = 16.0
+offset_top = 12.0
+offset_right = 416.0
+offset_bottom = 38.0
+
+[node name="DialogueBox" parent="Hud" instance=ExtResource("3_dialogue")]
+
+[node name="EvidenceScreen" parent="Hud" instance=ExtResource("4_evidence")]
+visible = false
+offset_left = 24.0
+offset_top = 56.0
+offset_right = 24.0
+offset_bottom = 56.0
+
+[node name="ShowdownScreen" parent="Hud" instance=ExtResource("5_showdown")]

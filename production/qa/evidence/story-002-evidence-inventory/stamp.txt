@@ -1,0 +1,6 @@
+Reviewed-Content-Hash: src/evidence/evidence_item.gd 0931e526588cf9178806ca143931331b7ccf4ea0
+Reviewed-Content-Hash: src/evidence/evidence_inventory.gd 3666ee7c8edd52d547fb969c137966b1ce6693b7
+Reviewed-Content-Hash: src/ui/inventory_panel.gd b81fddf16031c5b321c5c71061b22e82a5a73fa5
+Reviewed-Content-Hash: src/ui/inventory_panel.tscn 0017fc2ce58ac3f46ab3aeb18b3c6d46129378f7
+Reviewed-Content-Hash: src/showdown/showdown.gd c650e7d3987550d2ada76296069f60834bb2138e
+Reviewed-Content-Hash: data/evidence/evidence.json f517f50d8fd97fb7233743c680b0f95fa44d7d52

@@ -1,0 +1,34 @@
+{
+	"evidence": [
+		{
+			"id": "ledger_page",
+			"title": "Ledger page",
+			"description": "A page from the project ledger showing payments that do not match the announced budget."
+		},
+		{
+			"id": "meeting_photo",
+			"title": "Meeting photo",
+			"description": "A photo of the official meeting the contractor in a restaurant."
+		},
+		{
+			"id": "text_messages",
+			"title": "Text messages",
+			"description": "Messages arranging a payment before the contract was awarded."
+		},
+		{
+			"id": "original_statement",
+			"title": "Original statement",
+			"description": "The full statement the quote was cut from, showing it said the opposite."
+		},
+		{
+			"id": "bot_list",
+			"title": "Bot account list",
+			"description": "A list of newly made accounts that all posted the same message of support."
+		},
+		{
+			"id": "edited_clip",
+			"title": "Edited video log",
+			"description": "An editing log showing the viral clip was cut together from separate recordings."
+		}
+	]
+}

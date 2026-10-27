@@ -1,0 +1,8 @@
+Reviewed-Content-Hash: src/factcheck/fact_check_challenge.gd 75142c3455404cfd0fb1743122cc7684441c4848
+Reviewed-Content-Hash: src/factcheck/fact_check_session.gd 4933b0ca80fe1e0d96475e2eb0f4c22e99902c6f
+Reviewed-Content-Hash: src/factcheck/fact_check_panel.gd c8213cf8df0329ea80b0eca6204ee3c35efe2259
+Reviewed-Content-Hash: src/factcheck/fact_check_panel.tscn eee938c8cf5d6c782618f8f3f490fc00a360527b
+Reviewed-Content-Hash: src/ui/evidence_screen.gd 6c0ec63437d232fdde012cbd51af9a2a80b9a139
+Reviewed-Content-Hash: src/ui/evidence_screen.tscn c0b81df9276762cc167028ea20ea459ad34ccc4b
+Reviewed-Content-Hash: src/ui/inventory_panel.gd 4e6b8b8572694aaa985061ed4c1a6b52dadfe300
+Reviewed-Content-Hash: data/factchecks/factchecks.json 782ab5cbc41ab0afa99316388580c850d7560010

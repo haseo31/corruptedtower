@@ -7,6 +7,34 @@ framework:
   version: 1.2.0
   last_upgraded: 2026-10-19
 
+engine:
+  name: "Godot"
+  version: "4.7"
+  language: "GDScript"
+  rendering: "Forward+"
+  physics: "Godot Physics 2D"
+  path: "tools/godot/Godot_v4.7.2-stable_win64.exe"
+
+specialists:
+  code: "godot-gdscript-specialist"
+  shader: "godot-shader-specialist"
+  ui: "godot-specialist"
+  additional: ["godot-gdextension-specialist"]
+
+naming:
+  classes: PascalCase
+  variables: snake_case
+  constants: SCREAMING_SNAKE
+  signals: past_tense
+  files: snake_case
+  scenes: snake_case
+
+commands:
+  # build: [TO BE CONFIGURED] — no Godot export preset exists yet; set it via /settings once one does
+  test: '"tools/godot/Godot_v4.7.2-stable_win64.exe" --headless -s -d --remote-debug tcp://127.0.0.1:0 res://addons/gdUnit4/bin/GdUnitCmdTool.gd -a res://tests --ignoreHeadlessMode'
+  run: '"tools/godot/Godot_v4.7.2-stable_win64.exe" --path . --windowed --resolution 1280x720'
+  smoke: '"tools/godot/Godot_v4.7.2-stable_win64.exe" --headless --quit-after 5'
+
 # NOTE: this template ships with no `modes:` block, and the six knobs below must
 # never be added to one.
 #
