@@ -18,3 +18,8 @@ Screenshot: `story-016-pause-settings/L-pause-settings.png`.
 
 - Changing the language from inside the game takes effect on the next screen the game loads; the screen already open stays as it was.
 - In the browser version the window-size rows do nothing (itch.io's own fullscreen button is used); the volume rows work.
+
+## Update: language changed mid-game (2026-10-28)
+
+The user found that switching language from the pause menu did not change the text on screen. A floor builds its text when it loads, so a language change now rebuilds the floor on the same cell (progress lives in GameSession) and opens Settings again. Real-key test, 8 checks PASS: the language becomes Filipino, the floor is rebuilt with the same player cell, the floor name reads "Palapag 1: Tanggapan ng Pondo ng mga Mambabatas", Settings is open again, and Esc returns to the pause menu and then to the game. Screenshot: `story-016-pause-settings/L-language-midgame.png`.
+The earlier note above ("takes effect on the next screen") no longer applies.

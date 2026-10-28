@@ -8,6 +8,8 @@ extends Node2D
 
 ## Where the player appears on the next floor loaded by a transition.
 static var arrival_cell: Variant = null
+## Set when the floor is rebuilt after a language change, so Settings opens again on it.
+static var reopen_settings: bool = false
 
 ## The JSON layout this floor shows.
 @export_file("*.json") var layout_path: String = ""
@@ -95,7 +97,11 @@ func _ready() -> void:
 	_hint_label.text = _layout.hint
 	_refresh_objective()
 	_show_tower_progress()
-	_show_title_card()
+	if reopen_settings:
+		reopen_settings = false
+		_settings_panel.open()
+	else:
+		_show_title_card()
 	queue_redraw()
 
 
@@ -223,6 +229,7 @@ func _build_lesson_panels() -> void:
 	_settings_panel = SettingsPanel.new()
 	_settings_panel.hide()
 	_settings_panel.closed.connect(_on_settings_closed)
+	_settings_panel.language_changed.connect(_on_language_changed)
 	center.add_child(_settings_panel)
 	for panel: Control in [_case_file, _journal, _settings_panel]:
 		panel.visibility_changed.connect(_refresh_lock)
@@ -243,6 +250,13 @@ func _show_case_file(boss_id: String, then: Callable) -> void:
 func _on_settings_requested() -> void:
 	_pause_menu.close()
 	_settings_panel.open()
+
+
+## Text is built when a floor loads, so a new language rebuilds the floor where the player stands.
+func _on_language_changed() -> void:
+	arrival_cell = _player.cell
+	reopen_settings = true
+	get_tree().reload_current_scene.call_deferred()
 
 
 func _on_settings_closed() -> void:
