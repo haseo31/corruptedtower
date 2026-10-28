@@ -30,7 +30,7 @@ naming:
   scenes: snake_case
 
 commands:
-  # build: [TO BE CONFIGURED] — no Godot export preset exists yet; set it via /settings once one does
+  build: '"tools/godot/Godot_v4.7.2-stable_win64_console.exe" --headless --path . --export-release "Web" build/web/index.html'
   test: '"tools/godot/Godot_v4.7.2-stable_win64.exe" --headless -s -d --remote-debug tcp://127.0.0.1:0 res://addons/gdUnit4/bin/GdUnitCmdTool.gd -a res://tests --ignoreHeadlessMode'
   run: '"tools/godot/Godot_v4.7.2-stable_win64.exe" --path . --windowed --resolution 1280x720'
   smoke: '"tools/godot/Godot_v4.7.2-stable_win64.exe" --headless --quit-after 5'
