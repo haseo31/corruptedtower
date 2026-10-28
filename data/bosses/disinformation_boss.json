@@ -1,6 +1,7 @@
 {
 	"id": "disinformation_boss",
 	"display_name": "The Spokesperson",
+	"sprite": "spokesperson",
 	"cover_up_max": 3,
 	"wrong_evidence_penalty": 1,
 	"lies": [

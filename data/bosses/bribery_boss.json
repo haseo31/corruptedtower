@@ -1,6 +1,7 @@
 {
 	"id": "bribery_boss",
 	"display_name": "The Deputy Director",
+	"sprite": "deputy_director",
 	"cover_up_max": 3,
 	"wrong_evidence_penalty": 1,
 	"lies": [

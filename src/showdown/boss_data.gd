@@ -13,6 +13,8 @@ class Lie extends RefCounted:
 
 var id: String = ""
 var display_name: String = ""
+## The character sheet id the boss is drawn with (empty for none).
+var sprite: String = ""
 ## The Cover-up meter value at which the player loses the showdown.
 var cover_up_max: int = 3
 ## How much the Cover-up meter rises when wrong or unverified evidence is presented.
@@ -26,6 +28,7 @@ static func from_dict(data: Dictionary) -> BossData:
 	var boss := BossData.new()
 	boss.id = str(data.get("id", ""))
 	boss.display_name = str(data.get("display_name", ""))
+	boss.sprite = str(data.get("sprite", ""))
 	boss.cover_up_max = int(data.get("cover_up_max", 0))
 	boss.wrong_evidence_penalty = int(data.get("wrong_evidence_penalty", 0))
 	if boss.id.is_empty() or boss.cover_up_max < 1 or boss.wrong_evidence_penalty < 1:

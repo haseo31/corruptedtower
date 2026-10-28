@@ -35,6 +35,14 @@ static func columns(sheet_id: String) -> int:
 	return int(_info[sheet_id]["columns"]) if _info.has(sheet_id) else 0
 
 
+## The size in pixels of one frame of a loaded sheet (zero if unknown).
+static func frame_size(sheet_id: String) -> Vector2i:
+	if not _info.has(sheet_id):
+		return Vector2i.ZERO
+	var frame: Array = _info[sheet_id]["frame"]
+	return Vector2i(int(frame[0]), int(frame[1]))
+
+
 ## True if the sheet has a row for this direction ("down", "up", "left", "right").
 static func has_direction(sheet_id: String, direction: String) -> bool:
 	return _info.has(sheet_id) and (_info[sheet_id]["rows"] as Array).has(direction)

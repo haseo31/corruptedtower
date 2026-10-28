@@ -1,12 +1,12 @@
 # Story 010: Battle-style showdown
 
 > **Epic**: pixel-style
-> **Status**: Ready
+> **Status**: Complete
 > **Layer**: Presentation
 > **Type**: UI
 > **Estimate**: M
 > **Manifest Version**: N/A (minimal — no control manifest)
-> **Last Updated**: [set by /dev-story when implementation begins]
+> **Last Updated**: 2026-10-28
 
 ## Context
 
@@ -52,8 +52,11 @@
 
 ## Files
 
-- `src/showdown/showdown_screen.gd`, `src/showdown/showdown_screen.tscn`
-- `assets/art/` (boss back-view and player back-view sprites, if not yet generated)
+- `src/showdown/showdown_screen.gd`, `src/showdown/showdown_screen.tscn` (rewritten)
+- `src/showdown/battle_sprite.gd`, `src/showdown/battle_backdrop.gd` (new)
+- `src/showdown/boss_data.gd`, `data/bosses/bribery_boss.json`, `data/bosses/disinformation_boss.json` (sprite field)
+- `src/ui/pixel_theme.gd` (progress bar style)
+- `src/world/character_sprites.gd` (frame_size)
 
 ## QA Test Cases
 
@@ -74,3 +77,12 @@
 
 - Depends on: `production/epics/pixel-style/story-009-ui-theme-and-dialogue.md`
 - Unlocks: `production/epics/pixel-style/story-011-remaining-screens.md`
+
+---
+
+## Completion Notes
+**Completed**: 2026-10-28
+**Criteria**: 8/8 passing (none deferred)
+**Deviations**: ADVISORY — AC3: the feedback line is shown above the boss's current lie instead of replacing it, so the lie stays visible (accepted by the user). The flash and shake switch is a static `ShowdownScreen.reduce_motion` (not an `@export`) so a future options menu can set it. Showdown text is hardcoded (no localization system yet). The menu entries are linked to each other by hand (`focus_neighbor_*`) because Godot's arrow-key navigation skips an entry that is scrolled completely out of view; a regression run caught that the sixth evidence item was unreachable by keyboard before this fix. The player's back view reads dark at 2x (mostly hair and cap).
+**Test Evidence**: waived at qa.level minimal; the full keyboard-only playthrough re-run on the new screen ended identically at every checkpoint; retained screenshots and sign-off in production/qa/evidence/story-010-battle-showdown/ and production/qa/evidence/story-010-battle-showdown-evidence.md (sign-off approved by the user)
+**Reviewed by**: self, no independent review

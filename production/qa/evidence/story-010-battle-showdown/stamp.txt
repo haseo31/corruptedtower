@@ -1,0 +1,9 @@
+Reviewed-Content-Hash: src/showdown/showdown_screen.gd 375e67c165077ee748aa98e15846a20adea3f456
+Reviewed-Content-Hash: src/showdown/showdown_screen.tscn fa61e35c121f77124f5ef5e7cf01a1ece87b4dfd
+Reviewed-Content-Hash: src/showdown/battle_sprite.gd bf95366fff919871cddc800979c460241914622b
+Reviewed-Content-Hash: src/showdown/battle_backdrop.gd 5d4fdcc6ffa52af72ebe29855534e5a8c631cee8
+Reviewed-Content-Hash: src/showdown/boss_data.gd ead70ec3acca061af6412b7140f5a1b6b9f2fef6
+Reviewed-Content-Hash: data/bosses/bribery_boss.json 321c35012de98e200b32ea7c48af9e4272b70ae4
+Reviewed-Content-Hash: data/bosses/disinformation_boss.json baea7182b4a3d451783d98b5c09dec40940aeb40
+Reviewed-Content-Hash: src/ui/pixel_theme.gd 3a6eae24e291647871ebc5dfb618f6e4e9df72e8
+Reviewed-Content-Hash: src/world/character_sprites.gd cfd00ba21c525e1a97df2e617c5d2695c94d9a3c

@@ -82,4 +82,16 @@ static func _build() -> Theme:
 	t.set_color("font_color", "ItemList", INK)
 	t.set_color("font_selected_color", "ItemList", PAPER)
 	t.set_constant("v_separation", "ItemList", 2)
+
+	# A bar (the boss's Cover-up meter): a light trough with a red fill.
+	var trough := StyleBoxFlat.new()
+	trough.bg_color = PAPER
+	trough.border_color = INK
+	trough.set_border_width_all(1)
+	trough.anti_aliasing = false
+	var fill := StyleBoxFlat.new()
+	fill.bg_color = DANGER
+	fill.anti_aliasing = false
+	t.set_stylebox("background", "ProgressBar", trough)
+	t.set_stylebox("fill", "ProgressBar", fill)
 	return t
