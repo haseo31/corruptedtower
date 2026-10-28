@@ -1,0 +1,6 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://src/world/floor.tscn" id="1_floor"]
+
+[node name="Floor4" instance=ExtResource("1_floor")]
+layout_path = "res://data/floors/floor_4.json"

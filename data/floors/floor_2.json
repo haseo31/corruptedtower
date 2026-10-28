@@ -27,20 +27,65 @@
 		"#.................#....................#",
 		"########################################"
 	],
-	"spawn": [2, 12],
+	"spawn": [
+		2,
+		12
+	],
 	"hint": "I: evidence   E: talk   Esc: menu",
 	"objective": "Expose the Spokesperson",
 	"objective_boss": "disinformation_boss",
-	"objective_done": "",
+	"objective_done": "Take the stairs up",
 	"npcs": [
-		{"x": 8, "y": 12, "name": "Archivist", "sprite": "archivist", "dialogue": "archivist"},
-		{"x": 24, "y": 12, "name": "Intern", "sprite": "intern", "dialogue": "intern"},
-		{"x": 36, "y": 12, "name": "Spokesperson", "sprite": "spokesperson", "boss": "res://data/bosses/disinformation_boss.json", "final": true, "defeated_message": "Your evidence is undeniable. I have nothing left to say."}
+		{
+			"x": 8,
+			"y": 12,
+			"name": "Archivist",
+			"sprite": "archivist",
+			"dialogue": "archivist"
+		},
+		{
+			"x": 24,
+			"y": 12,
+			"name": "Intern",
+			"sprite": "intern",
+			"dialogue": "intern"
+		},
+		{
+			"x": 36,
+			"y": 12,
+			"name": "Spokesperson",
+			"sprite": "spokesperson",
+			"boss": "res://data/bosses/disinformation_boss.json",
+			"defeated_message": "Your evidence is undeniable. The way up is open."
+		}
 	],
 	"clues": [
-		{"x": 30, "y": 5, "evidence_id": "edited_clip"}
+		{
+			"x": 30,
+			"y": 5,
+			"evidence_id": "edited_clip"
+		}
 	],
 	"transitions": [
-		{"x": 1, "y": 12, "scene": "res://src/world/floor_1.tscn", "spawn": [37, 12]}
+		{
+			"x": 1,
+			"y": 12,
+			"scene": "res://src/world/floor_1.tscn",
+			"spawn": [
+				37,
+				12
+			]
+		},
+		{
+			"x": 38,
+			"y": 12,
+			"scene": "res://src/world/floor_3.tscn",
+			"spawn": [
+				2,
+				12
+			],
+			"requires_boss": "disinformation_boss",
+			"locked_message": "The stairs are locked. Expose the Spokesperson first."
+		}
 	]
 }

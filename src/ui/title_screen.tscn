@@ -1,0 +1,110 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/ui/title_screen.gd" id="1_title"]
+[ext_resource type="Script" path="res://src/ui/title_backdrop.gd" id="2_backdrop"]
+[ext_resource type="Script" path="res://src/ui/pixel_button.gd" id="3_button"]
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_title")
+
+[node name="Backdrop" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_backdrop")
+
+[node name="MenuPanel" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 0
+offset_left = 290.0
+offset_top = 130.0
+offset_right = 450.0
+offset_bottom = 130.0
+
+[node name="Box" type="VBoxContainer" parent="MenuPanel"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="ContinueButton" type="Button" parent="MenuPanel/Box"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "CONTINUE"
+script = ExtResource("3_button")
+
+[node name="PlayButton" type="Button" parent="MenuPanel/Box"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "PLAY"
+script = ExtResource("3_button")
+
+[node name="HowButton" type="Button" parent="MenuPanel/Box"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "HOW TO PLAY"
+script = ExtResource("3_button")
+
+[node name="SettingsButton" type="Button" parent="MenuPanel/Box"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "SETTINGS"
+script = ExtResource("3_button")
+
+[node name="ExitButton" type="Button" parent="MenuPanel/Box"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "EXIT"
+script = ExtResource("3_button")
+
+[node name="StatusLabel" type="Label" parent="MenuPanel/Box"]
+unique_name_in_owner = true
+layout_mode = 2
+autowrap_mode = 3
+
+[node name="HintLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 290.0
+offset_top = 262.0
+offset_right = 450.0
+offset_bottom = 276.0
+text = "Up/Down: choose   Enter: select"
+
+[node name="Overlay" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dim" type="ColorRect" parent="Overlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.04, 0.03, 0.09, 0.72)
+
+[node name="Center" type="CenterContainer" parent="Overlay"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

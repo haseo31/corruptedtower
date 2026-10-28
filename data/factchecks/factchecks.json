@@ -65,6 +65,72 @@
 			],
 			"fake_index": 1,
 			"explanation": "Jump cuts and a missing source mean you cannot tell what was left out. Go back to the full original recording."
+		},
+		{
+			"evidence_id": "cash_envelopes",
+			"claim": "Envelopes of cash are marked with voters' names. Which source should you NOT trust?",
+			"options": [
+				"A police inventory listing the envelopes, signed and dated at the scene",
+				"A forwarded message saying 'my cousin saw cash being handed out', with no name",
+				"A photo with a visible time stamp, confirmed by the precinct's own log"
+			],
+			"fake_index": 1,
+			"explanation": "A rumor passed along without a name cannot be checked. A signed inventory and a logged photo can be traced to people who answer for them."
+		},
+		{
+			"evidence_id": "vote_receipts",
+			"claim": "Receipts show voters were paid for proof of their ballot. Which source is unreliable?",
+			"options": [
+				"A receipt book obtained by the election commission, with serial numbers",
+				"A typed list of 'paid voters' posted by an account that hides its owner",
+				"Sworn statements from three voters who each received payment"
+			],
+			"fake_index": 1,
+			"explanation": "An anonymous typed list could contain anything. Numbered receipts and sworn statements come from sources that can be questioned."
+		},
+		{
+			"evidence_id": "rigged_poll",
+			"claim": "A poll says 98% of voters support the campaign. Which source is the unreliable one?",
+			"options": [
+				"The pollster's published method and sample, listing how people were chosen",
+				"A banner reading '98% LOVE US!' with no sample size or method",
+				"An independent poll with a different result and a public method"
+			],
+			"fake_index": 1,
+			"explanation": "A number with no method is just a slogan. A trustworthy poll shows who was asked and how they were chosen."
+		},
+		{
+			"evidence_id": "hiring_file",
+			"claim": "A file says a relative was hired with no interview. What should you NOT trust?",
+			"options": [
+				"The personnel office's own signed hiring record",
+				"A chain post claiming 'the whole office is family', with no names or dates",
+				"The civil service board's published appointment notice"
+			],
+			"fake_index": 1,
+			"explanation": "'The whole office is family' sounds big but names no one. Signed records and public notices say who was hired, when and by whom."
+		},
+		{
+			"evidence_id": "qualification_list",
+			"claim": "A ranked list shows the person hired placed last. Which source is unreliable?",
+			"options": [
+				"The ranking sheet signed by the three-person panel",
+				"A retyped list on plain paper, with the scores changed in a different font",
+				"The civil service board's copy of the scores"
+			],
+			"fake_index": 1,
+			"explanation": "A list with different fonts and no signatures may have been edited. Compare it with the official copy held by someone else."
+		},
+		{
+			"evidence_id": "payroll_records",
+			"claim": "Payroll records list relatives paid for jobs with no duties. Which source is unreliable?",
+			"options": [
+				"The treasury's payroll export, with department codes",
+				"The auditor's report that matches each name to a job description",
+				"A screenshot of a spreadsheet with no title, date or source"
+			],
+			"fake_index": 2,
+			"explanation": "A screenshot with no title, date or source could be from anywhere. Treasury data and audit reports can be traced and compared."
 		}
 	]
 }

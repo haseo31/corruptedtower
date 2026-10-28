@@ -1,0 +1,30 @@
+{
+	"id": "nepotism_boss",
+	"display_name": "The Director General",
+	"sprite": "director_general",
+	"cover_up_max": 3,
+	"wrong_evidence_penalty": 1,
+	"lies": [
+		{
+			"id": "lie_merit",
+			"text": "Everyone in my office earned their job on merit alone.",
+			"counter_evidence_ids": [
+				"qualification_list"
+			]
+		},
+		{
+			"id": "lie_family",
+			"text": "My relatives received no special treatment. None at all.",
+			"counter_evidence_ids": [
+				"hiring_file"
+			]
+		},
+		{
+			"id": "lie_ghost",
+			"text": "Nobody on my payroll is paid for doing nothing.",
+			"counter_evidence_ids": [
+				"payroll_records"
+			]
+		}
+	]
+}

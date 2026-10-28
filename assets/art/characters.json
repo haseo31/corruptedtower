@@ -1,4 +1,17 @@
 {
+  "applicant": {
+    "columns": 3,
+    "frame": [
+      16,
+      20
+    ],
+    "rows": [
+      "down",
+      "up",
+      "left",
+      "right"
+    ]
+  },
   "archivist": {
     "columns": 3,
     "frame": [
@@ -10,6 +23,42 @@
       "up",
       "left",
       "right"
+    ]
+  },
+  "attendant": {
+    "columns": 3,
+    "frame": [
+      16,
+      20
+    ],
+    "rows": [
+      "down",
+      "up",
+      "left",
+      "right"
+    ]
+  },
+  "auditor": {
+    "columns": 3,
+    "frame": [
+      16,
+      20
+    ],
+    "rows": [
+      "down",
+      "up",
+      "left",
+      "right"
+    ]
+  },
+  "campaign_manager": {
+    "columns": 2,
+    "frame": [
+      24,
+      24
+    ],
+    "rows": [
+      "down"
     ]
   },
   "clerk": {
@@ -33,6 +82,29 @@
     ],
     "rows": [
       "down"
+    ]
+  },
+  "director_general": {
+    "columns": 2,
+    "frame": [
+      24,
+      24
+    ],
+    "rows": [
+      "down"
+    ]
+  },
+  "hr_clerk": {
+    "columns": 3,
+    "frame": [
+      16,
+      20
+    ],
+    "rows": [
+      "down",
+      "up",
+      "left",
+      "right"
     ]
   },
   "intern": {
@@ -74,6 +146,19 @@
       "right"
     ]
   },
+  "poll_worker": {
+    "columns": 3,
+    "frame": [
+      16,
+      20
+    ],
+    "rows": [
+      "down",
+      "up",
+      "left",
+      "right"
+    ]
+  },
   "spokesperson": {
     "columns": 2,
     "frame": [
@@ -82,6 +167,19 @@
     ],
     "rows": [
       "down"
+    ]
+  },
+  "volunteer": {
+    "columns": 3,
+    "frame": [
+      16,
+      20
+    ],
+    "rows": [
+      "down",
+      "up",
+      "left",
+      "right"
     ]
   }
 }

@@ -1,0 +1,99 @@
+{
+	"name": "Floor 3: Polling Station",
+	"tile_size": 16,
+	"theme": "poll",
+	"rows": [
+		"########################################",
+		"#............#............#............#",
+		"#............#............#............#",
+		"#..DDD..DDD..#............#..DDD..DDD..#",
+		"#............#...DDDDDD...#............#",
+		"#............#............#............#",
+		"#............#............#............#",
+		"#..DDD..DDD..#............#..DDD..DDD..#",
+		"#............#............#............#",
+		"#............#............#............#",
+		"#............#............#............#",
+		"#......................................#",
+		"#cccccccccccccccccccccccccccccccccccccc#",
+		"#......................................#",
+		"#............#............#............#",
+		"#............#............#............#",
+		"#............#............#............#",
+		"#..DDD..DDD..#............#..DDD..DDD..#",
+		"#............#............#............#",
+		"#............#...DDDDDD...#............#",
+		"#..DDD..DDD..#............#..DDD..DDD..#",
+		"#............#............#............#",
+		"#............#............#............#",
+		"########################################"
+	],
+	"spawn": [
+		2,
+		12
+	],
+	"hint": "I: evidence   E: talk   Esc: menu",
+	"objective": "Expose the Campaign Manager",
+	"objective_boss": "vote_boss",
+	"objective_done": "Take the stairs up",
+	"npcs": [
+		{
+			"x": 7,
+			"y": 10,
+			"name": "Poll Worker",
+			"sprite": "poll_worker",
+			"dialogue": "poll_worker"
+		},
+		{
+			"x": 19,
+			"y": 14,
+			"name": "Student Volunteer",
+			"sprite": "volunteer",
+			"dialogue": "volunteer"
+		},
+		{
+			"x": 31,
+			"y": 10,
+			"name": "Booth Attendant",
+			"sprite": "attendant",
+			"dialogue": "attendant"
+		},
+		{
+			"x": 36,
+			"y": 12,
+			"name": "Campaign Manager",
+			"sprite": "campaign_manager",
+			"boss": "res://data/bosses/vote_boss.json",
+			"defeated_message": "Fine. The money, the receipts, the polls. It is all true. The way up is open."
+		}
+	],
+	"clues": [
+		{
+			"x": 30,
+			"y": 17,
+			"evidence_id": "rigged_poll"
+		}
+	],
+	"transitions": [
+		{
+			"x": 1,
+			"y": 12,
+			"scene": "res://src/world/floor_2.tscn",
+			"spawn": [
+				37,
+				12
+			]
+		},
+		{
+			"x": 38,
+			"y": 12,
+			"scene": "res://src/world/floor_4.tscn",
+			"spawn": [
+				2,
+				12
+			],
+			"requires_boss": "vote_boss",
+			"locked_message": "The stairs are locked. Expose the Campaign Manager first."
+		}
+	]
+}

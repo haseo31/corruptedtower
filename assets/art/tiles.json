@@ -8,6 +8,18 @@
     "desk": 4,
     "desk_paper": 5,
     "stairs_open": 6,
-    "stairs_locked": 7
+    "stairs_locked": 7,
+    "floor_poll": 8,
+    "carpet_poll": 9,
+    "wall_face_poll": 10,
+    "wall_block_poll": 11,
+    "desk_poll": 12,
+    "desk_paper_poll": 13,
+    "floor_hr": 14,
+    "carpet_hr": 15,
+    "wall_face_hr": 16,
+    "wall_block_hr": 17,
+    "desk_hr": 18,
+    "desk_paper_hr": 19
   }
 }

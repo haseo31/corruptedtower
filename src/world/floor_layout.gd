@@ -11,6 +11,8 @@ const FLOOR: String = "."
 const CARPET: String = "c"
 
 var name: String = ""
+## Which tile set the floor is drawn with: "" for the default look, or a theme id such as "poll".
+var theme: String = ""
 var tile_size: int = 32
 var width: int = 0
 var height: int = 0
@@ -49,6 +51,7 @@ static func from_dict(data: Dictionary) -> FloorLayout:
 	var layout := FloorLayout.new()
 	layout.name = str(data.get("name", ""))
 	layout.tile_size = int(data.get("tile_size", 0))
+	layout.theme = str(data.get("theme", ""))
 	layout.hint = str(data.get("hint", ""))
 	layout.objective = str(data.get("objective", ""))
 	layout.objective_done = str(data.get("objective_done", ""))

@@ -1,0 +1,30 @@
+{
+	"id": "vote_boss",
+	"display_name": "The Campaign Manager",
+	"sprite": "campaign_manager",
+	"cover_up_max": 3,
+	"wrong_evidence_penalty": 1,
+	"lies": [
+		{
+			"id": "lie_no_cash",
+			"text": "Not a single peso changed hands. We ran a clean campaign.",
+			"counter_evidence_ids": [
+				"cash_envelopes"
+			]
+		},
+		{
+			"id": "lie_no_buying",
+			"text": "Nobody was ever paid for a vote. Voters love us for free.",
+			"counter_evidence_ids": [
+				"vote_receipts"
+			]
+		},
+		{
+			"id": "lie_polls",
+			"text": "Our polls prove everyone is behind us. The people have spoken.",
+			"counter_evidence_ids": [
+				"rigged_poll"
+			]
+		}
+	]
+}

@@ -13,6 +13,7 @@ static var arrival_cell: Variant = null
 @export_file("*.json") var layout_path: String = ""
 
 const ENDING_SCENE: String = "res://src/ui/ending_screen.tscn"
+const TITLE_SCENE: String = "res://src/ui/title_screen.tscn"
 
 var _layout: FloorLayout
 var _atlas: TileAtlas
@@ -52,7 +53,7 @@ func _ready() -> void:
 		modal.visibility_changed.connect(_refresh_lock)
 	_pause_menu.save_requested.connect(_on_save_requested)
 	_pause_menu.load_requested.connect(_on_load_requested)
-	_pause_menu.quit_requested.connect(get_tree().quit)
+	_pause_menu.quit_requested.connect(_on_quit_requested)
 	_inventory.evidence_collected.connect(_on_evidence_collected)
 	var start := _layout.spawn
 	if arrival_cell != null:
@@ -108,13 +109,18 @@ func _tile_name(cell: Vector2i) -> String:
 	match _layout.tile_at(cell):
 		FloorLayout.WALL:
 			# A wall with floor below it shows its face; walls stacked above other walls are blocks.
-			return "wall_block" if _layout.tile_at(cell + Vector2i.DOWN) == FloorLayout.WALL else "wall_face"
+			return _themed("wall_block" if _layout.tile_at(cell + Vector2i.DOWN) == FloorLayout.WALL else "wall_face")
 		FloorLayout.DESK:
 			var clue := _layout.clue_at(cell)
-			return "desk_paper" if not clue.is_empty() and not _inventory.has_item(clue) else "desk"
+			return _themed("desk_paper" if not clue.is_empty() and not _inventory.has_item(clue) else "desk")
 		FloorLayout.CARPET:
-			return "carpet"
-	return "floor"
+			return _themed("carpet")
+	return _themed("floor")
+
+
+## The tile name for this floor's theme ("floor" becomes "floor_poll" on a themed floor).
+func _themed(base: String) -> String:
+	return base if _layout.theme.is_empty() else "%s_%s" % [base, _layout.theme]
 
 
 func _spawn_npcs() -> void:
@@ -185,6 +191,10 @@ func _on_showdown_won(boss_id: String) -> void:
 		get_tree().change_scene_to_file(ENDING_SCENE)
 	else:
 		_runner.start(DialogueRunner.message_dialogue(_active_boss_npc["name"], _active_boss_npc["defeated_message"]))
+
+
+func _on_quit_requested() -> void:
+	get_tree().change_scene_to_file(TITLE_SCENE)
 
 
 func _on_save_requested() -> void:

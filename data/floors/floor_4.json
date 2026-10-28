@@ -1,0 +1,89 @@
+{
+	"name": "Floor 4: Personnel Office",
+	"tile_size": 16,
+	"theme": "hr",
+	"rows": [
+		"########################################",
+		"#...........#............#.............#",
+		"#..DDDDDDD..#............#.............#",
+		"#..............DDDDDDDD..#.............#",
+		"#........................#.............#",
+		"#........................#..DDDDDDDD...#",
+		"#..DDDDDDD..#............#.............#",
+		"#...........#............#.............#",
+		"#...........#..........................#",
+		"#..DDDDDDD..#..........................#",
+		"#...........#..........................#",
+		"#......................................#",
+		"#cccccccccccccccccccccccccccccccccccccc#",
+		"#......................................#",
+		"#...........#..........................#",
+		"#..DDDDDDD..#..........................#",
+		"#...........#..........................#",
+		"#...........#............#.............#",
+		"#..DDDDDDD..#............#..DDDDDDDD...#",
+		"#........................#.............#",
+		"#..............DDDDDDDD..#.............#",
+		"#..DDDDDDD...............#.............#",
+		"#...........#............#.............#",
+		"########################################"
+	],
+	"spawn": [
+		2,
+		12
+	],
+	"hint": "I: evidence   E: talk   Esc: menu",
+	"objective": "Expose the Director General",
+	"objective_boss": "nepotism_boss",
+	"objective_done": "",
+	"npcs": [
+		{
+			"x": 6,
+			"y": 12,
+			"name": "HR Clerk",
+			"sprite": "hr_clerk",
+			"dialogue": "hr_clerk"
+		},
+		{
+			"x": 18,
+			"y": 12,
+			"name": "Rejected Applicant",
+			"sprite": "applicant",
+			"dialogue": "applicant"
+		},
+		{
+			"x": 31,
+			"y": 8,
+			"name": "Auditor",
+			"sprite": "auditor",
+			"dialogue": "auditor"
+		},
+		{
+			"x": 36,
+			"y": 12,
+			"name": "Director General",
+			"sprite": "director_general",
+			"boss": "res://data/bosses/nepotism_boss.json",
+			"final": true,
+			"defeated_message": "The family name will not save me now."
+		}
+	],
+	"clues": [
+		{
+			"x": 32,
+			"y": 18,
+			"evidence_id": "payroll_records"
+		}
+	],
+	"transitions": [
+		{
+			"x": 1,
+			"y": 12,
+			"scene": "res://src/world/floor_3.tscn",
+			"spawn": [
+				37,
+				12
+			]
+		}
+	]
+}

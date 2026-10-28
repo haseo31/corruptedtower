@@ -181,10 +181,52 @@ TILE_ORDER = [
 ]
 
 
+# Floor themes recolor the base tiles (same shapes, different look). Stairs stay shared.
+THEMED = ["floor", "carpet", "wall_face", "wall_block", "desk", "desk_paper"]
+THEMES = {
+    "poll": {  # floor 3: sandy hall, blue booth carpet, mint walls, pale pine desks
+        "8fa3b8": "d8c89a", "9aaec3": "e2d4aa", "7a8ea5": "c0b080", "a6bace": "ece0bc",
+        "8c3c46": "3c5a9a", "aa525c": "5878b8", "7a3039": "2f4a80", "6a2830": "243a68",
+        "d9d2c0": "cfe0d0", "cdc5b0": "bcd0bf", "b0a58c": "98b09c", "6e6252": "4e6a58",
+        "857865": "628070", "efe9d8": "e6f2e6",
+        "6b6f8a": "4a7a6a", "4a4d66": "36594d", "8a8fae": "6a9a88", "2f3147": "24403a",
+        "3c3f58": "2c4a42", "7a7e9c": "5a8a78",
+        "b98a55": "d0b070", "8a6038": "a88848", "a87c4a": "c0a060", "d4a56a": "e6cc90",
+        "6a4828": "806030",
+    },
+    "hr": {  # floor 4: grey-green marble, green carpet, wood paneling, mahogany desks
+        "8fa3b8": "a8b8a8", "9aaec3": "b4c4b4", "7a8ea5": "8ea08e", "a6bace": "c0d0c0",
+        "8c3c46": "2f6a4a", "aa525c": "468a64", "7a3039": "245238", "6a2830": "1c4030",
+        "d9d2c0": "b08a5c", "cdc5b0": "9c7a50", "b0a58c": "7a5a38", "6e6252": "4a3220",
+        "857865": "5e4630", "efe9d8": "c8a474",
+        "6b6f8a": "5a3a30", "4a4d66": "402a22", "8a8fae": "7a5446", "2f3147": "2a1a14",
+        "3c3f58": "34221a", "7a7e9c": "6a4a3c",
+        "b98a55": "7a3c34", "8a6038": "5a2820", "a87c4a": "6a3028", "d4a56a": "9a5a4c",
+        "6a4828": "40201a",
+    },
+}
+
+
+def recolor(tile, mapping):
+    table = {rgb(k): rgb(v) for k, v in mapping.items()}
+    return [[table.get(px, px) for px in row] for row in tile]
+
+
+def tile_variants():
+    """(name, tile maker) for every base tile, then each theme's recolored tiles as name_theme."""
+    makers = dict(TILE_ORDER)
+    result = list(TILE_ORDER)
+    for theme, mapping in THEMES.items():
+        for name in THEMED:
+            result.append(("%s_%s" % (name, theme), lambda n=name, m=mapping: recolor(makers[n](), m)))
+    return result
+
+
 def make_tiles(out):
-    atlas = blank(TILE * len(TILE_ORDER), TILE)
+    variants = tile_variants()
+    atlas = blank(TILE * len(variants), TILE)
     index = {}
-    for i, (name, make) in enumerate(TILE_ORDER):
+    for i, (name, make) in enumerate(variants):
         blit(atlas, make(), i * TILE, 0)
         index[name] = i
     write_png(out / "tiles.png", atlas)
@@ -371,6 +413,37 @@ CHARACTERS = {
         "colors": {"T": "5a9a5a", "t": "3f7a3f", "P": "3a4a7a", "U": "3f7a3f"},
         "overlays": ["hood", "lanyard"],
     },
+    "poll_worker": {
+        "hair_style": "slick", "hair": "2a2a30", "hair_shade": "4a4a55",
+        "colors": {"C": "3a5fa8", "c": "2c4a86", "T": "e0782a", "t": "b85c18", "P": "4a4a5a"},
+        "overlays": ["lanyard", "papers"],
+    },
+    "volunteer": {
+        "hair_style": "bun", "hair": "c0402a", "hair_shade": "9a3020",
+        "colors": {"C": "e8c030", "c": "b89820", "T": "d05a8a", "t": "a8406a", "B": "e8e8f0"},
+        "overlays": ["lanyard"],
+        "body": "skirt",
+    },
+    "attendant": {
+        "colors": {"C": "6a4a9a", "c": "4e3678", "T": "8a8a94", "t": "6a6a74", "P": "3a3a45"},
+        "overlays": ["moustache", "glasses"],
+    },
+    "hr_clerk": {
+        "hair_style": "slick", "hair": "d8b860", "hair_shade": "b89a40",
+        "colors": {"C": "2f8a4f", "c": "226a3a", "T": "a0c0e0", "t": "7a9ac0", "R": "2f8a4f", "P": "2a2a3a"},
+        "overlays": ["glasses", "tie", "papers"],
+    },
+    "applicant": {
+        "hair_style": "spiky", "hair": "222228", "hair_shade": "3a3a44",
+        "colors": {"C": "b04a3a", "c": "8a3626", "T": "5a6a8a", "t": "44526e", "P": "5a5a6a"},
+        "overlays": ["papers"],
+    },
+    "auditor": {
+        "hair_style": "bun", "hair": "6a3a5a", "hair_shade": "4e2a42",
+        "colors": {"C": "4a4a55", "c": "34343e", "T": "4a4a55", "t": "34343e", "B": "2a2a30"},
+        "overlays": ["glasses", "papers"],
+        "body": "skirt",
+    },
 }
 
 
@@ -491,9 +564,89 @@ SPOKESPERSON_FRAMES = [
     MEGAPHONE + [(9, 7, "E"), (8, 7, "K"), (14, 7, "E"), (15, 7, "K")],
 ]
 
+CAMPAIGN = [
+    "........................",
+    "........KKKKKKKK........",
+    ".......KAAAAAAAAK.......",
+    ".......KAQQQQQQAK.......",
+    "..KAAAAAAAAAAAAAAAAAAK..",
+    "...KKKKKKKKKKKKKKKKKK...",
+    ".....KSSSSSSSSSSSSK.....",
+    ".....KSGGGGSSGGGGSK.....",
+    ".....KSGGGGGGGGGGSK.....",
+    ".....KSSSSSnnSSSSSK.....",
+    ".....KSKKKKKKKKKKSK.....",
+    ".....KSKWWWWWWWWKSK.....",
+    ".....KSSKKKKKKKKSSK.....",
+    "......KsSSSSSSSSsK......",
+    ".....KKKKSSSSSSKKKK.....",
+    "..KKJJJJJJJJJJJJJJJJKK..",
+    ".KJJJJJJJJJJJJJJJJJJJJK.",
+    ".KQQJJJJJJJJJJJJJJJJJJK.",
+    ".KJJQQJJJJJJJJJJJJJJJJK.",
+    ".KjjjQQJJJJJJJJJJJJJjjK.",
+    ".KjjjjjQQJJJJJJJJJjjjjK.",
+    "..KPPPPPPPPPPPPPPPPPPPPK",
+    "....KBBBBBBK.KBBBBBBK...",
+    "....KKKKKKKK.KKKKKKKK...",
+]
+CAMPAIGN_PALETTE = {
+    "S": "e8a890", "s": "c98070", "A": "e8c860", "a": "b89a40", "Q": "c03030", "G": "2b2233",
+    "J": "e8c030", "j": "c09820", "n": "e07060", "P": "2a3f7a", "B": "1f1a26", "g": "4aa860",
+    "d": "2f7a40",
+}
+CAMPAIGN_FRAMES = [
+    [(1, 10, "g"), (2, 10, "g"), (3, 10, "g"), (1, 11, "d"), (2, 11, "g"), (3, 11, "g"),
+     (2, 12, "d"), (3, 12, "g"), (3, 13, "S"), (4, 13, "S")],
+    [(0, 9, "g"), (1, 10, "g"), (2, 10, "g"), (3, 10, "d"), (1, 11, "g"), (2, 11, "d"), (3, 11, "g"),
+     (2, 12, "g"), (3, 12, "d"), (3, 13, "S"), (4, 13, "S"), (8, 7, "W")],
+]
+
+DIRECTOR = [
+    "........................",
+    "........KKKKKKKK........",
+    ".......KHHHHHHHHK.......",
+    "......KHHhHHHHhHHK......",
+    "......KHHHHHHHHHHK......",
+    "......KHSSSSSSSSHK......",
+    "......KShhhSShhhSK......",
+    "......KSEKSSSSKESK......",
+    "......KSSSSnnSSSSK......",
+    "....KMMMMMMMMMMMMMMK....",
+    "....KMmMMMMMMMMMMmMK....",
+    "......KKmmMMMMmmKK......",
+    "......KsSSSSSSSSsK......",
+    ".......KKSSSSSSKK.......",
+    "...KCCCCCCCWWWWCCCCCCCK.",
+    ".KCCCCCCCCWWWWCCCCCCCCK.",
+    ".KCCCCCCCCCCCCCCCCCCCCK.",
+    ".KCCCCCCCCCCCCCCCCCCCCK.",
+    ".KcCCCCCCCCCCCCCCCCCCcK.",
+    ".KccCCCCCCCCCCCCCCCCccK.",
+    ".KcccCCCCCCCCCCCCCCcccK.",
+    "..KKPPPPPPPPPPPPPPPPKK..",
+    "....KBBBBBBK..KBBBBBBK..",
+    "....KKKKKKKK..KKKKKKKK..",
+]
+DIRECTOR_PALETTE = {
+    "S": "e0b090", "s": "c08a68", "H": "ece8e0", "h": "b8b4b0", "M": "f4f2e8", "m": "b8b4b0",
+    "E": "f4f2e8", "n": "e0907a", "C": "7a2030", "c": "561622", "W": "f4f2e8", "O": "e8c030",
+    "R": "c03030", "P": "2a2038", "B": "1f1a26", "D": "8a5a30",
+}
+CREST = [(5, 16, "O"), (6, 16, "O"), (7, 16, "O"), (8, 16, "O"), (5, 17, "O"), (6, 17, "R"), (7, 17, "R"),
+         (8, 17, "O"), (5, 18, "O"), (6, 18, "R"), (7, 18, "R"), (8, 18, "O"), (6, 19, "O"), (7, 19, "O"),
+         (12, 17, "O"), (12, 19, "O")]
+CANE = [(22, 13, "D"), (23, 13, "D")] + [(23, y, "D") for y in range(14, 24)]
+DIRECTOR_FRAMES = [
+    CREST + CANE,
+    [p for p in CREST if p[:2] != (5, 16)] + [(5, 16, "W")] + CANE + [(9, 6, "h"), (14, 6, "h")],
+]
+
 BOSSES = {
     "deputy_director": (DEPUTY, DEPUTY_PALETTE, DEPUTY_FRAMES),
     "spokesperson": (SPOKESPERSON, SPOKESPERSON_PALETTE, SPOKESPERSON_FRAMES),
+    "campaign_manager": (CAMPAIGN, CAMPAIGN_PALETTE, CAMPAIGN_FRAMES),
+    "director_general": (DIRECTOR, DIRECTOR_PALETTE, DIRECTOR_FRAMES),
 }
 
 
@@ -652,7 +805,8 @@ def make_font(out):
 # ------------------------------------------------------------------------ icons
 
 ICON = 16
-ICON_ORDER = ["ledger_page", "meeting_photo", "text_messages", "original_statement", "bot_list", "edited_clip"]
+ICON_ORDER = ["ledger_page", "meeting_photo", "text_messages", "original_statement", "bot_list", "edited_clip",
+              "cash_envelopes", "vote_receipts", "rigged_poll", "hiring_file", "qualification_list", "payroll_records"]
 DARK = rgb("3c281c")
 
 
@@ -754,7 +908,89 @@ def icon_clip():
     return t
 
 
-ICON_MAKERS = [icon_ledger, icon_photo, icon_phone, icon_statement, icon_bots, icon_clip]
+def icon_envelopes():
+    t = blank(ICON, ICON)
+    _fill(t, 1, 4, 14, 12, rgb("f2e6b8"))
+    _outline(t, 1, 4, 14, 12, DARK)
+    for i in range(6):
+        t[5 + i // 2][2 + i] = rgb("c0a060")
+        t[5 + i // 2][13 - i] = rgb("c0a060")
+    _fill(t, 5, 8, 10, 11, rgb("4aa860"))
+    _outline(t, 5, 8, 10, 11, rgb("2f7a40"))
+    t[9][7] = rgb("f4f2e8")
+    t[9][8] = rgb("f4f2e8")
+    return t
+
+
+def icon_receipts():
+    t = blank(ICON, ICON)
+    _fill(t, 4, 1, 11, 14, rgb("f4f2e8"))
+    _outline(t, 4, 1, 11, 14, DARK)
+    for x in range(4, 12, 2):
+        t[14][x] = CLEAR
+    _fill(t, 6, 3, 9, 3, rgb("2b2233"))
+    for y in (5, 7, 9):
+        for x in range(6, 10):
+            t[y][x] = rgb("9a98a0")
+    _fill(t, 6, 11, 9, 12, rgb("4aa860"))
+    return t
+
+
+def icon_poll():
+    t = blank(ICON, ICON)
+    _fill(t, 2, 2, 13, 13, rgb("f2efe4"))
+    _outline(t, 2, 2, 13, 13, DARK)
+    for i, (h, c) in enumerate(((3, "c03030"), (6, "3a4a7a"), (9, "e8c030"))):
+        _fill(t, 4 + i * 3, 12 - h, 5 + i * 3, 12, rgb(c))
+    t[3][11] = rgb("c03030")
+    t[4][12] = rgb("c03030")
+    return t
+
+
+def icon_hiring():
+    t = blank(ICON, ICON)
+    _fill(t, 2, 3, 13, 14, rgb("d8b050"))
+    _outline(t, 2, 3, 13, 14, DARK)
+    _fill(t, 2, 1, 7, 3, rgb("d8b050"))
+    _outline(t, 2, 1, 7, 3, DARK)
+    _fill(t, 5, 6, 10, 12, rgb("f4f2e8"))
+    _fill(t, 6, 7, 7, 8, rgb("2b2233"))
+    _fill(t, 6, 9, 8, 10, rgb("3a4a7a"))
+    for x in range(9, 11):
+        t[11][x] = rgb("9a98a0")
+    return t
+
+
+def icon_qualification():
+    t = blank(ICON, ICON)
+    _fill(t, 3, 1, 12, 14, rgb("f4f2e8"))
+    _outline(t, 3, 1, 12, 14, DARK)
+    for y in (3, 6, 9, 12):
+        _fill(t, 5, y, 6, y, rgb("2b2233"))
+        for x in range(8, 11):
+            t[y][x] = rgb("9a98a0")
+        t[y][4] = rgb("2f9e8f")
+    t[6][11] = rgb("c03030")
+    t[7][11] = rgb("c03030")
+    return t
+
+
+def icon_payroll():
+    t = blank(ICON, ICON)
+    _fill(t, 2, 2, 13, 13, rgb("f2efe4"))
+    _outline(t, 2, 2, 13, 13, DARK)
+    for y in (4, 6, 8, 10):
+        for x in range(4, 9):
+            t[y][x] = rgb("9a98a0")
+        _fill(t, 10, y, 11, y, rgb("4aa860"))
+    _fill(t, 10, 12, 11, 12, rgb("c03030"))
+    for x in range(4, 9):
+        t[12][x] = rgb("2b2233")
+    return t
+
+
+ICON_MAKERS = [icon_ledger, icon_photo, icon_phone, icon_statement, icon_bots, icon_clip,
+               icon_envelopes, icon_receipts, icon_poll, icon_hiring, icon_qualification, icon_payroll]
 
 
 def make_icons(out):

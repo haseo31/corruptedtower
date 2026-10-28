@@ -11,14 +11,25 @@
 						"The budget office is busy. What do you want?"
 					],
 					"choices": [
-						{"text": "Ask about the road project budget", "next": "budget"},
-						{"text": "Ask who approved the payments", "next": "approver"},
-						{"text": "Say goodbye"}
+						{
+							"text": "Ask about the road project budget",
+							"next": "budget"
+						},
+						{
+							"text": "Ask who approved the payments",
+							"next": "approver"
+						},
+						{
+							"text": "Say goodbye"
+						}
 					]
 				},
 				"budget": {
 					"speaker": "Clerk",
-					"redirect_if_has": {"evidence": "ledger_page", "node": "already_gave"},
+					"redirect_if_has": {
+						"evidence": "ledger_page",
+						"node": "already_gave"
+					},
 					"lines": [
 						"I should not say this, but the ledger does not match the announcement.",
 						"Here, take this page. Please do not tell anyone where you got it."
@@ -35,7 +46,9 @@
 				},
 				"already_gave": {
 					"speaker": "Clerk",
-					"lines": ["I already gave you that page. Please leave before someone sees us."]
+					"lines": [
+						"I already gave you that page. Please leave before someone sees us."
+					]
 				}
 			}
 		},
@@ -45,15 +58,26 @@
 			"nodes": {
 				"greet": {
 					"speaker": "Janitor",
-					"lines": ["Mind the wet floor. I clean this lobby every night."],
+					"lines": [
+						"Mind the wet floor. I clean this lobby every night."
+					],
 					"choices": [
-						{"text": "Ask what he saw last night", "next": "saw"},
-						{"text": "Ask about the lobby", "next": "lobby"}
+						{
+							"text": "Ask what he saw last night",
+							"next": "saw"
+						},
+						{
+							"text": "Ask about the lobby",
+							"next": "lobby"
+						}
 					]
 				},
 				"saw": {
 					"speaker": "Janitor",
-					"redirect_if_has": {"evidence": "text_messages", "node": "already_gave"},
+					"redirect_if_has": {
+						"evidence": "text_messages",
+						"node": "already_gave"
+					},
 					"lines": [
 						"A man left his phone in the meeting room, still open on his messages.",
 						"I printed them out. Someone should read them, and it should not be me."
@@ -62,11 +86,15 @@
 				},
 				"lobby": {
 					"speaker": "Janitor",
-					"lines": ["Marble floors, no budget for new mops. Funny, that."]
+					"lines": [
+						"Marble floors, no budget for new mops. Funny, that."
+					]
 				},
 				"already_gave": {
 					"speaker": "Janitor",
-					"lines": ["You have the printout already. Be careful with it."]
+					"lines": [
+						"You have the printout already. Be careful with it."
+					]
 				}
 			}
 		},
@@ -76,15 +104,26 @@
 			"nodes": {
 				"greet": {
 					"speaker": "Archivist",
-					"lines": ["Records Room. Everything here is filed, dated and signed."],
+					"lines": [
+						"Records Room. Everything here is filed, dated and signed."
+					],
 					"choices": [
-						{"text": "Ask for the Spokesperson's original statement", "next": "file"},
-						{"text": "Ask how records are kept", "next": "records"}
+						{
+							"text": "Ask for the Spokesperson's original statement",
+							"next": "file"
+						},
+						{
+							"text": "Ask how records are kept",
+							"next": "records"
+						}
 					]
 				},
 				"file": {
 					"speaker": "Archivist",
-					"redirect_if_has": {"evidence": "original_statement", "node": "already_gave"},
+					"redirect_if_has": {
+						"evidence": "original_statement",
+						"node": "already_gave"
+					},
 					"lines": [
 						"The Spokesperson's original statement is filed here. His public version quotes only half of it.",
 						"Read the whole thing. Take a copy."
@@ -93,11 +132,15 @@
 				},
 				"records": {
 					"speaker": "Archivist",
-					"lines": ["Every record has an author and a date. A record with neither is not a record."]
+					"lines": [
+						"Every record has an author and a date. A record with neither is not a record."
+					]
 				},
 				"already_gave": {
 					"speaker": "Archivist",
-					"lines": ["You already have a copy of that statement."]
+					"lines": [
+						"You already have a copy of that statement."
+					]
 				}
 			}
 		},
@@ -107,15 +150,26 @@
 			"nodes": {
 				"greet": {
 					"speaker": "Intern",
-					"lines": ["Please do not tell my boss I am talking to you."],
+					"lines": [
+						"Please do not tell my boss I am talking to you."
+					],
 					"choices": [
-						{"text": "Ask about the department's social media", "next": "social"},
-						{"text": "Ask about the coffee machine", "next": "coffee"}
+						{
+							"text": "Ask about the department's social media",
+							"next": "social"
+						},
+						{
+							"text": "Ask about the coffee machine",
+							"next": "coffee"
+						}
 					]
 				},
 				"social": {
 					"speaker": "Intern",
-					"redirect_if_has": {"evidence": "bot_list", "node": "already_gave"},
+					"redirect_if_has": {
+						"evidence": "bot_list",
+						"node": "already_gave"
+					},
 					"lines": [
 						"Most of our 'supporters' are accounts we made ourselves. I keep the list.",
 						"I copied it for you. I did not know where else to take it."
@@ -124,11 +178,296 @@
 				},
 				"coffee": {
 					"speaker": "Intern",
-					"lines": ["It has been broken since March. Nobody is allowed to say so."]
+					"lines": [
+						"It has been broken since March. Nobody is allowed to say so."
+					]
 				},
 				"already_gave": {
 					"speaker": "Intern",
-					"lines": ["You have the list. Please keep my name out of it."]
+					"lines": [
+						"You have the list. Please keep my name out of it."
+					]
+				}
+			}
+		},
+		{
+			"id": "poll_worker",
+			"start": "greet",
+			"nodes": {
+				"greet": {
+					"speaker": "Poll Worker",
+					"lines": [
+						"Polling station. Are you here to vote, or to ask questions?"
+					],
+					"choices": [
+						{
+							"text": "Ask about the envelopes by the door",
+							"next": "main"
+						},
+						{
+							"text": "Ask how voting works here",
+							"next": "side"
+						},
+						{
+							"text": "Say goodbye"
+						}
+					]
+				},
+				"side": {
+					"speaker": "Poll Worker",
+					"lines": [
+						"You get a paper ballot, mark it in secret, and drop it in the box.",
+						"Nobody is allowed to look. That is the whole point."
+					],
+					"next": "greet"
+				},
+				"main": {
+					"speaker": "Poll Worker",
+					"redirect_if_has": {
+						"evidence": "cash_envelopes",
+						"node": "again"
+					},
+					"lines": [
+						"Those envelopes arrived before dawn, one for every name on a list.",
+						"I am not paid enough to keep this quiet. Take them."
+					],
+					"give_evidence": "cash_envelopes"
+				},
+				"again": {
+					"speaker": "Poll Worker",
+					"lines": [
+						"You already have the envelopes. Please go before the manager sees you."
+					]
+				}
+			}
+		},
+		{
+			"id": "volunteer",
+			"start": "greet",
+			"nodes": {
+				"greet": {
+					"speaker": "Student Volunteer",
+					"lines": [
+						"Hi! I am volunteering for the campaign. Well, I was."
+					],
+					"choices": [
+						{
+							"text": "Ask what changed",
+							"next": "main"
+						},
+						{
+							"text": "Ask what volunteers do",
+							"next": "side"
+						},
+						{
+							"text": "Say goodbye"
+						}
+					]
+				},
+				"side": {
+					"speaker": "Student Volunteer",
+					"lines": [
+						"Banners, snacks, and rides to the polls. That part is normal and honest."
+					],
+					"next": "greet"
+				},
+				"main": {
+					"speaker": "Student Volunteer",
+					"redirect_if_has": {
+						"evidence": "vote_receipts",
+						"node": "again"
+					},
+					"lines": [
+						"They told us to hand out cash, but only to people who showed a photo of their ballot.",
+						"I kept the receipts they made us sign. I cannot stop thinking about it."
+					],
+					"give_evidence": "vote_receipts"
+				},
+				"again": {
+					"speaker": "Student Volunteer",
+					"lines": [
+						"You have my receipts. I hope they help."
+					]
+				}
+			}
+		},
+		{
+			"id": "attendant",
+			"start": "greet",
+			"nodes": {
+				"greet": {
+					"speaker": "Booth Attendant",
+					"lines": [
+						"Keep moving, please. One person per booth."
+					],
+					"choices": [
+						{
+							"text": "Ask about the campaign's poll",
+							"next": "main"
+						},
+						{
+							"text": "Ask about the booths",
+							"next": "side"
+						},
+						{
+							"text": "Say goodbye"
+						}
+					]
+				},
+				"side": {
+					"speaker": "Booth Attendant",
+					"lines": [
+						"Curtains are there so nobody can see your vote. Or sell it."
+					],
+					"next": "greet"
+				},
+				"main": {
+					"speaker": "Booth Attendant",
+					"lines": [
+						"The 'poll' asked only people already on the campaign's list.",
+						"A fair poll picks people at random. The desk in the east room holds the proof."
+					],
+					"next": "greet"
+				}
+			}
+		},
+		{
+			"id": "hr_clerk",
+			"start": "greet",
+			"nodes": {
+				"greet": {
+					"speaker": "HR Clerk",
+					"lines": [
+						"Personnel Office. Applications are processed strictly by the book."
+					],
+					"choices": [
+						{
+							"text": "Ask about the new Chief of Staff",
+							"next": "main"
+						},
+						{
+							"text": "Ask how hiring works",
+							"next": "side"
+						},
+						{
+							"text": "Say goodbye"
+						}
+					]
+				},
+				"side": {
+					"speaker": "HR Clerk",
+					"lines": [
+						"Every job is posted, every applicant is scored, and the best score is hired. That is the rule."
+					],
+					"next": "greet"
+				},
+				"main": {
+					"speaker": "HR Clerk",
+					"redirect_if_has": {
+						"evidence": "hiring_file",
+						"node": "again"
+					},
+					"lines": [
+						"The new Chief of Staff is the Director General's nephew. There was no interview.",
+						"Here is his file. I filed it myself, and it has bothered me ever since."
+					],
+					"give_evidence": "hiring_file"
+				},
+				"again": {
+					"speaker": "HR Clerk",
+					"lines": [
+						"You have the file already. Please be careful with it."
+					]
+				}
+			}
+		},
+		{
+			"id": "applicant",
+			"start": "greet",
+			"nodes": {
+				"greet": {
+					"speaker": "Rejected Applicant",
+					"lines": [
+						"I came here three times. They keep saying the job was filled."
+					],
+					"choices": [
+						{
+							"text": "Ask about the ranking",
+							"next": "main"
+						},
+						{
+							"text": "Ask how you were treated",
+							"next": "side"
+						},
+						{
+							"text": "Say goodbye"
+						}
+					]
+				},
+				"side": {
+					"speaker": "Rejected Applicant",
+					"lines": [
+						"Polite smiles and no answers. I think the decision was made before I applied."
+					],
+					"next": "greet"
+				},
+				"main": {
+					"speaker": "Rejected Applicant",
+					"redirect_if_has": {
+						"evidence": "qualification_list",
+						"node": "again"
+					},
+					"lines": [
+						"I placed first on the original list. The person they hired was last.",
+						"I kept my copy of the original ranking. Take it."
+					],
+					"give_evidence": "qualification_list"
+				},
+				"again": {
+					"speaker": "Rejected Applicant",
+					"lines": [
+						"You have my copy. Please use it well."
+					]
+				}
+			}
+		},
+		{
+			"id": "auditor",
+			"start": "greet",
+			"nodes": {
+				"greet": {
+					"speaker": "Auditor",
+					"lines": [
+						"I am auditing this office. Please do not touch the folders."
+					],
+					"choices": [
+						{
+							"text": "Ask what the audit found",
+							"next": "main"
+						},
+						{
+							"text": "Ask about the payroll",
+							"next": "side"
+						},
+						{
+							"text": "Say goodbye"
+						}
+					]
+				},
+				"side": {
+					"speaker": "Auditor",
+					"lines": [
+						"Salaries are paid from public money. Every name on it should do real work."
+					],
+					"next": "greet"
+				},
+				"main": {
+					"speaker": "Auditor",
+					"lines": [
+						"Several relatives of the Director General are paid for jobs that have no duties.",
+						"The records are on the desk in the east wing. Compare them yourself."
+					],
+					"next": "greet"
 				}
 			}
 		}

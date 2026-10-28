@@ -29,6 +29,36 @@
 			"id": "edited_clip",
 			"title": "Edited video log",
 			"description": "An editing log showing the viral clip was cut together from separate recordings."
+		},
+		{
+			"id": "cash_envelopes",
+			"title": "Cash envelopes",
+			"description": "Sealed envelopes of cash, each marked with a voter's name and a polling precinct."
+		},
+		{
+			"id": "vote_receipts",
+			"title": "Vote-for-cash receipts",
+			"description": "Signed receipts showing voters were paid after they showed a photo of their ballot."
+		},
+		{
+			"id": "rigged_poll",
+			"title": "Poll method sheet",
+			"description": "A worksheet showing the 'poll' only asked people already on the campaign's list."
+		},
+		{
+			"id": "hiring_file",
+			"title": "Hiring file",
+			"description": "A hiring file showing the new Chief of Staff is the Director General's nephew, hired without an interview."
+		},
+		{
+			"id": "qualification_list",
+			"title": "Qualification list",
+			"description": "The original ranked list of applicants, where the person hired placed last."
+		},
+		{
+			"id": "payroll_records",
+			"title": "Payroll records",
+			"description": "Payroll records listing relatives of the Director General paid for jobs with no duties."
 		}
 	]
 }

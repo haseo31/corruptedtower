@@ -6,6 +6,12 @@
     "text_messages": 2,
     "original_statement": 3,
     "bot_list": 4,
-    "edited_clip": 5
+    "edited_clip": 5,
+    "cash_envelopes": 6,
+    "vote_receipts": 7,
+    "rigged_poll": 8,
+    "hiring_file": 9,
+    "qualification_list": 10,
+    "payroll_records": 11
   }
 }
