@@ -2,18 +2,18 @@
 	"evidence": [
 		{
 			"id": "ledger_page",
-			"title": "Ledger page",
-			"description": "A page from the project ledger showing payments that do not match the announced budget."
+			"title": "NGO fund ledger",
+			"description": "A ledger of public money sent to groups that cannot be found. Several of the listed addresses are empty lots."
 		},
 		{
 			"id": "meeting_photo",
-			"title": "Meeting photo",
-			"description": "A photo of the official meeting the contractor in a restaurant."
+			"title": "Photo with the fixer",
+			"description": "A photo of the Fund Fixer having lunch with a lawmaker's chief of staff."
 		},
 		{
 			"id": "text_messages",
-			"title": "Text messages",
-			"description": "Messages arranging a payment before the contract was awarded."
+			"title": "Commission chats",
+			"description": "Messages arranging the share the lawmaker's office gets back from each fund release."
 		},
 		{
 			"id": "original_statement",
@@ -63,22 +63,22 @@
 		{
 			"id": "ghost_project",
 			"title": "Site inspection photo",
-			"description": "A dated photo of the lot where the new school was paid for. It is an empty field with a rusty sign."
+			"description": "A dated photo of the river bank where a flood wall was paid for. It is an empty bank with a rusty project sign."
 		},
 		{
 			"id": "invoice_batch",
 			"title": "Invoice batch",
-			"description": "Twelve invoices from one supplier for the same office chairs, each at ten times the market price."
+			"description": "Twelve invoices from one supplier for the same steel bars, each at ten times the market price."
 		},
 		{
 			"id": "shell_company",
 			"title": "Company registry card",
-			"description": "The registry card of the company that won the tender. It was founded a week before the bid, by the Secretary's cousin."
+			"description": "The registry card of the company that won the tender. It was founded a week before the bid, by a relative of the Chief Engineer."
 		},
 		{
 			"id": "redacted_report",
-			"title": "Redacted report",
-			"description": "A public spending report where every page about money is blacked out."
+			"title": "Redacted budget",
+			"description": "A budget document where the pages listing who proposed which projects are blacked out."
 		},
 		{
 			"id": "foi_denial",

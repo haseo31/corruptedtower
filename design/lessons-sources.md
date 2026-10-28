@@ -30,3 +30,23 @@ The made-up stories (Aling Nena, Mark's lola, Mang Berto, Jenny, Lola Fe, report
 - Names of living people as wrongdoers. The game names laws, courts, agencies and published events only.
 - Court convictions of named people, prison terms, and hotline numbers other than the CSC text line.
 - 2026 news (reported new floods, protests and a reported Supreme Court ruling on political dynasties) that the search returned but that could not be confirmed.
+
+## Added in story 018 (real cases behind the floors)
+
+The six bosses are **composite characters** named after their role (the Fund Fixer, the Spokesperson, the Campaign Manager, the Director General, the Chief Engineer, the Minister of Secrecy). They are not any real person. Each floor is built on a documented case, and the case file says what really happened. No real person is named anywhere in the game.
+
+| Floor / case | Statement in the game | Source | How it was checked |
+|---|---|---|---|
+| 1 Pork barrel (earlier administrations) | A COA special audit of 2007 to 2009 flagged billions of pesos sent to doubtful NGOs; the Supreme Court declared the PDAF unconstitutional in Nov. 2013 | Belgica v. Ochoa, G.R. No. 208566; COA special audit; Inquirer, Rappler, Philstar | Several outlets and the case page agree. Reports give different totals, so the game says "billions". |
+| 1 | In 2018 the Sandiganbayan convicted the scam's operator of plunder and more convictions followed; a former senator tried in the same case was acquitted of plunder | Inquirer, Philstar, Rappler, Dec. 2018 and 2019 | Several outlets agree. Whether every conviction is final was not checked, so the game says "convicted", not "jailed". *Re-check.* |
+| 4 Jobs for family | Ateneo researchers estimated about two thirds to three quarters of Congress came from political families (2012 to 2019 studies) | Ateneo School of Government; Inquirer | Search returned the studies' figures (70% in 2012, 75% in 2013, 67% in 2019). No 2022 or 2025 figure was found. Methods differ. |
+| 5 Flood control (current administration) | July 2025: the President ordered an audit. Aug. 2025: 15 contractors had won over 100 billion pesos in flood control contracts since 2022. At least 421 of about 8,000 inspected projects were "ghost projects". The Independent Commission for Infrastructure was created Sept. 2025 (EO 94) | Tribune timeline (Feb. 2026); Inquirer; Asia News Network; SunStar | Several outlets agree. The scandal is still developing, so these figures may change. |
+| 5 | Sept. 2025 Senate hearing: a former district engineer testified he passed 25 percent kickbacks to lawmakers' staff; those named deny it. Nov. 2025: the Ombudsman filed the first charges at the Sandiganbayan, over a substandard dike in Oriental Mindoro | Gulf News; Malaya Business Insight; Tribune timeline | Reported as an allegation and a filing, not as findings. The game says the accused are presumed innocent. *Re-check for newer court outcomes.* |
+| 5 | Large rallies in Sept. 2025 demanded accountability | Tribune timeline; Wikipedia ("Trillion Peso March") | Several sources agree. |
+| 6 Budget insertions | In 2025 a senator said the Senate added about 100 billion pesos; Senate leaders said insertions are part of the budget process | Inquirer; Philstar, Sept. 2025 | News headlines of statements by named people, attributed in the game as claims ("one senator said"). *Re-check.* |
+| Finale | Pandemic supplies (2021): a firm with 625,000 pesos in paid-up capital won the biggest contracts; the Senate questioned the prices; COA found lapses in the health department's fund handling but said it found no overpricing | Philstar and Inquirer, 2021; COA | The findings were disputed in public, which the game says. A 2023 Ombudsman result was seen only in a secondary source and is left out. |
+
+## Left out of the game on purpose (story 018)
+
+- Any real person's name as accused or convicted, including senators, contractors and officials in the 2025 hearings, and the 2026 arrests and charges reported in the search results (not confirmed from a primary source).
+- Totals of frozen funds and numbers of rallies, which varied between outlets.

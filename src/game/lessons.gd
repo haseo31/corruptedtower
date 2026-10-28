@@ -35,19 +35,28 @@ static func load_json(path: String = PATH) -> Dictionary:
 	return {"cases": cases, "order": order, "finale": finale}
 
 
-## The pages of one case file: [{"title", "body", "footer"}].
+## The pages of one case file: [{"title", "body", "footer"}]. Five pages, or six when the real
+## case has a second page ("more" in the data).
 static func case_pages(case: Dictionary) -> Array:
 	var words: Array[String] = []
 	for word: Dictionary in case["words"]:
 		words.append("%s: %s" % [word["term"], word["meaning"]])
-	return [
+	var pages: Array = [
 		{"title": "The trick: %s" % case["trick"]["name"], "body": case["trick"]["text"], "footer": ""},
-		{"title": "In the Philippines (real)", "body": case["real_world"]["text"],
+		{"title": "The real case (Philippines)", "body": case["real_world"]["text"],
 			"footer": "Sources: %s" % case["real_world"].get("sources", "")},
+	]
+	# An optional second real-world page: what happened next, or how common it is.
+	var more: String = str(case["real_world"].get("more", ""))
+	if not more.is_empty():
+		pages.append({"title": str(case["real_world"].get("more_title", "What happened next (real)")),
+			"body": more, "footer": "Sources: %s" % case["real_world"].get("more_sources", "")})
+	pages.append_array([
 		{"title": "How it hurts people (a made-up story)", "body": case["story"]["text"], "footer": ""},
 		{"title": "What you can do", "body": case["action"], "footer": ""},
 		{"title": "Words to know", "body": "\n".join(words), "footer": ""},
-	]
+	])
+	return pages
 
 
 ## The pages of the closing "After the tower" guide: [{"title", "body", "footer"}].

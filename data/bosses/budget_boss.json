@@ -1,23 +1,23 @@
 {
 	"id": "budget_boss",
-	"display_name": "The Budget Secretary",
+	"display_name": "The Chief Engineer",
 	"sprite": "budget_secretary",
-	"intro": "Public money is delicate. Do not touch what you do not understand.",
+	"intro": "Flood control is serious business. Do not question the engineers.",
 	"cover_up_max": 3,
 	"wrong_evidence_penalty": 1,
 	"lies": [
 		{
 			"id": "lie_built",
-			"text": "Every project in this budget was built and delivered.",
-			"reaction": "An empty field and a rusty sign. No school.",
+			"text": "Every flood wall in my district was built and delivered.",
+			"reaction": "An empty river bank and a rusty sign. No wall.",
 			"counter_evidence_ids": [
 				"ghost_project"
 			]
 		},
 		{
 			"id": "lie_prices",
-			"text": "We paid fair market prices for everything.",
-			"reaction": "Ten times the market price. Twelve times over.",
+			"text": "We paid fair market prices for every bag of cement and every steel bar.",
+			"reaction": "Ten times the market price. Twelve invoices.",
 			"counter_evidence_ids": [
 				"invoice_batch"
 			]
@@ -33,7 +33,7 @@
 		{
 			"id": "lie_funds",
 			"text": "Not one peso left this office without a record.",
-			"reaction": "The ledger and the empty field. The money went somewhere, and it was not a school.",
+			"reaction": "A ledger of vanished funds and a wall that does not exist. The same trick as the old pork barrel.",
 			"counter_all": [
 				"ledger_page",
 				"ghost_project"

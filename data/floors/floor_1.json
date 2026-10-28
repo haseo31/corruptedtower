@@ -1,5 +1,5 @@
 {
-	"name": "Floor 1: Lobby",
+	"name": "Floor 1: Lawmakers' Fund Office",
 	"tile_size": 16,
 	"rows": [
 		"########################################",
@@ -32,14 +32,14 @@
 		12
 	],
 	"hint": "I: evidence   E: talk   Esc: menu",
-	"objective": "Expose the Deputy Director",
+	"objective": "Expose the Fund Fixer",
 	"objective_boss": "bribery_boss",
 	"objective_done": "Take the stairs up",
 	"npcs": [
 		{
 			"x": 8,
 			"y": 7,
-			"name": "Clerk",
+			"name": "Fund Clerk",
 			"sprite": "clerk",
 			"dialogue": "clerk"
 		},
@@ -53,10 +53,10 @@
 		{
 			"x": 36,
 			"y": 12,
-			"name": "Deputy Director",
+			"name": "Fund Fixer",
 			"sprite": "deputy_director",
 			"boss": "res://data/bosses/bribery_boss.json",
-			"defeated_message": "Your evidence is undeniable. The way up is open."
+			"defeated_message": "The NGOs were never real. Fine. The way up is open."
 		}
 	],
 	"clues": [
@@ -76,7 +76,7 @@
 				12
 			],
 			"requires_boss": "bribery_boss",
-			"locked_message": "The stairs are locked. Expose the Deputy Director first."
+			"locked_message": "The stairs are locked. Expose the Fund Fixer first."
 		}
 	],
 	"floor_number": 1

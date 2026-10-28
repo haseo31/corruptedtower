@@ -1,21 +1,21 @@
 {
 	"id": "bribery_boss",
-	"display_name": "The Deputy Director",
+	"display_name": "The Fund Fixer",
 	"sprite": "deputy_director",
 	"cover_up_max": 3,
 	"wrong_evidence_penalty": 1,
 	"lies": [
 		{
 			"id": "lie_clean_books",
-			"text": "Every peso of the road project was spent exactly as announced.",
+			"text": "Every peso of the fund went to real projects for real people.",
 			"counter_evidence_ids": [
 				"ledger_page"
 			],
-			"reaction": "The numbers do not match the announcement."
+			"reaction": "Twelve NGOs, and one address is an empty lot."
 		},
 		{
 			"id": "lie_no_deal",
-			"text": "I have never even met the contractor.",
+			"text": "I have never even met a lawmaker's staff.",
 			"counter_evidence_ids": [
 				"meeting_photo",
 				"text_messages"
@@ -23,5 +23,5 @@
 			"reaction": "Photographed and texted. So much for 'never met'."
 		}
 	],
-	"intro": "Ah, a visitor. Please do not waste my time with accusations."
+	"intro": "Ah, a visitor. Do not waste my time with accusations. My NGOs help the poor."
 }

@@ -26,3 +26,7 @@ The two "get_node on null" messages in the log come from the test script touchin
 - The real-world facts and their sources are in `design/lessons-sources.md`, with the items that should be re-checked by a person before the game is shared widely.
 - The case file opens over the floor without dimming it; it is readable but a dim layer behind it would look more finished.
 - Sign-off for the UI evidence is the user's, on story-done.
+
+## Update, story 018 (real Philippine cases)
+
+The content was re-themed around documented cases (pork barrel, flood control ghost projects, budget insertions, and more), and the case files gained a second real-case page (so a case file now has 5 or 6 pages and the closing guide has 6). Both tests were rerun and pass (35 playthrough checks). The screenshots in `story-017-learning-layer/` were retaken: for example `L-floor5-page-2` and `-3` (flood control: what happened, then the allegations and first charges), `L-journal-case1-page-2` and `-3` (the pork barrel case), and `L-finale-page-2` (three cases, three administrations). Facts and caveats: `design/lessons-sources.md`.

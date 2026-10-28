@@ -2,21 +2,21 @@
 	"challenges": [
 		{
 			"evidence_id": "ledger_page",
-			"claim": "A ledger page shows the road project cost far more than the announced budget. Which source should you NOT trust?",
+			"claim": "A ledger shows lawmakers' funds sent to groups that cannot be found. Which source should you NOT trust?",
 			"options": [
-				"The official budget announcement on the city's website",
+				"The Commission on Audit's published report, listing each group and its address",
 				"A cropped screenshot from an anonymous chat, with no author or date",
-				"The government auditor's published report"
+				"A police report of a visit to the listed addresses, signed and dated"
 			],
 			"fake_index": 1,
 			"explanation": "A screenshot with no author, date or original source cannot be checked. Official records and audit reports can be traced back to who published them."
 		},
 		{
 			"evidence_id": "meeting_photo",
-			"claim": "A photo is said to show the official meeting the contractor. Which statement about it is unreliable?",
+			"claim": "A photo is said to show the Fund Fixer having lunch with a lawmaker's chief of staff. Which statement about it is unreliable?",
 			"options": [
 				"The photo's metadata shows the date and place, matching the restaurant's own post",
-				"A post says 'everyone knows this is the contractor' but gives no name or source",
+				"A post says 'everyone knows this is the chief of staff' but gives no name or source",
 				"A news outlet identified both people and named its source"
 			],
 			"fake_index": 1,
@@ -24,10 +24,10 @@
 		},
 		{
 			"evidence_id": "text_messages",
-			"claim": "Text messages seem to arrange a payment before the contract was awarded. Which source is the fake or unreliable one?",
+			"claim": "Messages seem to arrange a share of each fund release. Which source is the fake or unreliable one?",
 			"options": [
 				"Messages retrieved with a court order and entered as evidence",
-				"The contractor's signed statement confirming the messages are real",
+				"A signed statement from the NGO's owner confirming the messages are real",
 				"A typed 'transcript' of the messages posted by an account created yesterday"
 			],
 			"fake_index": 2,
@@ -134,10 +134,10 @@
 		},
 		{
 			"evidence_id": "ghost_project",
-			"claim": "A photo shows the new school was never built. Which source should you NOT trust?",
+			"claim": "A photo shows the flood wall was never built. Which source should you NOT trust?",
 			"options": [
 				"A blurry phone photo from a passing driver, with its date and GPS place in the file details",
-				"A glossy brochure from the Budget Office showing an artist's drawing of 'the completed school', with no photos of the site",
+				"A glossy brochure from the Public Works Office showing an artist's drawing of 'the completed flood wall', with no photos of the site",
 				"The inspector's signed site report with the date of the visit"
 			],
 			"fake_index": 1,
@@ -145,10 +145,10 @@
 		},
 		{
 			"evidence_id": "invoice_batch",
-			"claim": "Invoices show chairs bought at ten times the market price. Which source is unreliable?",
+			"claim": "Invoices show steel bars bought at ten times the market price. Which source is unreliable?",
 			"options": [
 				"A price list on the supplier's letterhead saying 'our prices are always fair', with no dates or item numbers",
-				"The invoices themselves, with numbers and the Budget Office's stamp",
+				"The invoices themselves, with numbers and the Public Works Office's stamp",
 				"A pencil-written comparison by a junior accountant listing three other shops' prices with their phone numbers"
 			],
 			"fake_index": 0,
@@ -167,10 +167,10 @@
 		},
 		{
 			"evidence_id": "redacted_report",
-			"claim": "A public report has every page about money blacked out. Which source should you NOT trust?",
+			"claim": "A budget document has the pages listing who proposed which projects blacked out. Which source should you NOT trust?",
 			"options": [
-				"A grainy scan of the full report from before the black marker, stamped by the archive with a date",
-				"A press release called 'Transparency Report' that says 'nothing was withheld', with no copy of the report attached",
+				"A grainy scan of the full budget document from before the black marker, stamped by the archive with a date",
+				"A press release called 'Transparency Report' that says 'nothing was withheld', with no copy of the budget attached",
 				"The archive's own log showing who ordered the pages blacked out"
 			],
 			"fake_index": 1,

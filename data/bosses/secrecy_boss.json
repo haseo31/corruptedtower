@@ -9,8 +9,8 @@
 	"lies": [
 		{
 			"id": "lie_open",
-			"text": "Our records are open to every citizen.",
-			"reaction": "Every page about money is blacked out.",
+			"text": "Every page of the budget is open to every citizen.",
+			"reaction": "Every page about who proposed what is blacked out.",
 			"counter_evidence_ids": [
 				"redacted_report"
 			]

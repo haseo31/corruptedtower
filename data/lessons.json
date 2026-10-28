@@ -3,23 +3,34 @@
 	"lessons": [
 		{
 			"boss_id": "bribery_boss",
-			"title": "Case file 1: Kickbacks",
+			"title": "Case file 1: The pork barrel scam",
 			"trick": {
 				"name": "Follow the money",
-				"text": "When the announced budget and the real payments do not match, someone is taking a cut. Compare the numbers. Ask who was paid, who approved it, and who met whom before the contract was awarded."
+				"text": "When the paper says money went to a good cause but you cannot find the cause, someone is taking a cut. Look up where the money was sent. Ask who endorsed it, who picked the group, and who got a share back."
 			},
 			"real_world": {
-				"text": "Asking for or taking a gift, share or percentage in connection with a government contract is a crime under the Anti-Graft and Corrupt Practices Act (Republic Act 3019, 1960). The penalty includes prison and perpetual disqualification from public office. The 1987 Constitution says a public office is a public trust.",
-				"sources": "RA 3019, Sec. 3(b) (lawphil.net). 1987 Constitution, Art. XI, Sec. 1."
+				"text": "For years each lawmaker had a yearly fund, the PDAF or 'pork barrel', for local projects. A Commission on Audit special audit of 2007 to 2009 flagged billions of pesos sent to NGOs, many of them doubtful. In November 2013 the Supreme Court declared the PDAF unconstitutional.",
+				"sources": "Belgica v. Ochoa, G.R. No. 208566 (2013). COA special audit, 2007-2009 PDAF. Inquirer; Rappler.",
+				"more": "In 2018 the Sandiganbayan convicted the businesswoman at the center of the scam of plunder, and more convictions followed. A former senator tried in the same case was acquitted of plunder. Cases like this take years, and proving who got what is hard.",
+				"more_sources": "Sandiganbayan decisions, Dec. 2018 and 2019 (Inquirer, Philstar, Rappler)."
 			},
 			"story": {
-				"text": "Aling Nena sells vegetables beside a barangay road that was 'repaved' last year, for millions of pesos on paper. After one rainy season it is full of potholes, and a jeepney driver breaks an axle. Nobody asks where the extra money went. Every peso skimmed off a project is a peso that did not make the road last."
+				"text": "Aling Nena's barangay was promised a livelihood program from a lawmaker's fund. The NGO that took the money had an address that turned out to be an empty lot. No sewing machines ever came. Millions went to people who never helped her village."
 			},
-			"action": "Projects are announced in public. Compare the posted cost, contractor and finish date with what you can see. Government buying is posted on PhilGEPS (philgeps.gov.ph). If something looks wrong, take dated photos and ask in writing.",
+			"action": "COA audit reports are published. When a group says it helps your community, look it up: does it have an office, members and a record? Ask your barangay and your representative's office in writing where the money went.",
 			"words": [
-				{"term": "COA", "meaning": "The Commission on Audit. It checks how government money is spent."},
-				{"term": "Kickback", "meaning": "A secret cut paid to an official for awarding a contract."},
-				{"term": "Graft", "meaning": "Using a public office for private gain."}
+				{
+					"term": "COA",
+					"meaning": "The Commission on Audit. It checks how government money is spent."
+				},
+				{
+					"term": "PDAF",
+					"meaning": "Priority Development Assistance Fund, the lawmakers' 'pork barrel'. Struck down in 2013."
+				},
+				{
+					"term": "Kickback",
+					"meaning": "A secret cut paid to an official for sending money to someone."
+				}
 			]
 		},
 		{
@@ -38,9 +49,18 @@
 			},
 			"action": "Pause before you share. Search the claim on tsek.ph or with a fact-checker you trust. Look for the original source, not a screenshot of it. Check the date.",
 			"words": [
-				{"term": "Troll farm", "meaning": "A group paid to post fake or misleading content, often with fake accounts."},
-				{"term": "Bot", "meaning": "An automated account that pretends to be a real person."},
-				{"term": "Fact-check", "meaning": "Looking for the original source and independent proof of a claim."}
+				{
+					"term": "Troll farm",
+					"meaning": "A group paid to post fake or misleading content, often with fake accounts."
+				},
+				{
+					"term": "Bot",
+					"meaning": "An automated account that pretends to be a real person."
+				},
+				{
+					"term": "Fact-check",
+					"meaning": "Looking for the original source and independent proof of a claim."
+				}
 			]
 		},
 		{
@@ -59,9 +79,18 @@
 			},
 			"action": "Do not sell your vote, and do not accept money that comes with a favor. If you see vote-buying, write down the place, time and people, take a photo only if it is safe, and report it to COMELEC's Kontra Bigay committee. Never confront anyone.",
 			"words": [
-				{"term": "Vote-buying", "meaning": "Giving money or gifts to win a vote. A crime for the giver and the taker."},
-				{"term": "COMELEC", "meaning": "The Commission on Elections. It runs elections and enforces election laws."},
-				{"term": "Kontra Bigay", "meaning": "COMELEC's committee against vote-buying. 'Bigay' means 'give'."}
+				{
+					"term": "Vote-buying",
+					"meaning": "Giving money or gifts to win a vote. A crime for the giver and the taker."
+				},
+				{
+					"term": "COMELEC",
+					"meaning": "The Commission on Elections. It runs elections and enforces election laws."
+				},
+				{
+					"term": "Kontra Bigay",
+					"meaning": "COMELEC's committee against vote-buying. 'Bigay' means 'give'."
+				}
 			]
 		},
 		{
@@ -73,58 +102,93 @@
 			},
 			"real_world": {
 				"text": "The Administrative Code of 1987 forbids appointing relatives of the appointing authority within the third degree, by blood or marriage. The Local Government Code of 1991 extends this to the fourth degree. The Civil Service Commission treats nepotism as a grave offense that can mean dismissal. The Constitution says the State shall prohibit political dynasties 'as may be defined by law'.",
-				"sources": "EO 292 (1987), Book V, Sec. 59. RA 7160 (1991), Sec. 79. 1987 Constitution, Art. II, Sec. 26. CSC statements."
+				"sources": "EO 292 (1987), Book V, Sec. 59. RA 7160 (1991), Sec. 79. 1987 Constitution, Art. II, Sec. 26. CSC statements.",
+				"more_title": "How common is it? (real)",
+				"more": "Researchers at the Ateneo School of Government estimated that about two thirds to three quarters of members of Congress came from political families, in studies covering 2012 to 2019. Counting methods differ between studies.",
+				"more_sources": "Ateneo School of Government studies, 2012-2013 and 2019 (Inquirer; research.ateneo.edu)."
 			},
 			"story": {
 				"text": "Jenny placed first in the exam for a clerk post at the municipal hall. The job went to the mayor's nephew, who ranked far below her. Jenny now works far from home. The town loses a good worker, and everybody learns that connections beat merit."
 			},
 			"action": "Hiring and appointments are public. If you think a hiring broke the rules, you can report it to the Civil Service Commission, starting with its Contact Center ng Bayan (text 0908-881-6565). Keep the names, dates and documents.",
 			"words": [
-				{"term": "Nepotism", "meaning": "Giving a job to a relative because of the family tie."},
-				{"term": "Padrino system", "meaning": "Getting ahead through a powerful patron instead of merit."},
-				{"term": "Ghost employee", "meaning": "Someone on the payroll who does no work, or does not exist."}
+				{
+					"term": "Nepotism",
+					"meaning": "Giving a job to a relative because of the family tie."
+				},
+				{
+					"term": "Padrino system",
+					"meaning": "Getting ahead through a powerful patron instead of merit."
+				},
+				{
+					"term": "Ghost employee",
+					"meaning": "Someone on the payroll who does no work, or does not exist."
+				}
 			]
 		},
 		{
 			"boss_id": "budget_boss",
-			"title": "Case file 5: Ghost projects",
+			"title": "Case file 5: Flood control ghost projects",
 			"trick": {
 				"name": "See it with your own eyes",
 				"text": "A project on paper is not a project in real life. Check that it exists: the site, the date, the cost and the contractor. Ask who inspected it, who signed, and who owns the company that got the contract."
 			},
 			"real_world": {
-				"text": "In 2013 the Supreme Court declared the PDAF, the 'pork barrel', unconstitutional, after a Commission on Audit special audit found billions of pesos of lawmakers' funds had gone to NGOs. In 2025 the public works secretary said at least 421 of about 8,000 inspected flood control projects were 'ghost projects'. President Marcos created the Independent Commission for Infrastructure to investigate.",
-				"sources": "Belgica v. Ochoa, G.R. No. 208566 (2013). COA special audit, 2007-2009 PDAF. Inquirer, 2025. Executive Order No. 94 (2025)."
+				"text": "In July 2025 the President ordered an audit of flood control projects. In August he said 15 contractors had won over 100 billion pesos in flood control contracts since 2022. The public works secretary reported at least 421 of about 8,000 inspected projects were 'ghost projects'. The Independent Commission for Infrastructure was created in September 2025.",
+				"sources": "Tribune, 'Timeline: Flood control scandal' (Feb. 2026). Inquirer, 2025. Executive Order No. 94 (2025).",
+				"more": "At a Senate hearing in September 2025 a former district engineer testified that he passed 25 percent kickbacks to lawmakers' staff. Those named deny it. In November 2025 the Ombudsman filed the first charges at the Sandiganbayan, over a substandard dike in Oriental Mindoro. Cases continue, and the accused are presumed innocent until a court decides.",
+				"more_sources": "Gulf News and Malaya Business Insight on the Senate hearing of 23 Sept. 2025 (the testimony is an allegation). Tribune timeline, Feb. 2026."
 			},
 			"story": {
 				"text": "Lola Fe was told a new flood wall protects her street. When the typhoon rains came, the water rose to her stairs again, and she slept at the evacuation center while her grandchildren missed school for two weeks. The wall was paid for. The wall was never built."
 			},
-			"action": "Look up projects near you and compare the list with what you see. If a project is missing or unfinished, take dated photos and report it to the Commission on Audit, the Department of Public Works and Highways, or the Ombudsman.",
+			"action": "Agencies publish project lists. Compare them with what you can see near you. If a project is missing or unfinished, take dated photos and report it to the Commission on Audit, the Department of Public Works and Highways, or the Ombudsman. In September 2025 large rallies across the country demanded accountability.",
 			"words": [
-				{"term": "PDAF", "meaning": "Priority Development Assistance Fund, the lawmakers' 'pork barrel'. Struck down in 2013."},
-				{"term": "Ghost project", "meaning": "A project that is paid for but not built, or not built as paid."},
-				{"term": "Ombudsman", "meaning": "The office that investigates and prosecutes public officials."}
+				{
+					"term": "Ghost project",
+					"meaning": "A project that is paid for but not built, or not built as paid."
+				},
+				{
+					"term": "Ombudsman",
+					"meaning": "The office that investigates public officials and files the cases."
+				},
+				{
+					"term": "Sandiganbayan",
+					"meaning": "The special court that tries graft and plunder cases against public officials."
+				}
 			]
 		},
 		{
 			"boss_id": "secrecy_boss",
-			"title": "Case file 6: Hidden records",
+			"title": "Case file 6: Budget insertions and hidden records",
 			"trick": {
 				"name": "Ask in writing",
 				"text": "Secrecy hides everything else. Blacked-out pages, refused requests and shredded records all do one thing: stop you from checking. Ask for the record in writing, keep the reply, and appeal a refusal."
 			},
 			"real_world": {
-				"text": "The Constitution guarantees the people's right to information on matters of public concern. Executive Order No. 2 (2016) lets people request records of the executive branch through the eFOI portal at foi.gov.ph. It has a list of exceptions that critics say can restrict access.",
-				"sources": "1987 Constitution, Art. III, Sec. 7. Executive Order No. 2 (2016). Philstar, Nov. 2016. foi.gov.ph."
+				"text": "Lawmakers can add items to the national budget while it is being passed. In 2025 senators argued in public over these 'insertions': one senator said the Senate added about 100 billion pesos, and Senate leaders replied that insertions are part of the budget process. The fight is over how much was added and who proposed each item, which citizens often cannot see.",
+				"sources": "Inquirer, 'Senators inserted P100B in current budget' (2025). Philstar, Sept. 2025.",
+				"more_title": "Your right to know (real)",
+				"more": "The Constitution guarantees the people's right to information on matters of public concern. Executive Order No. 2 (2016) lets people request records of executive branch offices through the eFOI portal at foi.gov.ph. It has exceptions that critics say can restrict access.",
+				"more_sources": "1987 Constitution, Art. III, Sec. 7. Executive Order No. 2 (2016). Philstar, Nov. 2016. foi.gov.ph."
 			},
 			"story": {
 				"text": "Reporter Ana files three requests for a city's spending records. Three times she gets the same one-line refusal. Meanwhile the city's contractor opens a new office tower. When records are secret, the only people who can check the numbers are the people who wrote them."
 			},
 			"action": "File a request for records at foi.gov.ph and keep the reference number. If it is refused, ask for the reason in writing and appeal. You can also read COA's published audit reports at coa.gov.ph.",
 			"words": [
-				{"term": "FOI", "meaning": "Freedom of Information: the right to request government records."},
-				{"term": "Redaction", "meaning": "Blacking out parts of a document before it is shown."},
-				{"term": "Transparency", "meaning": "Letting the public see how decisions and money are handled."}
+				{
+					"term": "FOI",
+					"meaning": "Freedom of Information: the right to request government records."
+				},
+				{
+					"term": "Insertion",
+					"meaning": "An item added to the national budget while it is being passed."
+				},
+				{
+					"term": "Redaction",
+					"meaning": "Blacking out parts of a document before it is shown."
+				}
 			]
 		}
 	],
@@ -135,6 +199,16 @@
 				"title": "The real numbers",
 				"body": "Transparency International's Corruption Perceptions Index scores countries from 0 (very corrupt) to 100 (very clean), from experts' views. In 2025 the Philippines scored 32 and ranked 120th of 182 countries, its lowest score since 2012. Behind each number are real people: flooded streets, unfinished roads and services that never arrive.",
 				"footer": "Source: Transparency International CPI 2025, published Feb. 2026 (BusinessWorld, Philstar)."
+			},
+			{
+				"title": "Three cases, three administrations",
+				"body": "1. The pork barrel scam (2007-2013): lawmakers' funds sent to doubtful NGOs. Supreme Court ruling 2013, convictions from 2018.\n2. Pandemic supplies (2021): a firm with 625,000 pesos in paid-up capital won the biggest contracts. The Senate questioned the prices; COA found lapses but no overpricing.\n3. Flood control (2025): hundreds of ghost projects reported. Cases are in court.",
+				"footer": "Sources: Belgica v. Ochoa (2013); Sandiganbayan, 2018; Philstar and Inquirer, 2021; Tribune timeline, Feb. 2026."
+			},
+			{
+				"title": "What the cases share",
+				"body": "Public money, doubtful companies, missing proof and secrecy. Each case came to light through audits, reporters, whistleblowers or citizens who checked. People accused are presumed innocent until a court decides. Cases are slow, and some end in acquittal. Corruption is not owned by one party, and the safeguards are the same each time.",
+				"footer": ""
 			},
 			{
 				"title": "Four habits",

@@ -8,15 +8,15 @@
 					"speaker": "Clerk",
 					"lines": [
 						"You are not on the visitor list.",
-						"The budget office is busy. What do you want?"
+						"The fund office is busy. What do you want?"
 					],
 					"choices": [
 						{
-							"text": "Ask about the road project budget",
+							"text": "Ask about the NGO fund releases",
 							"next": "budget"
 						},
 						{
-							"text": "Ask who approved the payments",
+							"text": "Ask who approved the releases",
 							"next": "approver"
 						},
 						{
@@ -31,7 +31,7 @@
 						"node": "already_gave"
 					},
 					"lines": [
-						"I should not say this, but the ledger does not match the announcement.",
+						"I should not say this, but the money went to twelve NGOs, and I cannot find one of them at its address.",
 						"Here, take this page. Please do not tell anyone where you got it."
 					],
 					"give_evidence": "ledger_page"
@@ -39,8 +39,8 @@
 				"approver": {
 					"speaker": "Clerk",
 					"lines": [
-						"Everything is signed by the deputy director.",
-						"That is all I am allowed to say."
+						"Every release carries a lawmaker's endorsement letter.",
+						"The Fixer picks the NGOs. That is all I am allowed to say."
 					],
 					"next": "greet"
 				},
@@ -504,7 +504,7 @@
 				"q0": {
 					"speaker": "Accountant",
 					"lines": [
-						"Twelve invoices, one supplier, the same office chairs. Each one ten times the market price.",
+						"Twelve invoices, one supplier, the same steel bars. Each one ten times the market price.",
 						"I signed them because I was told to. Take this batch before I change my mind."
 					],
 					"redirect_if_has": {
@@ -516,7 +516,7 @@
 				"q1": {
 					"speaker": "Accountant",
 					"lines": [
-						"People who question the Secretary's budget do not stay on this floor very long."
+						"People who question the Chief Engineer's budget do not stay on this floor very long."
 					],
 					"next": "greet"
 				}
@@ -533,7 +533,7 @@
 					],
 					"choices": [
 						{
-							"text": "Ask about the new school",
+							"text": "Ask about the flood wall",
 							"next": "q0"
 						},
 						{
@@ -554,8 +554,8 @@
 				"q0": {
 					"speaker": "Site Inspector",
 					"lines": [
-						"I went to the address myself. An empty field and a rusty sign.",
-						"The school was paid for in full. Here is my photo, with the date on it."
+						"I went to the address myself. An empty river bank and a rusty sign.",
+						"The flood wall was paid for in full. Here is my photo, with the date on it."
 					],
 					"redirect_if_has": {
 						"evidence": "ghost_project",
@@ -607,8 +607,8 @@
 				"q1": {
 					"speaker": "Contractor",
 					"lines": [
-						"A family company. New, yes. A cousin of someone in the Secretary's office has papers on it.",
-						"Anyone can start a company in a week. The question is whose cousin is in the office. The registry card is on the desk at the back of the hall."
+						"A family company. New, yes. A cousin of someone in the Chief Engineer's office has papers on it.",
+						"Anyone can start a company in a week. The question is whose cousin works in the office. The registry card is on the desk at the back of the hall."
 					],
 					"next": "greet"
 				}
@@ -625,7 +625,7 @@
 					],
 					"choices": [
 						{
-							"text": "Ask for the public spending report",
+							"text": "Ask for the public budget document",
 							"next": "q0"
 						},
 						{
@@ -647,7 +647,7 @@
 					"speaker": "Archive Keeper",
 					"lines": [
 						"Here is the public copy. Notice anything missing?",
-						"Every page about money. We call that 'transparency'."
+						"Every page that shows who proposed which project. We call that 'transparency'."
 					],
 					"redirect_if_has": {
 						"evidence": "redacted_report",

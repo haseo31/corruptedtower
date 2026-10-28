@@ -1,5 +1,5 @@
 {
-	"name": "Floor 5: Budget Office",
+	"name": "Floor 5: Public Works Office",
 	"floor_number": 5,
 	"tile_size": 16,
 	"theme": "vault",
@@ -34,7 +34,7 @@
 		12
 	],
 	"hint": "I: evidence   E: talk   Esc: menu",
-	"objective": "Expose the Budget Secretary",
+	"objective": "Expose the Chief Engineer",
 	"objective_boss": "budget_boss",
 	"objective_done": "Take the stairs up",
 	"npcs": [
@@ -62,7 +62,7 @@
 		{
 			"x": 36,
 			"y": 12,
-			"name": "Budget Secretary",
+			"name": "Chief Engineer",
 			"sprite": "budget_secretary",
 			"boss": "res://data/bosses/budget_boss.json",
 			"defeated_message": "The money was never mine to keep. Fine. The way up is open."
@@ -94,7 +94,7 @@
 				12
 			],
 			"requires_boss": "budget_boss",
-			"locked_message": "The stairs are locked. Expose the Budget Secretary first."
+			"locked_message": "The stairs are locked. Expose the Chief Engineer first."
 		}
 	]
 }
