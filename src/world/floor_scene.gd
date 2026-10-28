@@ -144,6 +144,8 @@ func _themed(base: String) -> String:
 func _spawn_npcs() -> void:
 	for cell: Vector2i in _layout.npc_cells():
 		var npc := _layout.npc_at(cell)
+		if not _npc_visible(npc):
+			continue
 		var sheet: String = npc["sprite"]
 		if not CharacterSprites.load_sheet(sheet):
 			continue
@@ -245,6 +247,13 @@ func _on_journal_case_selected(boss_id: String) -> void:
 	_show_case_file(boss_id, _open_journal.bind(boss_id))
 
 
+## A character can appear only after a choice ("requires_flag") or vanish after one ("hide_if_flag").
+func _npc_visible(npc: Dictionary) -> bool:
+	var needs: String = npc.get("requires_flag", "")
+	var hides: String = npc.get("hide_if_flag", "")
+	return (needs.is_empty() or GameSession.has_flag(needs)) and (hides.is_empty() or not GameSession.has_flag(hides))
+
+
 func _modal_open() -> bool:
 	return _dialogue_box.visible or _evidence_screen.visible or _showdown_screen.visible 			or _pause_menu.visible or _case_file.visible or _journal.visible
 
@@ -269,7 +278,7 @@ func _is_unlocked(transition: Dictionary) -> bool:
 
 func _interact_with(cell: Vector2i) -> void:
 	var npc := _layout.npc_at(cell)
-	if not npc.is_empty():
+	if not npc.is_empty() and _npc_visible(npc):
 		(_npc_nodes[cell] as FloorNpc).face(-_player.facing)
 		if not str(npc["boss"]).is_empty():
 			_talk_to_boss(npc)

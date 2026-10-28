@@ -4,7 +4,10 @@ extends RefCounted
 ## its lines one at a time, then either offers choices, moves to the next node, or ends.
 ## A node can hand the player evidence (straight into the inventory, unverified) and can
 ## redirect to a different node when the player already has some evidence, so an NPC
-## never hands over the same item twice. Pure rules with no UI.
+## never hands over the same item twice. Choices can set flags the story remembers
+## ("set_flags"), show only when a flag is set or not set ("requires_flag", "hide_if_flag"),
+## and a node can redirect on a flag ("redirect_if_flag") or score a right or wrong decision
+## ("record_choice"). Pure rules with no UI.
 
 signal line_changed(speaker: String, text: String)
 signal choices_shown(choices: Array)
@@ -17,6 +20,8 @@ var _node: Dictionary = {}
 var _line_index: int = 0
 var _active: bool = false
 var _choosing: bool = false
+## The choices actually shown for the current node (some may be hidden by flags).
+var _shown_choices: Array = []
 
 
 func _init(inventory: EvidenceInventory) -> void:
@@ -84,11 +89,11 @@ func advance() -> void:
 	if _line_index < (_node["lines"] as Array).size():
 		_show_line()
 		return
-	var choices: Array = _node.get("choices", [])
-	if not choices.is_empty():
+	_shown_choices = _visible_choices(_node.get("choices", []))
+	if not _shown_choices.is_empty():
 		_choosing = true
 		var texts: Array[String] = []
-		for choice: Dictionary in choices:
+		for choice: Dictionary in _shown_choices:
 			texts.append(str(choice["text"]))
 		choices_shown.emit(texts)
 	elif _node.has("next"):
@@ -99,11 +104,10 @@ func advance() -> void:
 
 ## Picks one of the shown choices.
 func choose(index: int) -> void:
-	var choices: Array = _node.get("choices", [])
-	if not _choosing or index < 0 or index >= choices.size():
+	if not _choosing or index < 0 or index >= _shown_choices.size():
 		return
 	_choosing = false
-	var choice: Dictionary = choices[index]
+	var choice: Dictionary = _shown_choices[index]
 	if choice.has("next"):
 		_enter(str(choice["next"]))
 	else:
@@ -115,6 +119,14 @@ func _enter(node_id: String) -> void:
 	var redirect: Variant = _node.get("redirect_if_has")
 	if redirect is Dictionary and _inventory.has_item(str(redirect["evidence"])):
 		_node = _nodes[str(redirect["node"])]
+	for flag_redirect: Dictionary in _redirects(_node.get("redirect_if_flag")):
+		if GameSession.has_flag(str(flag_redirect["flag"])):
+			_node = _nodes[str(flag_redirect["node"])]
+			break
+	for flag: Variant in _node.get("set_flags", []):
+		GameSession.set_flag(str(flag))
+	if _node.has("record_choice"):
+		GameSession.record_choice(bool(_node["record_choice"]))
 	var evidence_id := str(_node.get("give_evidence", ""))
 	if not evidence_id.is_empty() and _inventory.collect(evidence_id):
 		evidence_granted.emit(evidence_id)
@@ -122,6 +134,25 @@ func _enter(node_id: String) -> void:
 	_choosing = false
 	_line_index = 0
 	_show_line()
+
+
+## The node's choices that the flags allow: "requires_flag" needs that flag set, "hide_if_flag" hides when it is.
+func _visible_choices(choices: Array) -> Array:
+	var shown: Array = []
+	for choice: Dictionary in choices:
+		if choice.has("requires_flag") and not GameSession.has_flag(str(choice["requires_flag"])):
+			continue
+		if choice.has("hide_if_flag") and GameSession.has_flag(str(choice["hide_if_flag"])):
+			continue
+		shown.append(choice)
+	return shown
+
+
+## "redirect_if_flag" is one {"flag", "node"} or a list of them; always returns a list.
+static func _redirects(raw: Variant) -> Array:
+	if raw is Dictionary:
+		return [raw]
+	return raw if raw is Array else []
 
 
 func _show_line() -> void:
@@ -153,6 +184,8 @@ static func _is_valid(dialogue: Dictionary) -> bool:
 		var redirect: Variant = (node as Dictionary).get("redirect_if_has")
 		if redirect is Dictionary:
 			targets.append(redirect.get("node", ""))
+		for flag_redirect: Dictionary in _redirects((node as Dictionary).get("redirect_if_flag")):
+			targets.append(flag_redirect.get("node", ""))
 		var choices: Variant = (node as Dictionary).get("choices", [])
 		if choices is Array:
 			for choice: Variant in choices:

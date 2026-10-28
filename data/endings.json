@@ -21,5 +21,23 @@
 			"text": "You reached the top, but too many guesses along the way. The people hear your story, then the rebuttal, and no one is sure whom to believe.",
 			"message": "Guessing helps the people who profit from confusion. Slow down and check every source."
 		}
+	],
+	"flag_notes": [
+		{
+			"flag": "protected_clerk",
+			"text": "You kept the fund clerk's name out of it, and the clerk spoke up safely."
+		},
+		{
+			"flag": "exposed_clerk",
+			"text": "You used the fund clerk's name, and the clerk lost their job. Protecting people who speak up matters."
+		},
+		{
+			"flag": "refused_envelope",
+			"text": "You refused the envelope, and honest people trusted you with more."
+		},
+		{
+			"flag": "took_envelope",
+			"text": "You took an envelope. It cost you the trust of the people who saw it."
+		}
 	]
 }

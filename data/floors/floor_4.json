@@ -65,6 +65,14 @@
 			"sprite": "director_general",
 			"boss": "res://data/bosses/nepotism_boss.json",
 			"defeated_message": "The family name will not save me now. Go on, climb."
+		},
+		{
+			"x": 22,
+			"y": 15,
+			"name": "Former Clerk",
+			"sprite": "clerk",
+			"dialogue": "former_clerk",
+			"requires_flag": "protected_clerk"
 		}
 	],
 	"clues": [

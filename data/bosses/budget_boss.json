@@ -37,7 +37,11 @@
 			"counter_all": [
 				"ledger_page",
 				"ghost_project"
-			]
+			],
+			"counter_evidence_ids": [
+				"witness_statement"
+			],
+			"shortcut_reaction": "A sworn witness who saw the money go. That settles it."
 		}
 	]
 }

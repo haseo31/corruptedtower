@@ -5,7 +5,7 @@
 			"start": "greet",
 			"nodes": {
 				"greet": {
-					"speaker": "Clerk",
+					"speaker": "Fund Clerk",
 					"lines": [
 						"You are not on the visitor list.",
 						"The fund office is busy. What do you want?"
@@ -25,7 +25,7 @@
 					]
 				},
 				"budget": {
-					"speaker": "Clerk",
+					"speaker": "Fund Clerk",
 					"redirect_if_has": {
 						"evidence": "ledger_page",
 						"node": "already_gave"
@@ -34,10 +34,11 @@
 						"I should not say this, but the money went to twelve NGOs, and I cannot find one of them at its address.",
 						"Here, take this page. Please do not tell anyone where you got it."
 					],
-					"give_evidence": "ledger_page"
+					"give_evidence": "ledger_page",
+					"next": "promise"
 				},
 				"approver": {
-					"speaker": "Clerk",
+					"speaker": "Fund Clerk",
 					"lines": [
 						"Every release carries a lawmaker's endorsement letter.",
 						"The Fixer picks the NGOs. That is all I am allowed to say."
@@ -45,9 +46,44 @@
 					"next": "greet"
 				},
 				"already_gave": {
-					"speaker": "Clerk",
+					"speaker": "Fund Clerk",
 					"lines": [
 						"I already gave you that page. Please leave before someone sees us."
+					]
+				},
+				"promise": {
+					"speaker": "Fund Clerk",
+					"lines": [
+						"Please. If this comes out, I lose my job. Or worse.",
+						"What will you do with my name?"
+					],
+					"choices": [
+						{
+							"text": "I will keep your name out of it.",
+							"next": "protect"
+						},
+						{
+							"text": "I may need your name to prove it.",
+							"next": "expose"
+						}
+					]
+				},
+				"protect": {
+					"speaker": "Fund Clerk",
+					"set_flags": [
+						"protected_clerk"
+					],
+					"lines": [
+						"Thank you. I will not forget this."
+					]
+				},
+				"expose": {
+					"speaker": "Fund Clerk",
+					"set_flags": [
+						"exposed_clerk"
+					],
+					"lines": [
+						"I understand. I just hope it is worth it."
 					]
 				}
 			}
@@ -754,6 +790,253 @@
 						"Destroying records before an audit is a confession in paper strips."
 					],
 					"next": "greet"
+				}
+			}
+		},
+		{
+			"id": "anonymous_source",
+			"start": "greet",
+			"nodes": {
+				"greet": {
+					"speaker": "Anonymous Source",
+					"lines": [
+						"Keep your voice down. I work in personnel, upstairs.",
+						"I was not here. You did not see me."
+					],
+					"choices": [
+						{
+							"text": "Ask what they know",
+							"next": "q0"
+						},
+						{
+							"text": "Ask why they are speaking up",
+							"next": "q1"
+						},
+						{
+							"text": "Say goodbye"
+						}
+					]
+				},
+				"q0": {
+					"speaker": "Anonymous Source",
+					"lines": [
+						"I printed an email I was not meant to see. It lists the Director General's relatives, added to the payroll.",
+						"Take it. If anyone asks, you never met me."
+					],
+					"redirect_if_has": {
+						"evidence": "leaked_email",
+						"node": "q0_again"
+					},
+					"give_evidence": "leaked_email"
+				},
+				"q0_again": {
+					"speaker": "Anonymous Source",
+					"lines": [
+						"You already have the email. Please leave before someone sees us."
+					]
+				},
+				"q1": {
+					"speaker": "Anonymous Source",
+					"lines": [
+						"Because I am tired of watching honest people lose.",
+						"Speaking up is frightening. Remember that when someone trusts you with their name."
+					],
+					"next": "greet"
+				}
+			}
+		},
+		{
+			"id": "campaign_worker",
+			"start": "greet",
+			"nodes": {
+				"greet": {
+					"speaker": "Campaign Worker",
+					"redirect_if_flag": [
+						{
+							"flag": "took_envelope",
+							"node": "done_took"
+						},
+						{
+							"flag": "refused_envelope",
+							"node": "done_refused"
+						}
+					],
+					"lines": [
+						"Psst. You are the one asking questions about the polls, right?",
+						"Here. A little something for the barangay fiesta. No names, no questions."
+					],
+					"choices": [
+						{
+							"text": "Take the envelope",
+							"next": "take"
+						},
+						{
+							"text": "Refuse and walk away",
+							"next": "refuse"
+						}
+					]
+				},
+				"take": {
+					"speaker": "Campaign Worker",
+					"set_flags": [
+						"took_envelope"
+					],
+					"record_choice": false,
+					"lines": [
+						"Smart. Nobody will ever know.",
+						"Except you."
+					]
+				},
+				"refuse": {
+					"speaker": "Campaign Worker",
+					"set_flags": [
+						"refused_envelope"
+					],
+					"record_choice": true,
+					"lines": [
+						"Suit yourself.",
+						"A voter who cannot be bought. That is rare."
+					]
+				},
+				"done_took": {
+					"speaker": "Campaign Worker",
+					"lines": [
+						"We are done here. You know what you took."
+					]
+				},
+				"done_refused": {
+					"speaker": "Campaign Worker",
+					"lines": [
+						"I told my boss you cannot be bought. He was not happy."
+					]
+				}
+			}
+		},
+		{
+			"id": "former_clerk",
+			"start": "greet",
+			"nodes": {
+				"greet": {
+					"speaker": "Former Clerk",
+					"lines": [
+						"You kept my name out of it. Thank you.",
+						"I left the fund office. I could not stay and watch."
+					],
+					"choices": [
+						{
+							"text": "Ask what they saw",
+							"next": "q0"
+						},
+						{
+							"text": "Ask how they are",
+							"next": "q1"
+						},
+						{
+							"text": "Say goodbye"
+						}
+					]
+				},
+				"q0": {
+					"speaker": "Former Clerk",
+					"lines": [
+						"I wrote down everything: the fake NGOs, the commissions, who signed. It is sworn before a notary.",
+						"Use it where the paper trail is thin."
+					],
+					"redirect_if_has": {
+						"evidence": "witness_statement",
+						"node": "q0_again"
+					},
+					"give_evidence": "witness_statement"
+				},
+				"q0_again": {
+					"speaker": "Former Clerk",
+					"lines": [
+						"You have my statement. That is all I have."
+					]
+				},
+				"q1": {
+					"speaker": "Former Clerk",
+					"lines": [
+						"Safe, for now. Because you kept your word.",
+						"People speak up when they believe they will be protected."
+					],
+					"next": "greet"
+				}
+			}
+		},
+		{
+			"id": "whistleblower",
+			"start": "greet",
+			"nodes": {
+				"greet": {
+					"speaker": "Whistleblower",
+					"redirect_if_flag": [
+						{
+							"flag": "took_envelope",
+							"node": "distrust"
+						},
+						{
+							"flag": "refused_envelope",
+							"node": "trusting"
+						}
+					],
+					"lines": [
+						"I do not know you. People in this building take envelopes and keep quiet.",
+						"Come back when I can trust you."
+					]
+				},
+				"distrust": {
+					"speaker": "Whistleblower",
+					"lines": [
+						"I heard you took an envelope downstairs.",
+						"I cannot trust you with this. Not yet."
+					]
+				},
+				"trusting": {
+					"speaker": "Whistleblower",
+					"lines": [
+						"I watched you refuse the envelope downstairs. Word travels in this building.",
+						"People who do right in small things are the ones I can trust with big things."
+					],
+					"choices": [
+						{
+							"text": "Ask what they have",
+							"next": "q0"
+						},
+						{
+							"text": "Ask why they trust you",
+							"next": "q1"
+						},
+						{
+							"text": "Say goodbye"
+						}
+					]
+				},
+				"q0": {
+					"speaker": "Whistleblower",
+					"lines": [
+						"Emails, the commission schedule, and a list of who asked for which projects and who got a share.",
+						"This folder is dangerous. Please use it well."
+					],
+					"redirect_if_has": {
+						"evidence": "whistleblower_folder",
+						"node": "q0_again"
+					},
+					"give_evidence": "whistleblower_folder",
+					"next": "trusting"
+				},
+				"q0_again": {
+					"speaker": "Whistleblower",
+					"lines": [
+						"You have the folder. Keep it safe."
+					]
+				},
+				"q1": {
+					"speaker": "Whistleblower",
+					"lines": [
+						"Trust is built from small choices. You made yours."
+					],
+					"next": "trusting"
 				}
 			}
 		}

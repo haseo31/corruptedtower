@@ -84,6 +84,19 @@
       "down"
     ]
   },
+  "campaign_worker": {
+    "columns": 3,
+    "frame": [
+      16,
+      20
+    ],
+    "rows": [
+      "down",
+      "up",
+      "left",
+      "right"
+    ]
+  },
   "clerk": {
     "columns": 3,
     "frame": [
@@ -268,6 +281,19 @@
     ]
   },
   "volunteer": {
+    "columns": 3,
+    "frame": [
+      16,
+      20
+    ],
+    "rows": [
+      "down",
+      "up",
+      "left",
+      "right"
+    ]
+  },
+  "whistleblower": {
     "columns": 3,
     "frame": [
       16,

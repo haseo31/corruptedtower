@@ -8,11 +8,14 @@ extends RefCounted
 class Lie extends RefCounted:
 	var id: String = ""
 	var text: String = ""
-	## Any one of these verified items counters the lie.
+	## Any one of these verified items counters the lie. When counter_all_ids is also set,
+	## these are shortcuts: one such item (for example a witness) counters the whole lie.
 	var counter_evidence_ids: Array[String] = []
 	## When not empty, every one of these verified items must be presented (in any order)
-	## to counter the lie, and counter_evidence_ids stays empty.
+	## to counter the lie.
 	var counter_all_ids: Array[String] = []
+	## What the boss admits when the lie is countered by a shortcut item instead.
+	var shortcut_reaction: String = ""
 	## What the boss admits (shown by the showdown) when this lie is countered.
 	var reaction: String = ""
 
@@ -62,14 +65,15 @@ static func from_dict(data: Dictionary) -> BossData:
 		lie.id = str(entry.get("id", ""))
 		lie.text = str(entry.get("text", ""))
 		lie.reaction = str(entry.get("reaction", ""))
+		lie.shortcut_reaction = str(entry.get("shortcut_reaction", ""))
 		for evidence_id: Variant in entry.get("counter_evidence_ids", []):
 			lie.counter_evidence_ids.append(str(evidence_id))
 		for evidence_id: Variant in entry.get("counter_all", []):
 			lie.counter_all_ids.append(str(evidence_id))
 		var one_way := not lie.counter_evidence_ids.is_empty()
 		var all_way := not lie.counter_all_ids.is_empty()
-		if lie.id.is_empty() or one_way == all_way or (all_way and lie.counter_all_ids.size() < 2):
-			push_error("BossData '%s': each lie needs an id and either counter_evidence_ids or counter_all (two or more items)" % boss.id)
+		if lie.id.is_empty() or not (one_way or all_way) or (all_way and lie.counter_all_ids.size() < 2):
+			push_error("BossData '%s': each lie needs an id and counter_evidence_ids, or counter_all (two or more items), or both" % boss.id)
 			return null
 		boss.lies.append(lie)
 	return boss

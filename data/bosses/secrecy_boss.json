@@ -48,7 +48,11 @@
 				"ledger_page",
 				"vote_receipts",
 				"payroll_records"
-			]
+			],
+			"counter_evidence_ids": [
+				"whistleblower_folder"
+			],
+			"shortcut_reaction": "The folder names the scheme on every floor. The tower is not clean."
 		}
 	]
 }

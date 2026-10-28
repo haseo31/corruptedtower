@@ -19,6 +19,7 @@ const CAST_SPACING: float = 64.0
 @onready var _title_label: Label = %Title
 @onready var _body_label: Label = %BodyLabel
 @onready var _message_label: Label = %MessageLabel
+@onready var _notes_label: Label = %NotesLabel
 @onready var _score_label: Label = %ScoreLabel
 @onready var _accuracy_label: Label = %AccuracyLabel
 @onready var _action_button: Button = %ActionButton
@@ -37,6 +38,7 @@ func _ready() -> void:
 	PixelTheme.apply(self)
 	_title_label.add_theme_color_override("font_color", PixelTheme.DANGER)
 	_message_label.add_theme_color_override("font_color", PixelTheme.SPEAKER)
+	_notes_label.add_theme_color_override("font_color", PixelTheme.MUTED)
 	_score_label.add_theme_color_override("font_color", PixelTheme.NOTICE)
 	_accuracy_label.add_theme_color_override("font_color", PixelTheme.AMBER)
 	Audio.play_music("ending")
@@ -45,6 +47,9 @@ func _ready() -> void:
 		_title_label.text = ending["title"]
 		_body_label.text = ending["text"]
 		_message_label.text = ending["message"]
+	_notes_label.text = "
+".join(Endings.notes_for(GameSession.flags()))
+	_notes_label.visible = not _notes_label.text.is_empty()
 	var inventory := GameSession.inventory()
 	_score_label.text = "Evidence verified: %d of %d" % [inventory.verified_count(), inventory.catalog_size()]
 	_accuracy_label.text = "Careful play: %d%% (%d right, %d wrong)" % [

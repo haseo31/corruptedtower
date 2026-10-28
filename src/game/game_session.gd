@@ -12,6 +12,8 @@ static var _inventory: EvidenceInventory
 static var _dialogues: Dictionary = {}
 static var _challenges: Dictionary = {}
 static var _defeated_bosses: Array[String] = []
+## Choices the story remembers (for example "protected_clerk"), by name.
+static var _flags: Dictionary = {}
 ## How many fact-check answers and showdown evidence choices were right or wrong this run.
 static var good_choices: int = 0
 static var wrong_choices: int = 0
@@ -54,6 +56,24 @@ static func defeated_bosses() -> Array[String]:
 	return _defeated_bosses.duplicate()
 
 
+## Remembers a choice by name.
+static func set_flag(flag: String) -> void:
+	_flags[flag] = true
+
+
+## True if this choice was made this run.
+static func has_flag(flag: String) -> bool:
+	return _flags.has(flag)
+
+
+## The names of the choices made this run.
+static func flags() -> Array[String]:
+	var names: Array[String] = []
+	for flag: String in _flags:
+		names.append(flag)
+	return names
+
+
 ## Notes one decision: a right or a wrong fact-check answer or piece of showdown evidence.
 static func record_choice(correct: bool) -> void:
 	if correct:
@@ -69,11 +89,13 @@ static func accuracy_percent() -> int:
 
 
 ## Starts a fresh run and puts back saved state: the evidence entries ({"id", "verified"}),
-## the defeated boss ids and the right and wrong decision counts.
-static func restore(evidence: Array, defeated: Array, good: int = 0, wrong: int = 0) -> void:
+## the defeated boss ids, the right and wrong decision counts and the choice flags.
+static func restore(evidence: Array, defeated: Array, good: int = 0, wrong: int = 0, flags: Array = []) -> void:
 	reset()
 	good_choices = good
 	wrong_choices = wrong
+	for flag: Variant in flags:
+		set_flag(str(flag))
 	var inv := inventory()
 	for entry: Dictionary in evidence:
 		inv.collect(entry["id"])
@@ -91,3 +113,4 @@ static func reset() -> void:
 	_defeated_bosses = []
 	good_choices = 0
 	wrong_choices = 0
+	_flags = {}

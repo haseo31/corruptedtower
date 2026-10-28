@@ -66,6 +66,13 @@
 			"sprite": "budget_secretary",
 			"boss": "res://data/bosses/budget_boss.json",
 			"defeated_message": "The money was never mine to keep. Fine. The way up is open."
+		},
+		{
+			"x": 35,
+			"y": 8,
+			"name": "Whistleblower",
+			"sprite": "whistleblower",
+			"dialogue": "whistleblower"
 		}
 	],
 	"clues": [

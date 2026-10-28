@@ -197,6 +197,39 @@
 			],
 			"fake_index": 0,
 			"explanation": "A spotless certificate with no signature can be written by anyone. The invoice and the gate log are kept by other people and can be matched."
+		},
+		{
+			"evidence_id": "leaked_email",
+			"claim": "An email lists relatives added to the payroll. Which source should you NOT trust?",
+			"options": [
+				"A neat 'leaked memo' on official-looking letterhead posted by a new account, with no sender, date or file",
+				"A plain printout of the email showing sender, recipient and date, passed on by a staff member a journalist can reach",
+				"A payroll audit note that matches three of the names"
+			],
+			"fake_index": 0,
+			"explanation": "Letterhead is easy to fake. The plain printout has headers that can be checked, and the audit note can be compared with the payroll."
+		},
+		{
+			"evidence_id": "witness_statement",
+			"claim": "A former fund clerk's statement says public money went to dummy groups. Which source should you NOT trust?",
+			"options": [
+				"A statement sworn before a notary, with the clerk's name and signature",
+				"An 'official denial' on Fund Office letterhead, unsigned and undated",
+				"A diary page with dates and amounts that match the ledger"
+			],
+			"fake_index": 1,
+			"explanation": "A denial nobody signed or dated cannot be questioned. A sworn statement and a diary with checkable amounts can."
+		},
+		{
+			"evidence_id": "whistleblower_folder",
+			"claim": "A whistleblower's folder lists who asked for which projects. Which source is unreliable?",
+			"options": [
+				"A 'leak' posted by a brand-new account that says 'it is all in the files', with nothing attached",
+				"Emails and lists whose dates match the official budget records",
+				"A printout passed through a lawyer who can confirm where it came from"
+			],
+			"fake_index": 0,
+			"explanation": "A claim with nothing attached proves nothing. Files that match the official records, and a lawyer who vouches for the source, can be checked."
 		}
 	]
 }

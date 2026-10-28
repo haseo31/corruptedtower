@@ -65,6 +65,13 @@
 			"sprite": "campaign_manager",
 			"boss": "res://data/bosses/vote_boss.json",
 			"defeated_message": "Fine. The money, the receipts, the polls. It is all true. The way up is open."
+		},
+		{
+			"x": 20,
+			"y": 13,
+			"name": "Campaign Worker",
+			"sprite": "campaign_worker",
+			"dialogue": "campaign_worker"
 		}
 	],
 	"clues": [

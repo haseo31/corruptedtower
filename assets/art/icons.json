@@ -18,6 +18,9 @@
     "shell_company": 14,
     "redacted_report": 15,
     "foi_denial": 16,
-    "shredding_log": 17
+    "shredding_log": 17,
+    "leaked_email": 18,
+    "witness_statement": 19,
+    "whistleblower_folder": 20
   }
 }

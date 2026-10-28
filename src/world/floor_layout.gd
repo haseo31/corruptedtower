@@ -98,6 +98,8 @@ static func from_dict(data: Dictionary) -> FloorLayout:
 				"boss": str(entry.get("boss", "")),
 				"final": bool(entry.get("final", false)),
 				"defeated_message": str(entry.get("defeated_message", "")),
+				"requires_flag": str(entry.get("requires_flag", "")),
+				"hide_if_flag": str(entry.get("hide_if_flag", "")),
 			}
 	var clue_entries: Variant = data.get("clues", [])
 	if clue_entries is Array:

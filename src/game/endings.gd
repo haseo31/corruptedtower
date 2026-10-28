@@ -46,3 +46,18 @@ static func pick(endings: Array, accuracy_percent: int) -> Dictionary:
 		if accuracy_percent >= int(ending["min_accuracy"]):
 			return ending
 	return {}
+
+
+## The lines about the player's choices (for example keeping a source's name out of it), for
+## every choice flag that is set: "flag_notes" in the endings file.
+static func notes_for(flags: Array, path: String = PATH) -> Array[String]:
+	var notes: Array[String] = []
+	if not FileAccess.file_exists(path):
+		return notes
+	var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string(path))
+	if not (parsed is Dictionary) or not (parsed.get("flag_notes") is Array):
+		return notes
+	for entry: Variant in parsed["flag_notes"]:
+		if entry is Dictionary and str(entry.get("flag", "")) in flags and not str(entry.get("text", "")).is_empty():
+			notes.append(str(entry["text"]))
+	return notes

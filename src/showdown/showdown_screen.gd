@@ -122,17 +122,29 @@ func _on_evidence_pressed(evidence_id: String) -> void:
 		_shake()
 	if _showdown.state == Showdown.State.WON:
 		Audio.play_sfx("win")
-		_show_end("The cover-up collapses. You exposed %s." % _boss.display_name, "Continue", _on_continue)
+		var last_words := _reaction_for_last_counter()
+		_show_end("%sThe cover-up collapses. You exposed %s." % ["" if last_words.is_empty() else last_words + "
+", _boss.display_name],
+				"Continue", _on_continue)
 	elif _showdown.state == Showdown.State.LOST:
 		Audio.play_sfx("lose")
 		_show_end("The cover-up holds. Verify more evidence, then try again.", "Try again", _on_retry)
 	elif result == Showdown.Result.COUNTERED:
-		var reaction := _showdown.last_countered.reaction
+		var reaction := _reaction_for_last_counter()
 		_feedback_label.text = "That exposes the lie." if reaction.is_empty() else "That exposes the lie. %s" % reaction
 	elif result == Showdown.Result.PROGRESS:
 		_feedback_label.text = "That is part of the answer. This lie needs more than one piece of proof."
 	else:
 		_feedback_label.text = "That does not hold up. Only verified evidence counts."
+
+
+## What the boss admits about the lie just countered; a shortcut item gets its own line.
+func _reaction_for_last_counter() -> String:
+	var lie := _showdown.last_countered
+	if lie == null:
+		return ""
+	var is_shortcut := not lie.counter_all_ids.is_empty() and _showdown.last_countered_by in lie.counter_evidence_ids
+	return lie.shortcut_reaction if is_shortcut and not lie.shortcut_reaction.is_empty() else lie.reaction
 
 
 func _show_end(message: String, button_text: String, callback: Callable) -> void:

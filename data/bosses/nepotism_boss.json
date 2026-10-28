@@ -36,7 +36,11 @@
 			"counter_all": [
 				"hiring_file",
 				"payroll_records"
-			]
+			],
+			"counter_evidence_ids": [
+				"leaked_email"
+			],
+			"shortcut_reaction": "The leaked email names them all. No audit needed."
 		}
 	],
 	"intro": "My family is my business. And my business is nobody's business."

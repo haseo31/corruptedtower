@@ -31,6 +31,7 @@ static func build(scene_path: String, cell: Vector2i) -> Dictionary:
 		"defeated_bosses": GameSession.defeated_bosses(),
 		"good_choices": GameSession.good_choices,
 		"wrong_choices": GameSession.wrong_choices,
+		"flags": GameSession.flags(),
 	}
 
 
@@ -57,7 +58,7 @@ static func read() -> Dictionary:
 
 ## Restores a checked save (see read()) and loads its floor, placing the player on the saved tile.
 static func apply(data: Dictionary, tree: SceneTree) -> void:
-	GameSession.restore(data["evidence"], data["defeated_bosses"], data["good_choices"], data["wrong_choices"])
+	GameSession.restore(data["evidence"], data["defeated_bosses"], data["good_choices"], data["wrong_choices"], data["flags"])
 	FloorScene.arrival_cell = data["cell"]
 	tree.change_scene_to_file(data["scene"])
 
@@ -103,4 +104,15 @@ static func _validate(data: Dictionary) -> Dictionary:
 		# Older saves have no counts; they start from zero.
 		"good_choices": maxi(int(data.get("good_choices", 0)), 0) if data.get("good_choices", 0) is float else 0,
 		"wrong_choices": maxi(int(data.get("wrong_choices", 0)), 0) if data.get("wrong_choices", 0) is float else 0,
+		"flags": _clean_flags(data.get("flags", [])),
 	}
+
+
+## Only the text entries of a saved flag list; anything else is dropped.
+static func _clean_flags(raw: Variant) -> Array:
+	var flags: Array = []
+	if raw is Array:
+		for flag: Variant in raw:
+			if flag is String:
+				flags.append(flag)
+	return flags

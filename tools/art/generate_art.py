@@ -495,6 +495,17 @@ CHARACTERS = {
         "colors": {"C": "2a2a34", "c": "1a1a22", "T": "3a3a4a", "t": "2a2a36", "P": "2a2a34"},
         "overlays": ["hood", "moustache"],
     },
+    "campaign_worker": {
+        "hair_style": "slick", "hair": "5a3a1a", "hair_shade": "7a5a34",
+        "colors": {"C": "d0782a", "c": "a85a18", "T": "d0782a", "t": "a85a18", "P": "3a3a4a", "Y": "e8e8f0"},
+        "overlays": ["lanyard", "papers"],
+    },
+    "whistleblower": {
+        "hair_style": "bun", "hair": "2a3a5a", "hair_shade": "445a80",
+        "colors": {"C": "5a6a7a", "c": "404e5c", "T": "8a8a98", "t": "6a6a78", "B": "2a2a36"},
+        "overlays": ["hood", "glasses", "papers"],
+        "body": "skirt",
+    },
 }
 
 
@@ -887,7 +898,8 @@ def make_font(out):
 ICON = 16
 ICON_ORDER = ["ledger_page", "meeting_photo", "text_messages", "original_statement", "bot_list", "edited_clip",
               "cash_envelopes", "vote_receipts", "rigged_poll", "hiring_file", "qualification_list", "payroll_records",
-              "ghost_project", "invoice_batch", "shell_company", "redacted_report", "foi_denial", "shredding_log"]
+              "ghost_project", "invoice_batch", "shell_company", "redacted_report", "foi_denial", "shredding_log",
+              "leaked_email", "witness_statement", "whistleblower_folder"]
 DARK = rgb("3c281c")
 
 
@@ -1140,10 +1152,45 @@ def icon_shredding():
     return t
 
 
+def icon_email():
+    t = blank(ICON, ICON)
+    _fill(t, 1, 4, 14, 12, rgb("f2efe4"))
+    _outline(t, 1, 4, 14, 12, DARK)
+    for i in range(1, 7):
+        t[4 + i][1 + i] = rgb("9a98a0")
+        t[4 + i][14 - i] = rgb("9a98a0")
+    _fill(t, 11, 2, 13, 3, rgb("c03030"))
+    return t
+
+
+def icon_witness():
+    t = blank(ICON, ICON)
+    _fill(t, 3, 1, 12, 14, rgb("f2efe4"))
+    _outline(t, 3, 1, 12, 14, DARK)
+    for y in (3, 5, 7):
+        for x in range(5, 11):
+            t[y][x] = rgb("9a98a0")
+    for x in range(5, 9):
+        t[10][x] = rgb("2b2233")
+    _fill(t, 9, 11, 11, 13, rgb("e8c030"))
+    return t
+
+
+def icon_folder():
+    t = blank(ICON, ICON)
+    _fill(t, 1, 5, 14, 13, rgb("d8b060"))
+    _outline(t, 1, 5, 14, 13, DARK)
+    _fill(t, 1, 3, 6, 5, rgb("d8b060"))
+    _outline(t, 1, 3, 6, 5, DARK)
+    _fill(t, 3, 8, 12, 11, rgb("f2efe4"))
+    _fill(t, 5, 9, 10, 9, rgb("9a98a0"))
+    return t
+
+
 ICON_MAKERS = [icon_ledger, icon_photo, icon_phone, icon_statement, icon_bots, icon_clip,
                icon_envelopes, icon_receipts, icon_poll, icon_hiring, icon_qualification, icon_payroll,
                icon_ghost_project, icon_invoices, icon_shell_company, icon_redacted, icon_denial,
-               icon_shredding]
+               icon_shredding, icon_email, icon_witness, icon_folder]
 
 
 def make_icons(out):

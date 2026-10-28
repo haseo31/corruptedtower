@@ -57,6 +57,13 @@
 			"sprite": "spokesperson",
 			"boss": "res://data/bosses/disinformation_boss.json",
 			"defeated_message": "Your evidence is undeniable. The way up is open."
+		},
+		{
+			"x": 12,
+			"y": 18,
+			"name": "Anonymous Source",
+			"sprite": "shredder",
+			"dialogue": "anonymous_source"
 		}
 	],
 	"clues": [

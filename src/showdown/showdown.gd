@@ -51,8 +51,10 @@ func current_lie() -> BossData.Lie:
 	return _boss.lies[_lie_index]
 
 
-## The lie that the last COUNTERED turn removed, so the screen can show the boss's reaction.
+## The lie that the last COUNTERED turn removed, so the screen can show the boss's reaction,
+## and the item that did it (a shortcut item gets its own reaction).
 var last_countered: BossData.Lie = null
+var last_countered_by: String = ""
 
 
 ## Plays one turn. Only verified evidence that counters the current lie succeeds.
@@ -61,13 +63,14 @@ func present_evidence(evidence_id: String, verified: bool) -> Result:
 		return Result.IGNORED
 	var lie := _boss.lies[_lie_index]
 	if verified and lie.accepts(evidence_id):
-		if not lie.counter_all_ids.is_empty():
+		if not lie.counter_all_ids.is_empty() and evidence_id not in lie.counter_evidence_ids:
 			if evidence_id not in _matched:
 				_matched.append(evidence_id)
 			if _matched.size() < lie.counter_all_ids.size():
 				return Result.PROGRESS
 		_matched.clear()
 		last_countered = lie
+		last_countered_by = evidence_id
 		_lie_index += 1
 		lie_removed.emit(lie.id)
 		if _lie_index >= _boss.lies.size():
@@ -95,3 +98,4 @@ func restart() -> void:
 	_lie_index = 0
 	_matched.clear()
 	last_countered = null
+	last_countered_by = ""

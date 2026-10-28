@@ -89,6 +89,21 @@
 			"id": "shredding_log",
 			"title": "Shredding log",
 			"description": "A service log showing four pallets of records shredded the night before the audit."
+		},
+		{
+			"id": "leaked_email",
+			"title": "Leaked email",
+			"description": "An email, passed on by a staff member, listing relatives added to the payroll with no job title."
+		},
+		{
+			"id": "witness_statement",
+			"title": "Sworn witness statement",
+			"description": "A notarized statement by the former fund clerk describing how public money went to dummy groups."
+		},
+		{
+			"id": "whistleblower_folder",
+			"title": "Whistleblower folder",
+			"description": "Emails and lists showing who asked for which projects and who received a share."
 		}
 	]
 }
