@@ -1,18 +1,21 @@
 class_name InventoryPanel
 extends PanelContainer
-## Shows every evidence item the player has collected and whether it is verified.
-## It redraws itself from the inventory's signals, so it never keeps a second list.
+## The player's collected evidence as a menu: one entry per item with its icon, name and
+## an arrow on the focused entry. It rebuilds from the inventory's signals, so it never
+## keeps a second list, and it keeps the focused item across a rebuild.
 
-## Emitted when the player activates (Enter or double-click) an item in the list.
+## Emitted when the player picks an entry (Enter).
 signal evidence_selected(evidence_id: String)
+## Emitted when an entry gains keyboard focus, so a description can follow it.
+signal item_focused(evidence_id: String)
 
 var _inventory: EvidenceInventory
+var _last_focused: String = ""
 
-@onready var _item_list: ItemList = %ItemList
+@onready var _items_box: VBoxContainer = %ItemsBox
 
 
 func _ready() -> void:
-	_item_list.item_activated.connect(_on_item_activated)
 	_refresh()
 
 
@@ -25,18 +28,21 @@ func bind(inventory: EvidenceInventory) -> void:
 	_refresh()
 
 
-## Shows the panel, up to date with the inventory, with the first item focused.
+## Shows the panel, up to date with the inventory, with an entry focused.
 func open() -> void:
 	_refresh()
 	show()
-	_item_list.grab_focus()
-	if _item_list.item_count > 0:
-		_item_list.select(0)
+	focus_list()
 
 
-## Gives the list keyboard focus again (for example after a fact-check panel closes).
+## Gives focus back to the entry that had it last (or the first), for example after a
+## fact-check panel closes.
 func focus_list() -> void:
-	_item_list.grab_focus()
+	var target := _button_for(_last_focused)
+	if target == null and _items_box.get_child_count() > 0:
+		target = _items_box.get_child(0) as Button
+	if target != null:
+		target.grab_focus()
 
 
 ## Hides the panel.
@@ -48,21 +54,47 @@ func _on_inventory_changed(_evidence_id: String) -> void:
 	_refresh()
 
 
-func _on_item_activated(index: int) -> void:
-	evidence_selected.emit(str(_item_list.get_item_metadata(index)))
-
-
 func _refresh() -> void:
 	if not is_node_ready():
 		return
-	var selected := _item_list.get_selected_items()
-	_item_list.clear()
+	var had_focus := _list_has_focus()
+	for child in _items_box.get_children():
+		_items_box.remove_child(child)
+		child.queue_free()
 	if _inventory == null:
 		return
 	for item in _inventory.items():
-		var state := "Verified" if item.verified else "Unverified"
-		var index := _item_list.add_item("%s  [%s]" % [item.title, state])
-		_item_list.set_item_tooltip(index, item.description)
-		_item_list.set_item_metadata(index, item.id)
-	if not selected.is_empty() and selected[0] < _item_list.item_count:
-		_item_list.select(selected[0])
+		var button := PixelButton.new()
+		button.text = item.title if item.verified else "%s [?]" % item.title
+		button.icon = EvidenceIcons.texture_for(item.id)
+		button.pressed.connect(_on_item_pressed.bind(item.id))
+		button.focus_entered.connect(_on_item_focus_entered.bind(item.id))
+		_items_box.add_child(button)
+	if had_focus:
+		focus_list()
+
+
+func _on_item_pressed(evidence_id: String) -> void:
+	evidence_selected.emit(evidence_id)
+
+
+func _on_item_focus_entered(evidence_id: String) -> void:
+	_last_focused = evidence_id
+	item_focused.emit(evidence_id)
+
+
+func _list_has_focus() -> bool:
+	for child in _items_box.get_children():
+		if (child as Control).has_focus():
+			return true
+	return false
+
+
+func _button_for(evidence_id: String) -> Button:
+	if _inventory == null or evidence_id.is_empty():
+		return null
+	var items := _inventory.items()
+	for index in items.size():
+		if items[index].id == evidence_id and index < _items_box.get_child_count():
+			return _items_box.get_child(index) as Button
+	return null

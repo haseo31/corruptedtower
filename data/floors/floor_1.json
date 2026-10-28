@@ -28,6 +28,10 @@
 		"########################################"
 	],
 	"spawn": [2, 12],
+	"hint": "I: evidence   E: talk   Esc: back",
+	"objective": "Expose the Deputy Director",
+	"objective_boss": "bribery_boss",
+	"objective_done": "Take the stairs up",
 	"npcs": [
 		{"x": 8, "y": 7, "name": "Clerk", "sprite": "clerk", "dialogue": "clerk"},
 		{"x": 24, "y": 14, "name": "Janitor", "sprite": "janitor", "dialogue": "janitor"},

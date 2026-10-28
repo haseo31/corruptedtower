@@ -28,6 +28,10 @@
 		"########################################"
 	],
 	"spawn": [2, 12],
+	"hint": "I: evidence   E: talk   Esc: back",
+	"objective": "Expose the Spokesperson",
+	"objective_boss": "disinformation_boss",
+	"objective_done": "",
 	"npcs": [
 		{"x": 8, "y": 12, "name": "Archivist", "sprite": "archivist", "dialogue": "archivist"},
 		{"x": 24, "y": 12, "name": "Intern", "sprite": "intern", "dialogue": "intern"},

@@ -79,6 +79,7 @@ func _show_evidence_choices(feedback: String) -> void:
 	for item in _inventory.items():
 		var button := PixelButton.new()
 		button.text = item.title if item.verified else "%s [?]" % item.title
+		button.icon = EvidenceIcons.texture_for(item.id)
 		button.pressed.connect(_on_evidence_pressed.bind(item.id))
 		button.focus_entered.connect(_scroll.ensure_control_visible.bind(button))
 		_buttons_box.add_child(button)

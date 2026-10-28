@@ -29,6 +29,26 @@ offset_bottom = 4.0
 [node name="FloorName" type="Label" parent="Hud/FloorNameBox"]
 layout_mode = 2
 
+[node name="ObjectiveBox" type="PanelContainer" parent="Hud"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -208.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = 4.0
+grow_horizontal = 0
+
+[node name="Box" type="VBoxContainer" parent="Hud/ObjectiveBox"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="ObjectiveLabel" type="Label" parent="Hud/ObjectiveBox/Box"]
+layout_mode = 2
+
+[node name="HintLabel" type="Label" parent="Hud/ObjectiveBox/Box"]
+layout_mode = 2
+
 [node name="DialogueBox" parent="Hud" instance=ExtResource("3_dialogue")]
 
 [node name="EvidenceScreen" parent="Hud" instance=ExtResource("4_evidence")]

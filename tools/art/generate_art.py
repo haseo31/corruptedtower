@@ -649,6 +649,124 @@ def make_font(out):
     (out / "font_pixel.fnt").write_text("\n".join(fnt) + "\n")
 
 
+# ------------------------------------------------------------------------ icons
+
+ICON = 16
+ICON_ORDER = ["ledger_page", "meeting_photo", "text_messages", "original_statement", "bot_list", "edited_clip"]
+DARK = rgb("3c281c")
+
+
+def _fill(img, x0, y0, x1, y1, color):
+    for y in range(y0, y1 + 1):
+        for x in range(x0, x1 + 1):
+            img[y][x] = color
+
+
+def _outline(img, x0, y0, x1, y1, color):
+    for x in range(x0, x1 + 1):
+        img[y0][x] = color
+        img[y1][x] = color
+    for y in range(y0, y1 + 1):
+        img[y][x0] = color
+        img[y][x1] = color
+
+
+def icon_ledger():
+    t = blank(ICON, ICON)
+    _fill(t, 3, 1, 12, 14, rgb("f2efe4"))
+    _outline(t, 3, 1, 12, 14, DARK)
+    for y in range(2, 14):
+        t[y][5] = rgb("c03030")
+    for y in (4, 6, 8, 10, 12):
+        for x in range(6, 12):
+            t[y][x] = rgb("9a98a0")
+    return t
+
+
+def icon_photo():
+    t = blank(ICON, ICON)
+    _fill(t, 1, 2, 14, 13, rgb("8a6038"))
+    _outline(t, 1, 2, 14, 13, DARK)
+    _fill(t, 3, 4, 12, 11, rgb("8fd0ff"))
+    _fill(t, 3, 10, 12, 11, rgb("4aa860"))
+    _fill(t, 5, 5, 6, 6, rgb("2b2233"))
+    _fill(t, 4, 7, 7, 11, rgb("3a4a7a"))
+    _fill(t, 9, 5, 10, 6, rgb("2b2233"))
+    _fill(t, 8, 7, 11, 11, rgb("7a3a3a"))
+    return t
+
+
+def icon_phone():
+    t = blank(ICON, ICON)
+    _fill(t, 4, 1, 11, 14, rgb("2b2233"))
+    _fill(t, 5, 3, 10, 12, rgb("dff5ff"))
+    _fill(t, 6, 4, 9, 6, rgb("4aa860"))
+    _fill(t, 6, 8, 9, 10, rgb("b8c4d8"))
+    t[13][7] = rgb("8a8a94")
+    t[13][8] = rgb("8a8a94")
+    return t
+
+
+def icon_statement():
+    t = blank(ICON, ICON)
+    _fill(t, 3, 1, 12, 14, rgb("f4f2e8"))
+    _outline(t, 3, 1, 12, 14, DARK)
+    _fill(t, 5, 3, 10, 3, rgb("2b2233"))
+    for y in (5, 7):
+        for x in range(5, 11):
+            t[y][x] = rgb("9a98a0")
+    _fill(t, 8, 9, 11, 12, rgb("c03030"))
+    t[13][9] = rgb("7a1c1c")
+    t[13][10] = rgb("7a1c1c")
+    return t
+
+
+def icon_bots():
+    t = blank(ICON, ICON)
+    _fill(t, 3, 2, 12, 14, rgb("8a6038"))
+    _outline(t, 3, 2, 12, 14, DARK)
+    _fill(t, 4, 4, 11, 13, rgb("f2efe4"))
+    _fill(t, 6, 1, 9, 3, rgb("8a8a94"))
+    _outline(t, 6, 1, 9, 3, DARK)
+    _fill(t, 5, 5, 9, 8, rgb("8fd0ff"))
+    _outline(t, 5, 5, 9, 8, rgb("2b2233"))
+    t[6][6] = rgb("2b2233")
+    t[6][8] = rgb("2b2233")
+    t[8][7] = rgb("2b2233")
+    for y in (10, 12):
+        for x in range(5, 11):
+            t[y][x] = rgb("9a98a0")
+    return t
+
+
+def icon_clip():
+    t = blank(ICON, ICON)
+    _fill(t, 1, 3, 14, 12, rgb("2b2233"))
+    for x in (2, 4, 6, 8, 10, 12):
+        t[4][x] = rgb("d8d8e8")
+        t[11][x] = rgb("d8d8e8")
+    _fill(t, 3, 6, 7, 9, rgb("5a6a8a"))
+    _fill(t, 9, 6, 12, 9, rgb("5a6a8a"))
+    for x, y in ((4, 6), (4, 7), (4, 8), (5, 7)):
+        t[y][x] = rgb("f4f2e8")
+    for y in range(5, 11):
+        t[y][8] = rgb("c03030")
+    return t
+
+
+ICON_MAKERS = [icon_ledger, icon_photo, icon_phone, icon_statement, icon_bots, icon_clip]
+
+
+def make_icons(out):
+    atlas = blank(ICON * len(ICON_MAKERS), ICON)
+    index = {}
+    for i, (evidence_id, make) in enumerate(zip(ICON_ORDER, ICON_MAKERS)):
+        blit(atlas, make(), i * ICON, 0)
+        index[evidence_id] = i
+    write_png(out / "icons.png", atlas)
+    (out / "icons.json").write_text(json.dumps({"icon_size": ICON, "icons": index}, indent=2) + "\n")
+
+
 # -------------------------------------------------------------------------- main
 
 def main():
@@ -660,6 +778,7 @@ def main():
     for name, (rows, colors, frames) in BOSSES.items():
         make_boss(out, name, rows, colors, frames)
     write_character_info(out)
+    make_icons(out)
     make_font(out)
     print("wrote art to", out)
 

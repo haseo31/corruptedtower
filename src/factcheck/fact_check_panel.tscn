@@ -2,25 +2,33 @@
 
 [ext_resource type="Script" path="res://src/factcheck/fact_check_panel.gd" id="1_panel"]
 
-[node name="FactCheckPanel" type="PanelContainer"]
+[node name="FactCheckPanel" type="VBoxContainer"]
 visible = false
-custom_minimum_size = Vector2(260, 0)
+custom_minimum_size = Vector2(300, 0)
+theme_override_constants/separation = 4
 script = ExtResource("1_panel")
 
-[node name="Box" type="VBoxContainer" parent="."]
+[node name="QuestionBox" type="PanelContainer" parent="."]
+layout_mode = 2
+
+[node name="Text" type="VBoxContainer" parent="QuestionBox"]
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="ClaimLabel" type="Label" parent="Box"]
+[node name="ClaimLabel" type="Label" parent="QuestionBox/Text"]
 unique_name_in_owner = true
 layout_mode = 2
 autowrap_mode = 3
 
-[node name="OptionsBox" type="VBoxContainer" parent="Box"]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="FeedbackLabel" type="Label" parent="Box"]
+[node name="FeedbackLabel" type="Label" parent="QuestionBox/Text"]
 unique_name_in_owner = true
 layout_mode = 2
 autowrap_mode = 3
+
+[node name="OptionsPanel" type="PanelContainer" parent="."]
+layout_mode = 2
+
+[node name="OptionsBox" type="VBoxContainer" parent="OptionsPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 1

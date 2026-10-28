@@ -1,8 +1,9 @@
 class_name FactCheckPanel
-extends PanelContainer
-## Shows one fact-check challenge: the claim and one button per source. The player
-## picks the fake or unreliable one. Keyboard only: arrows move, Enter picks, Esc closes.
-## All answer logic lives in FactCheckSession; this panel only displays it.
+extends VBoxContainer
+## Shows one fact-check challenge like a conversation: a question box with the claim (and
+## the feedback after each answer) above a choices menu with one entry per source. The
+## player picks the fake or unreliable one. Keyboard only: arrows move, Enter picks, Esc
+## closes. All answer logic lives in FactCheckSession; this panel only displays it.
 
 signal challenge_completed(evidence_id: String)
 

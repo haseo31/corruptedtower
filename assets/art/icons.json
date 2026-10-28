@@ -1,0 +1,11 @@
+{
+  "icon_size": 16,
+  "icons": {
+    "ledger_page": 0,
+    "meeting_photo": 1,
+    "text_messages": 2,
+    "original_statement": 3,
+    "bot_list": 4,
+    "edited_clip": 5
+  }
+}

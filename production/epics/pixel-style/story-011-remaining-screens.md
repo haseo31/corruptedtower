@@ -1,12 +1,12 @@
 # Story 011: Remaining screens and player hints
 
 > **Epic**: pixel-style
-> **Status**: Ready
+> **Status**: Complete
 > **Layer**: Presentation
 > **Type**: UI
 > **Estimate**: M
 > **Manifest Version**: N/A (minimal — no control manifest)
-> **Last Updated**: [set by /dev-story when implementation begins]
+> **Last Updated**: 2026-10-28
 
 ## Context
 
@@ -52,10 +52,16 @@
 
 ## Files
 
-- `tools/art/generate_art.py`, `assets/art/` (icons)
-- `src/ui/evidence_screen.gd`, `src/ui/evidence_screen.tscn`, `src/ui/inventory_panel.gd`, `src/factcheck/fact_check_panel.gd`, `src/factcheck/fact_check_panel.tscn`
-- `src/ui/ending_screen.gd`, `src/ui/ending_screen.tscn`
-- `src/world/floor_scene.gd`, `src/world/floor.tscn`, `data/floors/floor_1.json`, `data/floors/floor_2.json`
+- `tools/art/generate_art.py`, `assets/art/icons.png`, `assets/art/icons.json` (evidence icons)
+- `src/ui/evidence_icons.gd` (new)
+- `src/ui/inventory_panel.gd`, `src/ui/inventory_panel.tscn` (rebuilt as menu entries)
+- `src/ui/evidence_screen.gd`, `src/ui/evidence_screen.tscn` (description box)
+- `src/factcheck/fact_check_panel.gd`, `src/factcheck/fact_check_panel.tscn` (question box and choices menu)
+- `src/showdown/showdown_screen.gd`, `src/showdown/showdown_screen.tscn` (icons, four-row menu)
+- `src/ui/ending_screen.gd`, `src/ui/ending_screen.tscn` (cast sprites)
+- `src/ui/pixel_button.gd` (centred arrow)
+- `src/world/floor_layout.gd`, `src/world/floor_scene.gd`, `src/world/floor.tscn` (objective and hint box)
+- `data/floors/floor_1.json`, `data/floors/floor_2.json` (hint, objective)
 
 ## QA Test Cases
 
@@ -76,3 +82,12 @@
 
 - Depends on: `production/epics/pixel-style/story-010-battle-showdown.md`
 - Unlocks: `production/epics/longer-game/story-012-navigation-and-saves.md`
+
+---
+
+## Completion Notes
+**Completed**: 2026-10-28
+**Criteria**: 8/8 passing (none deferred)
+**Deviations**: ADVISORY — all UI text is hardcoded (no localization system yet), except the floor hint and objective, which come from the floor data files (`hint`, `objective`, `objective_boss`, `objective_done`). The hint reads "I: evidence   E: talk   Esc: back", slightly longer than the wording in the criterion. Floor 2's objective has no "after" line because exposing its boss ends the run. `InventoryPanel` was rebuilt from an `ItemList` into menu entries (a bigger change than the story implied); the evidence list therefore now shows the arrow marker instead of the inverted highlight noted in story 009. The showdown menu shows four rows at a time (it was five) because of the icons. `FactCheckPanel` now extends `VBoxContainer` instead of `PanelContainer`.
+**Test Evidence**: waived at qa.level minimal; the full keyboard-only playthrough re-run on the rebuilt evidence screen ended identically at every checkpoint; retained screenshots and sign-off in production/qa/evidence/story-011-remaining-screens/ and production/qa/evidence/story-011-remaining-screens-evidence.md (sign-off approved by the user)
+**Reviewed by**: self, no independent review

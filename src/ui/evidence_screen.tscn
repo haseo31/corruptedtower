@@ -5,13 +5,36 @@
 [ext_resource type="PackedScene" path="res://src/factcheck/fact_check_panel.tscn" id="3_factcheck"]
 
 [node name="EvidenceScreen" type="HBoxContainer"]
-theme_override_constants/separation = 12
+theme_override_constants/separation = 4
 script = ExtResource("1_screen")
 
 [node name="InventoryPanel" parent="." instance=ExtResource("2_inventory")]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_vertical = 0
 
-[node name="FactCheckPanel" parent="." instance=ExtResource("3_factcheck")]
+[node name="RightColumn" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="DescriptionBox" type="PanelContainer" parent="RightColumn"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="Text" type="VBoxContainer" parent="RightColumn/DescriptionBox"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="DescriptionLabel" type="Label" parent="RightColumn/DescriptionBox/Text"]
+unique_name_in_owner = true
+layout_mode = 2
+autowrap_mode = 3
+
+[node name="StatusLabel" type="Label" parent="RightColumn/DescriptionBox/Text"]
+unique_name_in_owner = true
+layout_mode = 2
+autowrap_mode = 3
+
+[node name="FactCheckPanel" parent="RightColumn" instance=ExtResource("3_factcheck")]
 unique_name_in_owner = true
 layout_mode = 2

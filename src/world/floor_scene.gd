@@ -28,6 +28,9 @@ var _npc_nodes: Dictionary = {}
 @onready var _camera: Camera2D = $Actors/Player/Camera2D
 @onready var _floor_name_box: PanelContainer = $Hud/FloorNameBox
 @onready var _floor_name: Label = $Hud/FloorNameBox/FloorName
+@onready var _objective_box: PanelContainer = $Hud/ObjectiveBox
+@onready var _objective_label: Label = $Hud/ObjectiveBox/Box/ObjectiveLabel
+@onready var _hint_label: Label = $Hud/ObjectiveBox/Box/HintLabel
 @onready var _dialogue_box: DialogueBox = $Hud/DialogueBox
 @onready var _evidence_screen: EvidenceScreen = $Hud/EvidenceScreen
 @onready var _showdown_screen: ShowdownScreen = $Hud/ShowdownScreen
@@ -61,7 +64,12 @@ func _ready() -> void:
 	_camera.limit_bottom = size.y
 	_camera.reset_smoothing()
 	PixelTheme.apply(_floor_name_box)
+	PixelTheme.apply(_objective_box)
 	_floor_name.text = _layout.name
+	_objective_label.add_theme_color_override("font_color", PixelTheme.DANGER)
+	_hint_label.add_theme_color_override("font_color", PixelTheme.MUTED)
+	_hint_label.text = _layout.hint
+	_refresh_objective()
 	queue_redraw()
 
 
@@ -121,6 +129,15 @@ func _modal_open() -> bool:
 
 func _refresh_lock() -> void:
 	_player.can_move = not _modal_open()
+	_refresh_objective()
+
+
+## Shows the floor's objective (the next one once its boss is exposed), hidden while a
+## panel is open or when there is nothing to say.
+func _refresh_objective() -> void:
+	var boss_done := not _layout.objective_boss.is_empty() and GameSession.is_defeated(_layout.objective_boss)
+	_objective_label.text = _layout.objective_done if boss_done else _layout.objective
+	_objective_box.visible = not _modal_open() and not _objective_label.text.is_empty()
 
 
 func _is_unlocked(transition: Dictionary) -> bool:
@@ -155,6 +172,7 @@ func _talk_to_boss(npc: Dictionary) -> void:
 
 func _on_showdown_won(boss_id: String) -> void:
 	GameSession.mark_defeated(boss_id)
+	_refresh_objective()
 	queue_redraw()
 	if _active_boss_npc.get("final", false):
 		get_tree().change_scene_to_file(ENDING_SCENE)

@@ -16,6 +16,12 @@ var width: int = 0
 var height: int = 0
 ## Where the player starts when no other arrival cell is given.
 var spawn: Vector2i = Vector2i.ZERO
+## A short controls hint shown on the floor.
+var hint: String = ""
+## What to do on this floor, and what to do once the boss named by objective_boss is exposed.
+var objective: String = ""
+var objective_done: String = ""
+var objective_boss: String = ""
 
 var _rows: Array[String] = []
 ## Transition cells: Vector2i -> {"scene": String, "spawn": Vector2i}.
@@ -43,6 +49,10 @@ static func from_dict(data: Dictionary) -> FloorLayout:
 	var layout := FloorLayout.new()
 	layout.name = str(data.get("name", ""))
 	layout.tile_size = int(data.get("tile_size", 0))
+	layout.hint = str(data.get("hint", ""))
+	layout.objective = str(data.get("objective", ""))
+	layout.objective_done = str(data.get("objective_done", ""))
+	layout.objective_boss = str(data.get("objective_boss", ""))
 	var row_entries: Variant = data.get("rows", [])
 	if not (row_entries is Array) or (row_entries as Array).is_empty() or layout.tile_size < 1:
 		push_error("FloorLayout: needs tile_size >= 1 and a non-empty 'rows' list")
