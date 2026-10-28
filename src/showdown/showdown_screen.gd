@@ -18,6 +18,13 @@ var _inventory: EvidenceInventory
 @onready var _feedback_label: Label = %FeedbackLabel
 
 
+func _ready() -> void:
+	PixelTheme.apply(self)
+	_boss_label.add_theme_color_override("font_color", PixelTheme.DANGER)
+	_meter_label.add_theme_color_override("font_color", PixelTheme.AMBER)
+	_feedback_label.add_theme_color_override("font_color", PixelTheme.SPEAKER)
+
+
 ## Opens a showdown against this boss, presenting evidence from the inventory.
 func start(boss: BossData, inventory: EvidenceInventory) -> void:
 	_boss = boss
@@ -44,9 +51,8 @@ func _show_evidence_choices(feedback: String) -> void:
 	_feedback_label.text = feedback
 	for item in _inventory.items():
 		var state := "Verified" if item.verified else "Unverified"
-		var button := Button.new()
+		var button := PixelButton.new()
 		button.text = "%s  [%s]" % [item.title, state]
-		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
 		button.pressed.connect(_on_evidence_pressed.bind(item.id))
 		_buttons_box.add_child(button)
 	if _buttons_box.get_child_count() == 0:
@@ -73,7 +79,7 @@ func _on_evidence_pressed(evidence_id: String) -> void:
 func _show_end(message: String, button_text: String, callback: Callable) -> void:
 	_clear_buttons()
 	_feedback_label.text = message
-	var button := Button.new()
+	var button := PixelButton.new()
 	button.text = button_text
 	button.pressed.connect(callback)
 	_buttons_box.add_child(button)

@@ -26,7 +26,8 @@ var _npc_nodes: Dictionary = {}
 @onready var _actors: Node2D = $Actors
 @onready var _player: FloorPlayer = $Actors/Player
 @onready var _camera: Camera2D = $Actors/Player/Camera2D
-@onready var _floor_name: Label = $Hud/FloorName
+@onready var _floor_name_box: PanelContainer = $Hud/FloorNameBox
+@onready var _floor_name: Label = $Hud/FloorNameBox/FloorName
 @onready var _dialogue_box: DialogueBox = $Hud/DialogueBox
 @onready var _evidence_screen: EvidenceScreen = $Hud/EvidenceScreen
 @onready var _showdown_screen: ShowdownScreen = $Hud/ShowdownScreen
@@ -59,6 +60,7 @@ func _ready() -> void:
 	_camera.limit_right = size.x
 	_camera.limit_bottom = size.y
 	_camera.reset_smoothing()
+	PixelTheme.apply(_floor_name_box)
 	_floor_name.text = _layout.name
 	queue_redraw()
 

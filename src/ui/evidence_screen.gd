@@ -8,6 +8,10 @@ extends HBoxContainer
 @onready var _fact_check_panel: FactCheckPanel = %FactCheckPanel
 
 
+func _ready() -> void:
+	PixelTheme.apply(self)
+
+
 ## Connects both panels to an inventory and the fact-check challenges.
 func bind(inventory: EvidenceInventory, challenges: Dictionary) -> void:
 	if not is_node_ready():

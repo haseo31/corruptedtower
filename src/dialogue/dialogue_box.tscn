@@ -2,47 +2,73 @@
 
 [ext_resource type="Script" path="res://src/dialogue/dialogue_box.gd" id="1_box"]
 
-[node name="DialogueBox" type="PanelContainer"]
+[node name="DialogueBox" type="Control"]
 visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_box")
+
+[node name="TextPanel" type="PanelContainer" parent="."]
+layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 24.0
-offset_top = -190.0
-offset_right = -24.0
-offset_bottom = -20.0
+offset_left = 8.0
+offset_top = -88.0
+offset_right = -8.0
+offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 0
-script = ExtResource("1_box")
 
-[node name="Margin" type="MarginContainer" parent="."]
+[node name="Box" type="VBoxContainer" parent="TextPanel"]
 layout_mode = 2
-theme_override_constants/margin_left = 14
-theme_override_constants/margin_top = 12
-theme_override_constants/margin_right = 14
-theme_override_constants/margin_bottom = 12
 
-[node name="Box" type="VBoxContainer" parent="Margin"]
-layout_mode = 2
-theme_override_constants/separation = 6
-
-[node name="SpeakerLabel" type="Label" parent="Margin/Box"]
+[node name="SpeakerLabel" type="Label" parent="TextPanel/Box"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_color = Color(0.94, 0.85, 0.56, 1)
 
-[node name="TextLabel" type="Label" parent="Margin/Box"]
+[node name="TextLabel" type="Label" parent="TextPanel/Box"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_vertical = 3
 autowrap_mode = 3
 
-[node name="ChoicesBox" type="VBoxContainer" parent="Margin/Box"]
-unique_name_in_owner = true
+[node name="Footer" type="HBoxContainer" parent="TextPanel/Box"]
 layout_mode = 2
 
-[node name="NoticeLabel" type="Label" parent="Margin/Box"]
+[node name="NoticeLabel" type="Label" parent="TextPanel/Box/Footer"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-theme_override_colors/font_color = Color(0.4, 0.85, 0.7, 1)
+size_flags_horizontal = 3
+
+[node name="ArrowLabel" type="Label" parent="TextPanel/Box/Footer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="ChoicesPanel" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -308.0
+offset_top = -92.0
+offset_right = -8.0
+offset_bottom = -92.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="ChoicesBox" type="VBoxContainer" parent="ChoicesPanel"]
+unique_name_in_owner = true
+layout_mode = 2

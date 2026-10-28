@@ -1,6 +1,7 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://src/ui/ending_screen.gd" id="1_ending"]
+[ext_resource type="Script" path="res://src/ui/pixel_button.gd" id="2_button"]
 
 [node name="EndingScreen" type="Control"]
 layout_mode = 3
@@ -28,33 +29,34 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Box" type="VBoxContainer" parent="Center"]
-custom_minimum_size = Vector2(640, 0)
+[node name="Panel" type="PanelContainer" parent="Center"]
+custom_minimum_size = Vector2(380, 0)
 layout_mode = 2
-theme_override_constants/separation = 16
 
-[node name="Title" type="Label" parent="Center/Box"]
+[node name="Box" type="VBoxContainer" parent="Center/Panel"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.94, 0.85, 0.56, 1)
-theme_override_font_sizes/font_size = 34
+theme_override_constants/separation = 8
+
+[node name="Title" type="Label" parent="Center/Panel/Box"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "The Tower Is Exposed"
 horizontal_alignment = 1
 
-[node name="Body" type="Label" parent="Center/Box"]
+[node name="Body" type="Label" parent="Center/Panel/Box"]
 layout_mode = 2
 text = "You climbed every floor and exposed every cover-up with evidence you checked yourself. Informed citizens are how corruption loses."
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="ScoreLabel" type="Label" parent="Center/Box"]
+[node name="ScoreLabel" type="Label" parent="Center/Panel/Box"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_color = Color(0.4, 0.85, 0.7, 1)
-theme_override_font_sizes/font_size = 22
 horizontal_alignment = 1
 
-[node name="RestartButton" type="Button" parent="Center/Box"]
+[node name="RestartButton" type="Button" parent="Center/Panel/Box"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 4
 text = "Start new run"
+script = ExtResource("2_button")

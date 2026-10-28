@@ -16,24 +16,26 @@ y_sort_enabled = true
 script = ExtResource("2_player")
 
 [node name="Camera2D" type="Camera2D" parent="Actors/Player"]
-zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 
 [node name="Hud" type="CanvasLayer" parent="."]
 
-[node name="FloorName" type="Label" parent="Hud"]
-offset_left = 16.0
-offset_top = 12.0
-offset_right = 416.0
-offset_bottom = 38.0
+[node name="FloorNameBox" type="PanelContainer" parent="Hud"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 4.0
+offset_bottom = 4.0
+
+[node name="FloorName" type="Label" parent="Hud/FloorNameBox"]
+layout_mode = 2
 
 [node name="DialogueBox" parent="Hud" instance=ExtResource("3_dialogue")]
 
 [node name="EvidenceScreen" parent="Hud" instance=ExtResource("4_evidence")]
 visible = false
-offset_left = 24.0
-offset_top = 56.0
-offset_right = 24.0
-offset_bottom = 56.0
+offset_left = 8.0
+offset_top = 28.0
+offset_right = 8.0
+offset_bottom = 28.0
 
 [node name="ShowdownScreen" parent="Hud" instance=ExtResource("5_showdown")]

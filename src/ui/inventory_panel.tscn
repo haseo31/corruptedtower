@@ -3,24 +3,18 @@
 [ext_resource type="Script" path="res://src/ui/inventory_panel.gd" id="1_panel"]
 
 [node name="InventoryPanel" type="PanelContainer"]
-custom_minimum_size = Vector2(420, 260)
+custom_minimum_size = Vector2(196, 0)
 script = ExtResource("1_panel")
 
-[node name="Margin" type="MarginContainer" parent="."]
-layout_mode = 2
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 12
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 12
-
-[node name="Box" type="VBoxContainer" parent="Margin"]
+[node name="Box" type="VBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="Title" type="Label" parent="Margin/Box"]
+[node name="Title" type="Label" parent="Box"]
 layout_mode = 2
 text = "Evidence"
 
-[node name="ItemList" type="ItemList" parent="Margin/Box"]
+[node name="ItemList" type="ItemList" parent="Box"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 108)
 layout_mode = 2
 size_flags_vertical = 3

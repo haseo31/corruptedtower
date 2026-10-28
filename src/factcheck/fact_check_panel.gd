@@ -14,6 +14,10 @@ var _challenges: Dictionary = {}
 @onready var _feedback_label: Label = %FeedbackLabel
 
 
+func _ready() -> void:
+	_feedback_label.add_theme_color_override("font_color", PixelTheme.SPEAKER)
+
+
 ## Connects the panel to an inventory and a set of challenges (evidence id -> FactCheckChallenge).
 func bind(inventory: EvidenceInventory, challenges: Dictionary) -> void:
 	_session = FactCheckSession.new(inventory)
@@ -32,10 +36,8 @@ func start(evidence_id: String) -> bool:
 		_options_box.remove_child(child)
 		child.queue_free()
 	for index in challenge.options.size():
-		var button := Button.new()
+		var button := PixelButton.new()
 		button.text = challenge.options[index]
-		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
-		button.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		button.pressed.connect(_on_option_pressed.bind(index))
 		_options_box.add_child(button)
 	show()

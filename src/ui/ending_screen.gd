@@ -5,11 +5,15 @@ extends Control
 
 const FIRST_FLOOR: String = "res://src/world/floor_1.tscn"
 
+@onready var _title_label: Label = %Title
 @onready var _score_label: Label = %ScoreLabel
 @onready var _restart_button: Button = %RestartButton
 
 
 func _ready() -> void:
+	PixelTheme.apply(self)
+	_title_label.add_theme_color_override("font_color", PixelTheme.DANGER)
+	_score_label.add_theme_color_override("font_color", PixelTheme.NOTICE)
 	var inventory := GameSession.inventory()
 	_score_label.text = "Evidence verified: %d of %d" % [inventory.verified_count(), inventory.catalog_size()]
 	_restart_button.pressed.connect(_on_restart_pressed)

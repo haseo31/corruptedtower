@@ -1,12 +1,12 @@
 # Story 009: UI theme, view size and dialogue box
 
 > **Epic**: pixel-style
-> **Status**: Ready
+> **Status**: Complete
 > **Layer**: Presentation
 > **Type**: UI
 > **Estimate**: L
 > **Manifest Version**: N/A (minimal — no control manifest)
-> **Last Updated**: [set by /dev-story when implementation begins]
+> **Last Updated**: 2026-10-28
 
 ## Context
 
@@ -54,11 +54,13 @@
 
 ## Files
 
-- `project.godot` (viewport, stretch, window size)
-- `src/ui/pixel_theme.gd`
-- `src/dialogue/dialogue_box.gd`, `src/dialogue/dialogue_box.tscn`
-- `src/ui/evidence_screen.tscn`, `src/ui/inventory_panel.tscn`, `src/factcheck/fact_check_panel.tscn`
-- `src/showdown/showdown_screen.tscn`, `src/ui/ending_screen.tscn`, `src/world/floor.tscn`, `src/world/floor_scene.gd`
+- `project.godot` (480x320 view, integer scaling)
+- `src/ui/pixel_theme.gd`, `src/ui/pixel_button.gd` (new)
+- `src/dialogue/dialogue_box.gd`, `src/dialogue/dialogue_box.tscn` (rewritten)
+- `src/ui/evidence_screen.gd`, `src/ui/inventory_panel.tscn`, `src/factcheck/fact_check_panel.gd`, `src/factcheck/fact_check_panel.tscn`
+- `src/showdown/showdown_screen.gd`, `src/showdown/showdown_screen.tscn`
+- `src/ui/ending_screen.gd`, `src/ui/ending_screen.tscn`
+- `src/world/floor.tscn`, `src/world/floor_scene.gd` (zoom 1, floor name box)
 
 ## QA Test Cases
 
@@ -79,3 +81,12 @@
 
 - Depends on: `production/epics/pixel-style/story-008-floors-and-characters.md`
 - Unlocks: `production/epics/pixel-style/story-010-battle-showdown.md`
+
+---
+
+## Completion Notes
+**Completed**: 2026-10-28
+**Criteria**: 9/9 passing (none deferred)
+**Deviations**: ADVISORY — the evidence list marks its selection by inverting it (dark bar, light text) rather than with the arrow marker; the arrow for that list comes with story 011. All UI text is hardcoded (no localization system yet). `DialogueBox.text_speed` is a static value so one setting covers every floor (tests set it very high; a future options menu can expose it). The showdown screen only fits the new view here, with a lot of empty space; its battle layout is story 010. The ending's "Start new run" button had to be set to fill (not shrink) because a wrapping menu button collapses to zero width when shrunk.
+**Test Evidence**: waived at qa.level minimal; the full keyboard-only playthrough re-run on the new 480x320 UI ended identically at every checkpoint; retained screenshots and sign-off in production/qa/evidence/story-009-ui-theme-and-dialogue/ and production/qa/evidence/story-009-ui-theme-and-dialogue-evidence.md (sign-off approved by the user)
+**Reviewed by**: self, no independent review
