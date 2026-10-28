@@ -38,12 +38,14 @@ func _ready() -> void:
 	_center.add_child(_settings)
 	_guide.closed.connect(_close_overlay)
 	_settings.closed.connect(_close_overlay)
+	_settings.language_changed.connect(get_tree().reload_current_scene.call_deferred)
 	_continue_button.pressed.connect(_on_continue)
 	_play_button.pressed.connect(_on_play)
 	_how_button.pressed.connect(_on_how)
 	_settings_button.pressed.connect(_on_settings)
 	_exit_button.pressed.connect(get_tree().quit)
 	_continue_button.visible = SaveGame.has_save()
+	Tr.apply(self)
 	_focus_first()
 
 

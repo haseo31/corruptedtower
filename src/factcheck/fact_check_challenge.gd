@@ -37,7 +37,7 @@ static func load_all(path: String) -> Dictionary:
 	if not FileAccess.file_exists(path):
 		push_error("FactCheckChallenge: file not found: %s" % path)
 		return {}
-	var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string(path))
+	var parsed: Variant = Tr.tree(JSON.parse_string(FileAccess.get_file_as_string(path)))
 	if not (parsed is Dictionary) or not ((parsed as Dictionary).get("challenges") is Array):
 		push_error("FactCheckChallenge: %s needs a 'challenges' list" % path)
 		return {}

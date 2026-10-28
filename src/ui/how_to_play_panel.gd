@@ -55,7 +55,7 @@ func _ready() -> void:
 	box.add_theme_constant_override("separation", 6)
 	add_child(box)
 	var heading := Label.new()
-	heading.text = "HOW TO PLAY"
+	heading.text = Tr.t("HOW TO PLAY")
 	heading.add_theme_color_override("font_color", PixelTheme.DANGER)
 	box.add_child(heading)
 	_title_label = Label.new()
@@ -74,7 +74,7 @@ func _ready() -> void:
 	_counter_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	footer.add_child(_counter_label)
 	var hint := Label.new()
-	hint.text = "Left/Right: page   Esc: back"
+	hint.text = Tr.t("Left/Right: page   Esc: back")
 	hint.add_theme_color_override("font_color", PixelTheme.MUTED)
 	footer.add_child(hint)
 	_show_page()
@@ -85,14 +85,15 @@ func open() -> void:
 	_page = 0
 	_show_page()
 	show()
+	reset_size()
 	grab_focus()
 
 
 func _show_page() -> void:
 	var page: Array = PAGES[_page]
-	_title_label.text = "%d. %s" % [_page + 1, page[0]]
-	_body_label.text = "\n".join(page[1])
-	_counter_label.text = "Page %d of %d" % [_page + 1, PAGES.size()]
+	_title_label.text = "%d. %s" % [_page + 1, Tr.t(page[0])]
+	_body_label.text = "\n".join((page[1] as Array).map(func(line: String) -> String: return Tr.t(line)))
+	_counter_label.text = Tr.t("Page %d of %d") % [_page + 1, PAGES.size()]
 
 
 func _gui_input(event: InputEvent) -> void:

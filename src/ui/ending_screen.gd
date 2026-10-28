@@ -36,6 +36,7 @@ var _guide: CaseFilePanel
 
 func _ready() -> void:
 	PixelTheme.apply(self)
+	Tr.apply(self)
 	_title_label.add_theme_color_override("font_color", PixelTheme.DANGER)
 	_message_label.add_theme_color_override("font_color", PixelTheme.SPEAKER)
 	_notes_label.add_theme_color_override("font_color", PixelTheme.MUTED)
@@ -51,8 +52,8 @@ func _ready() -> void:
 ".join(Endings.notes_for(GameSession.flags()))
 	_notes_label.visible = not _notes_label.text.is_empty()
 	var inventory := GameSession.inventory()
-	_score_label.text = "Evidence verified: %d of %d" % [inventory.verified_count(), inventory.catalog_size()]
-	_accuracy_label.text = "Careful play: %d%% (%d right, %d wrong)" % [
+	_score_label.text = Tr.t("Evidence verified: %d of %d") % [inventory.verified_count(), inventory.catalog_size()]
+	_accuracy_label.text = Tr.t("Careful play: %d%% (%d right, %d wrong)") % [
 		GameSession.accuracy_percent(), GameSession.good_choices, GameSession.wrong_choices]
 	_lessons = Lessons.load_json()
 	_action_button.pressed.connect(_on_action_pressed)
@@ -77,7 +78,7 @@ func _build_guide() -> void:
 
 func _on_action_pressed() -> void:
 	var finale: Dictionary = _lessons.get("finale", {})
-	_guide.show_pages(str(finale.get("heading", "After the tower")), Lessons.finale_pages(finale))
+	_guide.show_pages(str(finale.get("heading", Tr.t("After the tower"))), Lessons.finale_pages(finale))
 
 
 ## Stands the exposed bosses in a row with the player in the middle.

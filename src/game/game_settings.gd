@@ -25,6 +25,8 @@ static var sfx_volume: int = 8
 ## Index into TEXT_SPEEDS.
 static var text_speed_index: int = 1
 static var reduce_motion: bool = false
+## The language id (see Tr.LANGUAGES).
+static var language: String = "en"
 
 
 ## Puts every option back to its default.
@@ -35,6 +37,7 @@ static func reset_to_defaults() -> void:
 	sfx_volume = 8
 	text_speed_index = 1
 	reduce_motion = false
+	language = "en"
 
 
 ## Reads the settings file (if any), then applies everything. Call once at start-up.
@@ -61,12 +64,15 @@ static func save() -> bool:
 		"sfx_volume": sfx_volume,
 		"text_speed_index": text_speed_index,
 		"reduce_motion": reduce_motion,
+		"language": language,
 	}, "\t"))
 	return true
 
 
 ## Applies the options to the running game.
 static func apply() -> void:
+	if Tr.language != language:
+		Tr.set_language(language)
 	DialogueBox.text_speed = float(TEXT_SPEEDS[text_speed_index][1])
 	ShowdownScreen.reduce_motion = reduce_motion
 	_ensure_bus(MUSIC_BUS)
@@ -113,6 +119,8 @@ static func _take(data: Dictionary) -> void:
 		text_speed_index = clampi(int(data["text_speed_index"]), 0, TEXT_SPEEDS.size() - 1)
 	if data.get("reduce_motion") is bool:
 		reduce_motion = data["reduce_motion"]
+	if data.get("language") is String and Tr.LANGUAGES.any(func(entry: Array) -> bool: return entry[0] == data["language"]):
+		language = data["language"]
 
 
 static func _ensure_bus(bus_name: String) -> void:

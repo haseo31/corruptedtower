@@ -119,7 +119,7 @@ func _on_choice_pressed(index: int) -> void:
 
 func _on_evidence_granted(evidence_id: String) -> void:
 	var item := _inventory.get_item(evidence_id)
-	_notice_label.text = "+ Evidence: %s" % item.title
+	_notice_label.text = Tr.t("+ Evidence: %s") % item.title
 	_notice_label.show()
 
 

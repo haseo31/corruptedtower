@@ -46,7 +46,7 @@ func _ready() -> void:
 	_counter_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	bar.add_child(_counter_label)
 	var hint := Label.new()
-	hint.text = "Left/Right: page   Esc: close"
+	hint.text = Tr.t("Left/Right: page   Esc: close")
 	hint.add_theme_color_override("font_color", PixelTheme.MUTED)
 	bar.add_child(hint)
 
@@ -58,6 +58,7 @@ func show_pages(heading: String, pages: Array) -> void:
 	_heading_label.text = heading
 	_show_page()
 	show()
+	reset_size()
 	grab_focus()
 
 
@@ -69,7 +70,8 @@ func _show_page() -> void:
 	_body_label.text = page["body"]
 	_footer_label.text = page["footer"]
 	_footer_label.visible = not _footer_label.text.is_empty()
-	_counter_label.text = "Page %d of %d" % [_page + 1, _pages.size()]
+	_counter_label.text = Tr.t("Page %d of %d") % [_page + 1, _pages.size()]
+	reset_size()
 
 
 func _gui_input(event: InputEvent) -> void:

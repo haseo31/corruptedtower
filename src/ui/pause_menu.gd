@@ -19,6 +19,7 @@ signal quit_requested
 
 func _ready() -> void:
 	PixelTheme.apply(self)
+	Tr.apply(self)
 	_resume_button.pressed.connect(close)
 	_save_button.pressed.connect(save_requested.emit)
 	_load_button.pressed.connect(load_requested.emit)
@@ -29,7 +30,7 @@ func _ready() -> void:
 ## Opens the menu on Resume. Load is greyed out when there is no save to load.
 func open(has_save: bool) -> void:
 	_load_button.disabled = not has_save
-	_status_label.text = "" if has_save else "There is no saved game yet."
+	_status_label.text = "" if has_save else Tr.t("There is no saved game yet.")
 	_status_label.add_theme_color_override("font_color", PixelTheme.MUTED)
 	show()
 	_resume_button.grab_focus()

@@ -16,6 +16,7 @@ var _last_focused: String = ""
 
 
 func _ready() -> void:
+	Tr.apply(self)
 	_refresh()
 
 

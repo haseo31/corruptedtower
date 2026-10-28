@@ -36,6 +36,7 @@ var _inventory: EvidenceInventory
 
 func _ready() -> void:
 	PixelTheme.apply(self)
+	Tr.apply(self)
 	_boss_label.add_theme_color_override("font_color", PixelTheme.DANGER)
 	_meter_label.add_theme_color_override("font_color", PixelTheme.AMBER)
 	_feedback_label.add_theme_color_override("font_color", PixelTheme.SPEAKER)
@@ -53,7 +54,7 @@ func start(boss: BossData, inventory: EvidenceInventory) -> void:
 		_boss_sprite.hide()
 	else:
 		_place_sprite(_boss_sprite, boss.sprite, "down", BOSS_FEET)
-	_show_evidence_choices(HINT if boss.intro.is_empty() else "\"%s\"\n%s" % [boss.intro, HINT])
+	_show_evidence_choices(Tr.t(HINT) if boss.intro.is_empty() else "\"%s\"\n%s" % [boss.intro, Tr.t(HINT)])
 	show()
 	_focus_first_button()
 
@@ -84,7 +85,7 @@ func _show_evidence_choices(feedback: String) -> void:
 		button.focus_entered.connect(_scroll.ensure_control_visible.bind(button))
 		_buttons_box.add_child(button)
 	if _buttons_box.get_child_count() == 0:
-		_feedback_label.text = "You have no evidence to present."
+		_feedback_label.text = Tr.t("You have no evidence to present.")
 	_link_menu_focus()
 	_update_status()
 
@@ -123,19 +124,19 @@ func _on_evidence_pressed(evidence_id: String) -> void:
 	if _showdown.state == Showdown.State.WON:
 		Audio.play_sfx("win")
 		var last_words := _reaction_for_last_counter()
-		_show_end("%sThe cover-up collapses. You exposed %s." % ["" if last_words.is_empty() else last_words + "
+		_show_end(Tr.t("%sThe cover-up collapses. You exposed %s.") % ["" if last_words.is_empty() else last_words + "
 ", _boss.display_name],
-				"Continue", _on_continue)
+				Tr.t("Continue"), _on_continue)
 	elif _showdown.state == Showdown.State.LOST:
 		Audio.play_sfx("lose")
-		_show_end("The cover-up holds. Verify more evidence, then try again.", "Try again", _on_retry)
+		_show_end(Tr.t("The cover-up holds. Verify more evidence, then try again."), Tr.t("Try again"), _on_retry)
 	elif result == Showdown.Result.COUNTERED:
 		var reaction := _reaction_for_last_counter()
-		_feedback_label.text = "That exposes the lie." if reaction.is_empty() else "That exposes the lie. %s" % reaction
+		_feedback_label.text = Tr.t("That exposes the lie.") if reaction.is_empty() else Tr.t("That exposes the lie.") + " " + reaction
 	elif result == Showdown.Result.PROGRESS:
-		_feedback_label.text = "That is part of the answer. This lie needs more than one piece of proof."
+		_feedback_label.text = Tr.t("That is part of the answer. This lie needs more than one piece of proof.")
 	else:
-		_feedback_label.text = "That does not hold up. Only verified evidence counts."
+		_feedback_label.text = Tr.t("That does not hold up. Only verified evidence counts.")
 
 
 ## What the boss admits about the lie just countered; a shortcut item gets its own line.
@@ -172,10 +173,10 @@ func _update_status() -> void:
 	var lie := _showdown.current_lie()
 	var progress := _showdown.lie_progress()
 	var needs_several := progress.y > 1
-	_lie_label.text = "" if lie == null else "\"%s\"%s" % [lie.text, "  (proof %d of %d)" % [progress.x, progress.y] if needs_several else ""]
+	_lie_label.text = "" if lie == null else "\"%s\"%s" % [lie.text, Tr.t("  (proof %d of %d)") % [progress.x, progress.y] if needs_several else ""]
 	_lie_label.visible = lie != null
 	_cover_up_bar.value = _showdown.cover_up
-	_meter_label.text = "Cover-up %d / %d" % [_showdown.cover_up, _boss.cover_up_max]
+	_meter_label.text = Tr.t("Cover-up %d / %d") % [_showdown.cover_up, _boss.cover_up_max]
 
 
 func _flash_boss() -> void:

@@ -41,7 +41,7 @@ static func load_json(path: String) -> FloorLayout:
 	if not FileAccess.file_exists(path):
 		push_error("FloorLayout: file not found: %s" % path)
 		return null
-	var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string(path))
+	var parsed: Variant = Tr.tree(JSON.parse_string(FileAccess.get_file_as_string(path)))
 	if not (parsed is Dictionary):
 		push_error("FloorLayout: %s is not a JSON object" % path)
 		return null

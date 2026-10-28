@@ -270,7 +270,7 @@ func _draw_title() -> void:
 	var wobble := 0 if reduced_motion else int(round(sin(_time * 1.6) * 1.0))
 	_title_line("THE", 20, 31 + wobble, Color("e8c060"), glitch)
 	_title_line("CORRUPTED TOWER", 30, 66 + wobble, Color("f8f4ea"), glitch)
-	draw_string(_font, Vector2(0, 86), "An anti-corruption adventure", HORIZONTAL_ALIGNMENT_CENTER, 480, 10, Color("b8a8d8"))
+	draw_string(_font, Vector2(0, 86), Tr.t("An anti-corruption adventure"), HORIZONTAL_ALIGNMENT_CENTER, 480, 10, Color("b8a8d8"))
 
 
 ## One title line in three layers (drop shadow, red underprint, the text), with colour

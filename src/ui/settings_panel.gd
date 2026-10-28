@@ -5,6 +5,8 @@ extends PanelContainer
 ## Back row closes it. The values live in GameSettings; this only shows and edits them.
 
 signal closed
+## Emitted when the language was changed, so the screen can be built again in it.
+signal language_changed
 
 var _rows: Array[PixelButton] = []
 var _row_text: Array[Callable] = []
@@ -19,35 +21,39 @@ func _ready() -> void:
 	box.add_theme_constant_override("separation", 3)
 	add_child(box)
 	var heading := Label.new()
-	heading.text = "SETTINGS"
+	heading.text = Tr.t("SETTINGS")
 	heading.add_theme_color_override("font_color", PixelTheme.DANGER)
 	box.add_child(heading)
 
-	_add_row(box, func() -> String: return "Window: %s" % ("Fullscreen" if GameSettings.fullscreen else "Windowed"),
+	_add_row(box, func() -> String: return Tr.t("Language") + ": " + Tr.language_name(GameSettings.language),
+			func(direction: int) -> void:
+				var ids: Array = Tr.LANGUAGES.map(func(entry: Array) -> String: return entry[0])
+				GameSettings.language = ids[posmod(ids.find(GameSettings.language) + direction, ids.size())])
+	_add_row(box, func() -> String: return Tr.t("Window") + ": " + Tr.t("Fullscreen" if GameSettings.fullscreen else "Windowed"),
 			func(direction: int) -> void: GameSettings.fullscreen = not GameSettings.fullscreen)
 	_add_row(box, func() -> String:
 			var size := GameSettings.window_size_for(GameSettings.window_scale)
-			return "Window size: %dx%d%s" % [size.x, size.y, " (fullscreen on)" if GameSettings.fullscreen else ""],
+			return "%s: %dx%d%s" % [Tr.t("Window size"), size.x, size.y, " " + Tr.t("(fullscreen on)") if GameSettings.fullscreen else ""],
 			func(direction: int) -> void:
 				GameSettings.window_scale = clampi(GameSettings.window_scale + direction, 1, GameSettings.largest_scale_that_fits()))
-	_add_row(box, func() -> String: return "Music volume: " + _meter(GameSettings.music_volume),
+	_add_row(box, func() -> String: return Tr.t("Music volume") + ": " + _meter(GameSettings.music_volume),
 			func(direction: int) -> void: GameSettings.music_volume = clampi(GameSettings.music_volume + direction, 0, GameSettings.MAX_VOLUME))
-	_add_row(box, func() -> String: return "Effects volume: " + _meter(GameSettings.sfx_volume),
+	_add_row(box, func() -> String: return Tr.t("Effects volume") + ": " + _meter(GameSettings.sfx_volume),
 			func(direction: int) -> void: GameSettings.sfx_volume = clampi(GameSettings.sfx_volume + direction, 0, GameSettings.MAX_VOLUME))
-	_add_row(box, func() -> String: return "Text speed: " + GameSettings.text_speed_name(),
+	_add_row(box, func() -> String: return Tr.t("Text speed") + ": " + Tr.t(GameSettings.text_speed_name()),
 			func(direction: int) -> void: GameSettings.text_speed_index = clampi(GameSettings.text_speed_index + direction, 0, GameSettings.TEXT_SPEEDS.size() - 1))
-	_add_row(box, func() -> String: return "Reduce motion: %s" % ("On" if GameSettings.reduce_motion else "Off"),
+	_add_row(box, func() -> String: return Tr.t("Reduce motion") + ": " + Tr.t("On" if GameSettings.reduce_motion else "Off"),
 			func(direction: int) -> void: GameSettings.reduce_motion = not GameSettings.reduce_motion)
 
-	var defaults := _make_button("Reset to defaults")
+	var defaults := _make_button(Tr.t("Reset to defaults"))
 	defaults.pressed.connect(_on_defaults)
 	box.add_child(defaults)
-	var back := _make_button("Back")
+	var back := _make_button(Tr.t("Back"))
 	back.pressed.connect(closed.emit)
 	box.add_child(back)
 	_note_label = Label.new()
 	_note_label.add_theme_color_override("font_color", PixelTheme.MUTED)
-	_note_label.text = "Left/Right: change   Esc: back"
+	_note_label.text = Tr.t("Left/Right: change   Esc: back")
 	box.add_child(_note_label)
 	_link_focus(defaults, back)
 	_refresh()
@@ -57,6 +63,7 @@ func _ready() -> void:
 func open() -> void:
 	_refresh()
 	show()
+	reset_size()
 	_rows[0].grab_focus()
 
 
@@ -67,6 +74,8 @@ func _meter(volume: int) -> String:
 func _make_button(text: String) -> PixelButton:
 	var button := PixelButton.new()
 	button.text = text
+	# A real width from the start: a wrapping button measured at zero width is very tall.
+	button.custom_minimum_size = Vector2(280, 0)
 	return button
 
 
@@ -98,24 +107,30 @@ func row_accept(index: int) -> void:
 ## Enter on a numbered row at its top value wraps back to the lowest so it never gets stuck.
 func _apply_step(index: int, direction: int, wrap: bool) -> void:
 	var before := _snapshot()
+	var language_before := GameSettings.language
 	_row_step[index].call(direction)
 	if wrap and _snapshot() == before:
 		_row_step[index].call(-GameSettings.MAX_VOLUME)
 	GameSettings.apply()
 	GameSettings.save()
 	_refresh()
+	if GameSettings.language != language_before:
+		language_changed.emit()
 
 
 func _snapshot() -> Array:
 	return [GameSettings.fullscreen, GameSettings.window_scale, GameSettings.music_volume,
-			GameSettings.sfx_volume, GameSettings.text_speed_index, GameSettings.reduce_motion]
+			GameSettings.sfx_volume, GameSettings.text_speed_index, GameSettings.reduce_motion, GameSettings.language]
 
 
 func _on_defaults() -> void:
+	var language_before := GameSettings.language
 	GameSettings.reset_to_defaults()
 	GameSettings.apply()
 	GameSettings.save()
 	_refresh()
+	if GameSettings.language != language_before:
+		language_changed.emit()
 
 
 func _refresh() -> void:

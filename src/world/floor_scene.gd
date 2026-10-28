@@ -179,7 +179,7 @@ func _show_title_card() -> void:
 	box.add_theme_constant_override("separation", 4)
 	card.add_child(box)
 	var count := Label.new()
-	count.text = "FLOOR %d OF %d" % [_layout.floor_number, TOWER_FLOORS]
+	count.text = Tr.t("FLOOR %d OF %d") % [_layout.floor_number, TOWER_FLOORS]
 	count.add_theme_color_override("font_color", PixelTheme.DANGER)
 	count.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	box.add_child(count)
@@ -287,7 +287,7 @@ func _interact_with(cell: Vector2i) -> void:
 		return
 	var evidence_id := _layout.clue_at(cell)
 	if not evidence_id.is_empty() and not _inventory.has_item(evidence_id):
-		_runner.start(DialogueRunner.pickup_dialogue("You pick up a document lying on the desk.", evidence_id))
+		_runner.start(DialogueRunner.pickup_dialogue(Tr.t("You pick up a document lying on the desk."), evidence_id))
 
 
 func _talk_to_boss(npc: Dictionary) -> void:
@@ -330,9 +330,9 @@ func _on_quit_requested() -> void:
 func _on_save_requested() -> void:
 	if SaveGame.write(SaveGame.build(scene_file_path, _player.cell)):
 		Audio.play_sfx("save")
-		_pause_menu.show_message("Game saved.", true)
+		_pause_menu.show_message(Tr.t("Game saved."), true)
 	else:
-		_pause_menu.show_message("Could not save the game.", false)
+		_pause_menu.show_message(Tr.t("Could not save the game."), false)
 
 
 func _on_load_requested() -> void:

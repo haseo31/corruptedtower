@@ -16,7 +16,7 @@ static func load_json(path: String = PATH) -> Dictionary:
 	if not FileAccess.file_exists(path):
 		push_error("Lessons: file not found: %s" % path)
 		return {}
-	var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string(path))
+	var parsed: Variant = Tr.tree(JSON.parse_string(FileAccess.get_file_as_string(path)))
 	if not (parsed is Dictionary) or not (parsed.get("lessons") is Array):
 		push_error("Lessons: %s needs a 'lessons' list" % path)
 		return {}
@@ -42,19 +42,19 @@ static func case_pages(case: Dictionary) -> Array:
 	for word: Dictionary in case["words"]:
 		words.append("%s: %s" % [word["term"], word["meaning"]])
 	var pages: Array = [
-		{"title": "The trick: %s" % case["trick"]["name"], "body": case["trick"]["text"], "footer": ""},
-		{"title": "The real case (Philippines)", "body": case["real_world"]["text"],
-			"footer": "Sources: %s" % case["real_world"].get("sources", "")},
+		{"title": Tr.t("The trick: %s") % case["trick"]["name"], "body": case["trick"]["text"], "footer": ""},
+		{"title": Tr.t("The real case (Philippines)"), "body": case["real_world"]["text"],
+			"footer": Tr.t("Sources: %s") % case["real_world"].get("sources", "")},
 	]
 	# An optional second real-world page: what happened next, or how common it is.
 	var more: String = str(case["real_world"].get("more", ""))
 	if not more.is_empty():
-		pages.append({"title": str(case["real_world"].get("more_title", "What happened next (real)")),
-			"body": more, "footer": "Sources: %s" % case["real_world"].get("more_sources", "")})
+		pages.append({"title": str(case["real_world"].get("more_title", Tr.t("What happened next (real)"))),
+			"body": more, "footer": Tr.t("Sources: %s") % case["real_world"].get("more_sources", "")})
 	pages.append_array([
-		{"title": "How it hurts people (a made-up story)", "body": case["story"]["text"], "footer": ""},
-		{"title": "What you can do", "body": case["action"], "footer": ""},
-		{"title": "Words to know", "body": "\n".join(words), "footer": ""},
+		{"title": Tr.t("How it hurts people (a made-up story)"), "body": case["story"]["text"], "footer": ""},
+		{"title": Tr.t("What you can do"), "body": case["action"], "footer": ""},
+		{"title": Tr.t("Words to know"), "body": "\n".join(words), "footer": ""},
 	])
 	return pages
 

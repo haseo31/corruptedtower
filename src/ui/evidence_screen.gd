@@ -16,6 +16,7 @@ var _inventory: EvidenceInventory
 
 func _ready() -> void:
 	PixelTheme.apply(self)
+	Tr.apply(self)
 
 
 ## Connects both panels to an inventory and the fact-check challenges.
@@ -41,15 +42,15 @@ func open() -> void:
 func _show_description(evidence_id: String) -> void:
 	var item := _inventory.get_item(evidence_id) if _inventory != null else null
 	if item == null:
-		_description_label.text = EMPTY_TEXT
+		_description_label.text = Tr.t(EMPTY_TEXT)
 		_status_label.text = ""
 		return
 	_description_label.text = item.description
 	if item.verified:
-		_status_label.text = "Verified."
+		_status_label.text = Tr.t("Verified.")
 		_status_label.add_theme_color_override("font_color", PixelTheme.NOTICE)
 	else:
-		_status_label.text = "Unverified. Press Enter to fact-check it."
+		_status_label.text = Tr.t("Unverified. Press Enter to fact-check it.")
 		_status_label.add_theme_color_override("font_color", PixelTheme.AMBER)
 
 

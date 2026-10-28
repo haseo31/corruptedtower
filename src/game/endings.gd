@@ -14,7 +14,7 @@ static func load_all(path: String = PATH) -> Array:
 	if not FileAccess.file_exists(path):
 		push_error("Endings: file not found: %s" % path)
 		return []
-	var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string(path))
+	var parsed: Variant = Tr.tree(JSON.parse_string(FileAccess.get_file_as_string(path)))
 	if not (parsed is Dictionary) or not (parsed.get("endings") is Array):
 		push_error("Endings: %s needs an 'endings' list" % path)
 		return []
@@ -54,7 +54,7 @@ static func notes_for(flags: Array, path: String = PATH) -> Array[String]:
 	var notes: Array[String] = []
 	if not FileAccess.file_exists(path):
 		return notes
-	var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string(path))
+	var parsed: Variant = Tr.tree(JSON.parse_string(FileAccess.get_file_as_string(path)))
 	if not (parsed is Dictionary) or not (parsed.get("flag_notes") is Array):
 		return notes
 	for entry: Variant in parsed["flag_notes"]:

@@ -19,18 +19,19 @@ func _ready() -> void:
 	box.add_theme_constant_override("separation", 3)
 	add_child(box)
 	var heading := Label.new()
-	heading.text = "TOWER JOURNAL"
+	heading.text = Tr.t("TOWER JOURNAL")
 	heading.add_theme_color_override("font_color", PixelTheme.DANGER)
 	box.add_child(heading)
 	_list = VBoxContainer.new()
 	_list.add_theme_constant_override("separation", 2)
 	box.add_child(_list)
 	_back_button = PixelButton.new()
-	_back_button.text = "Back"
+	_back_button.custom_minimum_size = Vector2(280, 0)
+	_back_button.text = Tr.t("Back")
 	_back_button.pressed.connect(close)
 	box.add_child(_back_button)
 	var note := Label.new()
-	note.text = "Expose a boss to unlock its case file."
+	note.text = Tr.t("Expose a boss to unlock its case file.")
 	note.add_theme_color_override("font_color", PixelTheme.MUTED)
 	box.add_child(note)
 
@@ -45,8 +46,9 @@ func open(cases: Dictionary, order: Array, is_unlocked: Callable, focus_boss: St
 	var focus_target: Control = null
 	for boss_id: String in order:
 		var button := PixelButton.new()
+		button.custom_minimum_size = Vector2(280, 0)
 		var unlocked: bool = is_unlocked.call(boss_id)
-		button.text = cases[boss_id]["title"] if unlocked else "Locked"
+		button.text = cases[boss_id]["title"] if unlocked else Tr.t("Locked")
 		button.disabled = not unlocked
 		if unlocked:
 			button.pressed.connect(case_selected.emit.bind(boss_id))
@@ -56,6 +58,7 @@ func open(cases: Dictionary, order: Array, is_unlocked: Callable, focus_boss: St
 				focus_target = button
 		_list.add_child(button)
 	show()
+	reset_size()
 	var target := focus_target if focus_target != null else _first_focus
 	if target != null:
 		target.grab_focus()
