@@ -1,0 +1,13 @@
+{
+  "tile_size": 16,
+  "tiles": {
+    "floor": 0,
+    "carpet": 1,
+    "wall_face": 2,
+    "wall_block": 3,
+    "desk": 4,
+    "desk_paper": 5,
+    "stairs_open": 6,
+    "stairs_locked": 7
+  }
+}

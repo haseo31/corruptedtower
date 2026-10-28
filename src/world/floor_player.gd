@@ -1,11 +1,14 @@
 class_name FloorPlayer
 extends Node2D
 ## The player on a floor: moves one grid tile at a time with arrows, WASD or the
-## gamepad D-pad. Turns to face a blocked tile without moving. Drawn as a simple
-## placeholder with a facing marker, and bobs gently while standing still.
+## gamepad D-pad. Turns to face a blocked tile without moving. Drawn from the player
+## sheet: it faces the way it last moved, shows a walk pose for the first half of each
+## step (alternating feet) and the idle pose the rest of the time.
 
 ## Emitted when a step finishes and the player stands on a new cell.
 signal moved_to(cell: Vector2i)
+
+const SHEET: String = "player"
 
 ## Seconds to walk one tile.
 @export var move_time: float = 0.15
@@ -17,7 +20,8 @@ var is_moving: bool = false
 var can_move: bool = true
 
 var _layout: FloorLayout
-var _idle_time: float = 0.0
+var _target_position: Vector2 = Vector2.ZERO
+var _foot: int = 0
 
 const _DIRECTIONS: Dictionary = {
 	"move_left": Vector2i.LEFT,
@@ -60,6 +64,7 @@ static func ensure_input_actions() -> void:
 
 func _ready() -> void:
 	ensure_input_actions()
+	CharacterSprites.load_sheet(SHEET)
 
 
 ## Places the player on a cell of this floor.
@@ -67,6 +72,7 @@ func setup(layout: FloorLayout, start_cell: Vector2i) -> void:
 	_layout = layout
 	cell = start_cell
 	position = layout.cell_to_world(cell)
+	_target_position = position
 	queue_redraw()
 
 
@@ -81,20 +87,20 @@ func try_move(direction: Vector2i) -> bool:
 		return false
 	is_moving = true
 	cell = target
+	_foot = 1 - _foot
+	_target_position = _layout.cell_to_world(target)
 	var tween := create_tween()
-	tween.tween_property(self, "position", _layout.cell_to_world(target), move_time)
+	tween.tween_property(self, "position", _target_position, move_time)
 	tween.finished.connect(_on_step_finished)
 	return true
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if _layout == null:
 		return
 	if is_moving:
 		queue_redraw()
 		return
-	_idle_time += delta
-	queue_redraw()
 	if not can_move:
 		return
 	for action: String in _DIRECTIONS:
@@ -105,13 +111,26 @@ func _process(delta: float) -> void:
 
 func _on_step_finished() -> void:
 	is_moving = false
+	queue_redraw()
 	moved_to.emit(cell)
 
 
 func _draw() -> void:
-	var bob := 0.0 if is_moving else sin(_idle_time * 4.0) * 1.5
-	var body := Rect2(-11, -12 + bob, 22, 24)
-	draw_rect(body, Color("e8c170") if is_moving else Color("f0d890"))
-	draw_rect(body, Color("5a4520"), false, 2.0)
-	var marker_center := Vector2(facing) * 8.0 + Vector2(0, bob)
-	draw_rect(Rect2(marker_center - Vector2(3, 3), Vector2(6, 6)), Color("5a4520"))
+	if _layout == null:
+		return
+	var column := 0
+	if is_moving:
+		var progress := 1.0 - position.distance_to(_target_position) / float(_layout.tile_size)
+		if progress < 0.5:
+			column = 1 + _foot
+	CharacterSprites.draw_frame(self, SHEET, _facing_name(), column, _layout.tile_size)
+
+
+func _facing_name() -> String:
+	if facing == Vector2i.UP:
+		return "up"
+	if facing == Vector2i.LEFT:
+		return "left"
+	if facing == Vector2i.RIGHT:
+		return "right"
+	return "down"

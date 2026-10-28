@@ -7,6 +7,8 @@ extends RefCounted
 const WALL: String = "#"
 const DESK: String = "D"
 const FLOOR: String = "."
+## A carpeted floor tile: walkable, drawn differently.
+const CARPET: String = "c"
 
 var name: String = ""
 var tile_size: int = 32
@@ -18,7 +20,7 @@ var spawn: Vector2i = Vector2i.ZERO
 var _rows: Array[String] = []
 ## Transition cells: Vector2i -> {"scene": String, "spawn": Vector2i}.
 var _transitions: Dictionary = {}
-## NPC cells: Vector2i -> {"name", "dialogue", "boss" (a boss data path, or ""), "final", "defeated_message"}.
+## NPC cells: Vector2i -> {"name", "sprite" (a character sheet id), "dialogue", "boss" (a boss data path, or ""), "final", "defeated_message"}.
 var _npcs: Dictionary = {}
 ## Clue cells (on desks): Vector2i -> evidence id.
 var _clues: Dictionary = {}
@@ -70,11 +72,12 @@ static func from_dict(data: Dictionary) -> FloorLayout:
 			if not (entry is Dictionary):
 				continue
 			var cell := Vector2i(int(entry.get("x", -1)), int(entry.get("y", -1)))
-			if layout.tile_at(cell) != FLOOR:
+			if not _is_floor_tile(layout.tile_at(cell)):
 				push_error("FloorLayout: NPC at %s must stand on a floor tile" % cell)
 				return null
 			layout._npcs[cell] = {
 				"name": str(entry.get("name", "")),
+				"sprite": str(entry.get("sprite", "")),
 				"dialogue": str(entry.get("dialogue", "")),
 				"boss": str(entry.get("boss", "")),
 				"final": bool(entry.get("final", false)),
@@ -106,7 +109,7 @@ func tile_at(cell: Vector2i) -> String:
 
 ## True if the player can stand on this cell (walls, furniture and NPCs block).
 func is_walkable(cell: Vector2i) -> bool:
-	return tile_at(cell) == FLOOR and not _npcs.has(cell)
+	return _is_floor_tile(tile_at(cell)) and not _npcs.has(cell)
 
 
 ## The transition on this cell ({"scene", "spawn", "requires_boss", "locked_message"}), or an empty dictionary.
@@ -147,6 +150,10 @@ func cell_to_world(cell: Vector2i) -> Vector2:
 ## The size of the whole floor in pixels.
 func world_size() -> Vector2i:
 	return Vector2i(width, height) * tile_size
+
+
+static func _is_floor_tile(tile: String) -> bool:
+	return tile == FLOOR or tile == CARPET
 
 
 static func _to_cell(value: Variant) -> Vector2i:

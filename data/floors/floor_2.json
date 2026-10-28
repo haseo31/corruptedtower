@@ -1,6 +1,6 @@
 {
 	"name": "Floor 2: Records Room",
-	"tile_size": 32,
+	"tile_size": 16,
 	"rows": [
 		"########################################",
 		"#.................#....................#",
@@ -14,7 +14,7 @@
 		"#..DDDDDDDDDD.....#....................#",
 		"#.........................DDDDDDDDDD...#",
 		"#......................................#",
-		"#......................................#",
+		"#cccccccccccccccccccccccccccccccccccccc#",
 		"#......................................#",
 		"#.................#....................#",
 		"#.................#.......DDDDDDDDDD...#",
@@ -29,9 +29,9 @@
 	],
 	"spawn": [2, 12],
 	"npcs": [
-		{"x": 8, "y": 12, "name": "Archivist", "dialogue": "archivist"},
-		{"x": 24, "y": 12, "name": "Intern", "dialogue": "intern"},
-		{"x": 36, "y": 12, "name": "Spokesperson", "boss": "res://data/bosses/disinformation_boss.json", "final": true, "defeated_message": "Your evidence is undeniable. I have nothing left to say."}
+		{"x": 8, "y": 12, "name": "Archivist", "sprite": "archivist", "dialogue": "archivist"},
+		{"x": 24, "y": 12, "name": "Intern", "sprite": "intern", "dialogue": "intern"},
+		{"x": 36, "y": 12, "name": "Spokesperson", "sprite": "spokesperson", "boss": "res://data/bosses/disinformation_boss.json", "final": true, "defeated_message": "Your evidence is undeniable. I have nothing left to say."}
 	],
 	"clues": [
 		{"x": 30, "y": 5, "evidence_id": "edited_clip"}

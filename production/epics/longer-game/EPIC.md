@@ -1,0 +1,19 @@
+# Epic: Longer game (longer-game)
+
+> **Goal**: Grow The Corrupted Tower from 2 floors to the 6 in the project PDF (Bribery, Disinformation, Vote-buying, Nepotism, Misuse of public funds, Lack of transparency), with saving, a title screen, harder bosses and several endings, and a build that runs in a browser.
+> **Source**: `design/game-brief.md` Out of scope list, and the project PDF (Key Features: Issue-Based Floors, Progressive Difficulty, Multiple Endings)
+> **Engine**: Godot 4.7, GDScript, 2D
+
+## Order
+
+Navigation and saving first (012), then the new floors (013, 014), then the title screen and endings (015), then the web build (016).
+
+## Stories
+
+| # | Story | Type | Status | ADR |
+|---|-------|------|--------|-----|
+| 012 | Floor navigation and save/load | Integration | Ready | N/A |
+| 013 | Floors 3 and 4 | Integration | Ready | N/A |
+| 014 | Floors 5 and 6 and difficulty | Integration | Ready | N/A |
+| 015 | Title screen and multiple endings | UI | Ready | N/A |
+| 016 | Web export | Config/Data | Ready | N/A |

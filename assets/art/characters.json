@@ -1,0 +1,87 @@
+{
+  "archivist": {
+    "columns": 3,
+    "frame": [
+      16,
+      20
+    ],
+    "rows": [
+      "down",
+      "up",
+      "left",
+      "right"
+    ]
+  },
+  "clerk": {
+    "columns": 3,
+    "frame": [
+      16,
+      20
+    ],
+    "rows": [
+      "down",
+      "up",
+      "left",
+      "right"
+    ]
+  },
+  "deputy_director": {
+    "columns": 2,
+    "frame": [
+      24,
+      24
+    ],
+    "rows": [
+      "down"
+    ]
+  },
+  "intern": {
+    "columns": 3,
+    "frame": [
+      16,
+      20
+    ],
+    "rows": [
+      "down",
+      "up",
+      "left",
+      "right"
+    ]
+  },
+  "janitor": {
+    "columns": 3,
+    "frame": [
+      16,
+      20
+    ],
+    "rows": [
+      "down",
+      "up",
+      "left",
+      "right"
+    ]
+  },
+  "player": {
+    "columns": 3,
+    "frame": [
+      16,
+      20
+    ],
+    "rows": [
+      "down",
+      "up",
+      "left",
+      "right"
+    ]
+  },
+  "spokesperson": {
+    "columns": 2,
+    "frame": [
+      24,
+      24
+    ],
+    "rows": [
+      "down"
+    ]
+  }
+}

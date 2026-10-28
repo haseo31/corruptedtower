@@ -1,0 +1,11 @@
+Reviewed-Content-Hash: tools/art/generate_art.py 74c8912e002a112d8874c65f8ed22540184a0fe2
+Reviewed-Content-Hash: src/dev/art_preview.gd 7b65ef5723b7d435d78b137dce685a7869513c02
+Reviewed-Content-Hash: src/dev/art_preview.tscn f09e8dbbd60cf29ba794014f794c3aad2422528e
+Reviewed-Content-Hash: project.godot 622b5f0900591a2560d75ae534834b4d09a29d53
+Reviewed-Content-Hash: assets/art/tiles.png 6483b670ed7793fc58ab5b56b8cb438994549342
+Reviewed-Content-Hash: assets/art/char_player.png 16c054c600d47fe16f92b0493a9ce68991dd0826
+Reviewed-Content-Hash: assets/art/char_deputy_director.png 1b418b67897e50a3fc7b78d84923c86c03f1f6d5
+Reviewed-Content-Hash: assets/art/char_spokesperson.png e43893dc884c378560c3244f0864c3d0e442bbae
+Reviewed-Content-Hash: assets/art/characters.json 44675999906ad11d4b7aadc38c2bd4d74f2d18f3
+Reviewed-Content-Hash: assets/art/font_pixel.png 9c9880787f826ea612983d9af8672bd88409ba24
+Reviewed-Content-Hash: assets/art/font_pixel.fnt 7ee0c7ce3827b3b83b924baf8385fcc62ab14be8

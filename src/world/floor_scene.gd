@@ -1,10 +1,10 @@
 class_name FloorScene
 extends Node2D
-## One floor of the tower: draws its grid from a layout file, places the player, keeps
-## the camera inside the floor, and runs everything the player does there: talking to
-## NPCs, picking up clues, opening the evidence screen (I), facing a boss in a showdown,
-## and climbing to the next floor once the boss below is exposed. Exposing the last
-## boss ends the run.
+## One floor of the tower: draws its tiles from a layout file, places the player and the
+## NPCs, keeps the camera inside the floor, and runs everything the player does there:
+## talking to NPCs, picking up clues, opening the evidence screen (I), facing a boss in a
+## showdown, and climbing to the next floor once the boss below is exposed. Exposing the
+## last boss ends the run.
 
 ## Where the player appears on the next floor loaded by a transition.
 static var arrival_cell: Variant = null
@@ -14,26 +14,18 @@ static var arrival_cell: Variant = null
 
 const ENDING_SCENE: String = "res://src/ui/ending_screen.tscn"
 
-const _COLOR_FLOOR: Color = Color("3a4252")
-const _COLOR_WALL: Color = Color("1c1f27")
-const _COLOR_DESK: Color = Color("7a5836")
-const _COLOR_TRANSITION: Color = Color("2f9e8f")
-const _COLOR_LOCKED: Color = Color("a64a4a")
-const _COLOR_GRID: Color = Color(0, 0, 0, 0.25)
-const _COLOR_NPC: Color = Color("9a6fd0")
-const _COLOR_BOSS: Color = Color("d05a5a")
-const _COLOR_BOSS_DEFEATED: Color = Color("6b5050")
-const _COLOR_CLUE: Color = Color("f2efe4")
-const _COLOR_LABEL: Color = Color("e8e6f0")
-
 var _layout: FloorLayout
+var _atlas: TileAtlas
 var _inventory: EvidenceInventory
 var _dialogues: Dictionary = {}
 var _runner: DialogueRunner
 var _active_boss_npc: Dictionary = {}
+## The NPC nodes by cell, so one can turn to face the player.
+var _npc_nodes: Dictionary = {}
 
-@onready var _player: FloorPlayer = $Player
-@onready var _camera: Camera2D = $Player/Camera2D
+@onready var _actors: Node2D = $Actors
+@onready var _player: FloorPlayer = $Actors/Player
+@onready var _camera: Camera2D = $Actors/Player/Camera2D
 @onready var _floor_name: Label = $Hud/FloorName
 @onready var _dialogue_box: DialogueBox = $Hud/DialogueBox
 @onready var _evidence_screen: EvidenceScreen = $Hud/EvidenceScreen
@@ -42,7 +34,8 @@ var _active_boss_npc: Dictionary = {}
 
 func _ready() -> void:
 	_layout = FloorLayout.load_json(layout_path)
-	if _layout == null:
+	_atlas = TileAtlas.load_atlas()
+	if _layout == null or _atlas == null:
 		return
 	_inventory = GameSession.inventory()
 	_dialogues = GameSession.dialogues()
@@ -59,6 +52,7 @@ func _ready() -> void:
 		arrival_cell = null
 	_player.setup(_layout, start)
 	_player.moved_to.connect(_on_player_moved)
+	_spawn_npcs()
 	var size := _layout.world_size()
 	_camera.limit_left = 0
 	_camera.limit_top = 0
@@ -79,45 +73,44 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _draw() -> void:
-	if _layout == null:
+	if _layout == null or _atlas == null:
 		return
-	var tile := Vector2(_layout.tile_size, _layout.tile_size)
+	var size := float(_layout.tile_size)
 	for y in _layout.height:
 		for x in _layout.width:
 			var cell := Vector2i(x, y)
-			var color := _COLOR_FLOOR
-			match _layout.tile_at(cell):
-				FloorLayout.WALL:
-					color = _COLOR_WALL
-				FloorLayout.DESK:
-					color = _COLOR_DESK
-			var transition := _layout.transition_at(cell)
-			if not transition.is_empty():
-				color = _COLOR_TRANSITION if _is_unlocked(transition) else _COLOR_LOCKED
-			var rect := Rect2(Vector2(cell) * _layout.tile_size, tile)
-			draw_rect(rect, color)
-			draw_rect(rect, _COLOR_GRID, false, 1.0)
-	for cell: Vector2i in _layout.clue_cells():
-		if not _inventory.has_item(_layout.clue_at(cell)):
-			var center := _layout.cell_to_world(cell)
-			draw_rect(Rect2(center - Vector2(8, 6), Vector2(16, 12)), _COLOR_CLUE)
-			draw_rect(Rect2(center - Vector2(8, 6), Vector2(16, 12)), _COLOR_WALL, false, 1.0)
-	var font := ThemeDB.fallback_font
+			var rect := Rect2(Vector2(cell) * size, Vector2(size, size))
+			_atlas.draw_tile(self, _tile_name(cell), rect)
+
+
+## Which atlas tile to draw on a cell.
+func _tile_name(cell: Vector2i) -> String:
+	var transition := _layout.transition_at(cell)
+	if not transition.is_empty():
+		return "stairs_open" if _is_unlocked(transition) else "stairs_locked"
+	match _layout.tile_at(cell):
+		FloorLayout.WALL:
+			# A wall with floor below it shows its face; walls stacked above other walls are blocks.
+			return "wall_block" if _layout.tile_at(cell + Vector2i.DOWN) == FloorLayout.WALL else "wall_face"
+		FloorLayout.DESK:
+			var clue := _layout.clue_at(cell)
+			return "desk_paper" if not clue.is_empty() and not _inventory.has_item(clue) else "desk"
+		FloorLayout.CARPET:
+			return "carpet"
+	return "floor"
+
+
+func _spawn_npcs() -> void:
 	for cell: Vector2i in _layout.npc_cells():
 		var npc := _layout.npc_at(cell)
-		var center := _layout.cell_to_world(cell)
-		draw_circle(center, 12.0, _npc_color(npc))
-		draw_string(font, center + Vector2(-60, -18), npc["name"],
-				HORIZONTAL_ALIGNMENT_CENTER, 120, 13, _COLOR_LABEL)
-
-
-func _npc_color(npc: Dictionary) -> Color:
-	if str(npc["boss"]).is_empty():
-		return _COLOR_NPC
-	var boss := BossData.load_json(npc["boss"])
-	if boss != null and GameSession.is_defeated(boss.id):
-		return _COLOR_BOSS_DEFEATED
-	return _COLOR_BOSS
+		var sheet: String = npc["sprite"]
+		if not CharacterSprites.load_sheet(sheet):
+			continue
+		var node := FloorNpc.new()
+		node.name = "Npc" + str(npc["name"]).replace(" ", "")
+		_actors.add_child(node)
+		node.setup(sheet, _layout.cell_to_world(cell), _layout.tile_size)
+		_npc_nodes[cell] = node
 
 
 func _modal_open() -> bool:
@@ -136,6 +129,7 @@ func _is_unlocked(transition: Dictionary) -> bool:
 func _interact_with(cell: Vector2i) -> void:
 	var npc := _layout.npc_at(cell)
 	if not npc.is_empty():
+		(_npc_nodes[cell] as FloorNpc).face(-_player.facing)
 		if not str(npc["boss"]).is_empty():
 			_talk_to_boss(npc)
 		elif _dialogues.has(npc["dialogue"]):

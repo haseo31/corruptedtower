@@ -13,3 +13,9 @@ config_version=5
 config/name="The Corrupted Tower"
 run/main_scene="res://src/world/floor_1.tscn"
 config/features=PackedStringArray("4.7", "Forward Plus")
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+2d/snap/snap_2d_transforms_to_pixel=true
+2d/snap/snap_2d_vertices_to_pixel=true
