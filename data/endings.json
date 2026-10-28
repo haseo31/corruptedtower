@@ -1,0 +1,25 @@
+{
+	"endings": [
+		{
+			"id": "tower_opens",
+			"min_accuracy": 90,
+			"title": "The Tower Opens",
+			"text": "Every cover-up fell, and you hardly took a wrong step. The doors of the tower stand open, and ordinary people walk in to read their own records.",
+			"message": "Check before you believe, and you help keep power honest."
+		},
+		{
+			"id": "cracks_in_the_wall",
+			"min_accuracy": 60,
+			"title": "Cracks in the Wall",
+			"text": "The tower is exposed, but you stumbled on the way. The powerful already point at your mistakes and ask the public whom to trust.",
+			"message": "Even true evidence loses force when it is shared with errors. Verify first, then speak."
+		},
+		{
+			"id": "cover_up_lingers",
+			"min_accuracy": 0,
+			"title": "The Cover-Up Lingers",
+			"text": "You reached the top, but too many guesses along the way. The people hear your story, then the rebuttal, and no one is sure whom to believe.",
+			"message": "Guessing helps the people who profit from confusion. Slow down and check every source."
+		}
+	]
+}

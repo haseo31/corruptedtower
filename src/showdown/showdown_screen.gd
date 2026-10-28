@@ -104,7 +104,13 @@ func _link_menu_focus() -> void:
 
 
 func _on_evidence_pressed(evidence_id: String) -> void:
+	var proofs_before := _showdown.lie_progress().x
 	var result := _showdown.present_from(_inventory, evidence_id)
+	# A piece of proof already presented for this lie is not a new right choice.
+	if result == Showdown.Result.COUNTERED or (result == Showdown.Result.PROGRESS and _showdown.lie_progress().x > proofs_before):
+		GameSession.record_choice(true)
+	elif result == Showdown.Result.WRONG_EVIDENCE:
+		GameSession.record_choice(false)
 	_update_status()
 	if result == Showdown.Result.COUNTERED:
 		Audio.play_sfx("counter")

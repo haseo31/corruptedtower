@@ -22,13 +22,13 @@
 | 16-floor-6-wrong-evidence | Wrong evidence: Cover-up 1 / 3 |
 | 17-floor-6-one-of-two-then-repeat, 18-floor-6-two-of-three | Multi-proof lies: "proof 2 of 3" |
 | 19-floor-6-final-boss-won | The Cover-up collapses |
-| 20-ending-score | "Evidence verified: 18 of 18" |
+| 20-ending-score | The ending screen after the run: "Evidence verified: 18 of 18" (retaken after story 015) |
 | 21-how-to-play-showdowns | How to play page 5 with the new multi-proof line |
 
 ## Notes
 
 - Found and fixed during the run: the tower progress strip drew over the showdown's Cover-up bar; it now sits under every panel.
-- The ending screen still shows only the first two bosses and still restarts at floor 1; story 015 redoes it.
+- This note was written before story 015; `20-ending-score` was retaken after it and shows the new ending screen (see `story-015-endings-evidence.md`).
 - The playthrough seeds floors 1 to 3 (evidence verified, bosses defeated) to keep the run short; floors 1 to 3 were played for real in story 013's run. Floors 3 and 4 have new fact-check texts (the tempting-source rewrite), which the seeded run does not exercise, but floor 4's three were played for real.
 - Music: three new tracks (`vault`, `archive`, `final_boss`) were generated with ACE-Step 1.5; they were checked by loading and by the game choosing them, not by listening. Sign-off for how they sound is the user's.
 - Sign-off for the Visual/UI evidence is the user's, on story-done.

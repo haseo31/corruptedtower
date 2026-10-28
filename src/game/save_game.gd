@@ -29,6 +29,8 @@ static func build(scene_path: String, cell: Vector2i) -> Dictionary:
 		"cell": [cell.x, cell.y],
 		"evidence": evidence,
 		"defeated_bosses": GameSession.defeated_bosses(),
+		"good_choices": GameSession.good_choices,
+		"wrong_choices": GameSession.wrong_choices,
 	}
 
 
@@ -55,7 +57,7 @@ static func read() -> Dictionary:
 
 ## Restores a checked save (see read()) and loads its floor, placing the player on the saved tile.
 static func apply(data: Dictionary, tree: SceneTree) -> void:
-	GameSession.restore(data["evidence"], data["defeated_bosses"])
+	GameSession.restore(data["evidence"], data["defeated_bosses"], data["good_choices"], data["wrong_choices"])
 	FloorScene.arrival_cell = data["cell"]
 	tree.change_scene_to_file(data["scene"])
 
@@ -98,4 +100,7 @@ static func _validate(data: Dictionary) -> Dictionary:
 		"cell": Vector2i(int(cell[0]), int(cell[1])),
 		"evidence": clean_evidence,
 		"defeated_bosses": clean_bosses,
+		# Older saves have no counts; they start from zero.
+		"good_choices": maxi(int(data.get("good_choices", 0)), 0) if data.get("good_choices", 0) is float else 0,
+		"wrong_choices": maxi(int(data.get("wrong_choices", 0)), 0) if data.get("wrong_choices", 0) is float else 0,
 	}

@@ -57,10 +57,12 @@ func _on_option_pressed(option_index: int) -> void:
 	var challenge := _session.challenge
 	if result == FactCheckSession.Result.CORRECT:
 		Audio.play_sfx("correct")
+		GameSession.record_choice(true)
 		_feedback_label.text = "Verified. " + challenge.explanation
 		for child in _options_box.get_children():
 			(child as Button).disabled = true
 		challenge_completed.emit(challenge.evidence_id)
 	elif result == FactCheckSession.Result.WRONG:
 		Audio.play_sfx("wrong")
+		GameSession.record_choice(false)
 		_feedback_label.text = "Not that one, try again. " + challenge.explanation
