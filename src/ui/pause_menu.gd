@@ -1,18 +1,20 @@
 class_name PauseMenu
 extends Control
-## The pause menu on a floor: Resume, Save, Load and Quit, with a one-line message about what
+## The pause menu on a floor: Resume, Save, Load, Tower Journal, Settings and Quit, with a one-line message about what
 ## just happened. It only displays and reports the player's choice; the floor does the saving.
 ## Esc closes it. Keyboard only.
 
 signal save_requested
 signal load_requested
 signal journal_requested
+signal settings_requested
 signal quit_requested
 
 @onready var _resume_button: Button = %ResumeButton
 @onready var _save_button: Button = %SaveButton
 @onready var _load_button: Button = %LoadButton
 @onready var _journal_button: Button = %JournalButton
+@onready var _settings_button: Button = %SettingsButton
 @onready var _quit_button: Button = %QuitButton
 @onready var _status_label: Label = %StatusLabel
 
@@ -24,6 +26,7 @@ func _ready() -> void:
 	_save_button.pressed.connect(save_requested.emit)
 	_load_button.pressed.connect(load_requested.emit)
 	_journal_button.pressed.connect(journal_requested.emit)
+	_settings_button.pressed.connect(settings_requested.emit)
 	_quit_button.pressed.connect(quit_requested.emit)
 
 

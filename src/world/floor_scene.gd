@@ -34,6 +34,7 @@ var _npc_nodes: Dictionary = {}
 var _lessons: Dictionary = {}
 var _case_file: CaseFilePanel
 var _journal: JournalPanel
+var _settings_panel: SettingsPanel
 
 @onready var _hud: CanvasLayer = $Hud
 @onready var _actors: Node2D = $Actors
@@ -68,6 +69,7 @@ func _ready() -> void:
 	_pause_menu.load_requested.connect(_on_load_requested)
 	_pause_menu.quit_requested.connect(_on_quit_requested)
 	_pause_menu.journal_requested.connect(_on_journal_requested)
+	_pause_menu.settings_requested.connect(_on_settings_requested)
 	_build_lesson_panels()
 	_inventory.evidence_collected.connect(_on_evidence_collected)
 	var start := _layout.spawn
@@ -218,7 +220,11 @@ func _build_lesson_panels() -> void:
 	_journal.hide()
 	_journal.case_selected.connect(_on_journal_case_selected)
 	center.add_child(_journal)
-	for panel: Control in [_case_file, _journal]:
+	_settings_panel = SettingsPanel.new()
+	_settings_panel.hide()
+	_settings_panel.closed.connect(_on_settings_closed)
+	center.add_child(_settings_panel)
+	for panel: Control in [_case_file, _journal, _settings_panel]:
 		panel.visibility_changed.connect(_refresh_lock)
 
 
@@ -231,6 +237,17 @@ func _show_case_file(boss_id: String, then: Callable) -> void:
 		return
 	_case_file.closed.connect(then, CONNECT_ONE_SHOT)
 	_case_file.show_pages(cases[boss_id]["title"], Lessons.case_pages(cases[boss_id]))
+
+
+## Settings (volume, window, text speed) open from the pause menu and return to it.
+func _on_settings_requested() -> void:
+	_pause_menu.close()
+	_settings_panel.open()
+
+
+func _on_settings_closed() -> void:
+	_settings_panel.hide()
+	_pause_menu.open(SaveGame.has_save())
 
 
 func _on_journal_requested() -> void:
@@ -255,7 +272,7 @@ func _npc_visible(npc: Dictionary) -> bool:
 
 
 func _modal_open() -> bool:
-	return _dialogue_box.visible or _evidence_screen.visible or _showdown_screen.visible 			or _pause_menu.visible or _case_file.visible or _journal.visible
+	return _dialogue_box.visible or _evidence_screen.visible or _showdown_screen.visible 			or _pause_menu.visible or _case_file.visible or _journal.visible or _settings_panel.visible
 
 
 func _refresh_lock() -> void:
