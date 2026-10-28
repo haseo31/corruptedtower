@@ -28,7 +28,7 @@
 		"########################################"
 	],
 	"spawn": [2, 12],
-	"hint": "I: evidence   E: talk   Esc: back",
+	"hint": "I: evidence   E: talk   Esc: menu",
 	"objective": "Expose the Deputy Director",
 	"objective_boss": "bribery_boss",
 	"objective_done": "Take the stairs up",

@@ -46,6 +46,24 @@ static func is_defeated(boss_id: String) -> bool:
 	return _defeated_bosses.has(boss_id)
 
 
+## The ids of the bosses exposed this run.
+static func defeated_bosses() -> Array[String]:
+	return _defeated_bosses.duplicate()
+
+
+## Starts a fresh run and puts back saved state: the evidence entries ({"id", "verified"})
+## and the defeated boss ids.
+static func restore(evidence: Array, defeated: Array) -> void:
+	reset()
+	var inv := inventory()
+	for entry: Dictionary in evidence:
+		inv.collect(entry["id"])
+		if entry["verified"]:
+			inv.verify(entry["id"])
+	for boss_id: String in defeated:
+		mark_defeated(boss_id)
+
+
 ## Forgets everything, as at the start of a new run.
 static func reset() -> void:
 	_inventory = null

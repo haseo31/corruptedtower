@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" path="res://src/dialogue/dialogue_box.tscn" id="3_dialogue"]
 [ext_resource type="PackedScene" path="res://src/ui/evidence_screen.tscn" id="4_evidence"]
 [ext_resource type="PackedScene" path="res://src/showdown/showdown_screen.tscn" id="5_showdown"]
+[ext_resource type="PackedScene" path="res://src/ui/pause_menu.tscn" id="6_pause"]
 
 [node name="Floor" type="Node2D"]
 script = ExtResource("1_floor")
@@ -59,3 +60,5 @@ offset_right = 8.0
 offset_bottom = 28.0
 
 [node name="ShowdownScreen" parent="Hud" instance=ExtResource("5_showdown")]
+
+[node name="PauseMenu" parent="Hud" instance=ExtResource("6_pause")]

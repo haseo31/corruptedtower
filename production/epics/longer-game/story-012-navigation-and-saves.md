@@ -1,12 +1,12 @@
 # Story 012: Floor navigation and save/load
 
 > **Epic**: longer-game
-> **Status**: Ready
+> **Status**: Complete
 > **Layer**: Core
 > **Type**: Integration
 > **Estimate**: L
 > **Manifest Version**: N/A (minimal — no control manifest)
-> **Last Updated**: [set by /dev-story when implementation begins]
+> **Last Updated**: 2026-10-28
 
 ## Context
 
@@ -52,9 +52,10 @@
 
 ## Files
 
-- `src/game/save_game.gd`, `src/game/game_session.gd`
-- `src/ui/pause_menu.gd`, `src/ui/pause_menu.tscn`
-- `src/world/floor_scene.gd`, `src/world/floor_layout.gd`, `data/floors/floor_1.json`, `data/floors/floor_2.json`
+- `src/game/save_game.gd`, `src/ui/pause_menu.gd`, `src/ui/pause_menu.tscn` (new)
+- `src/game/game_session.gd` (defeated_bosses, restore), `src/evidence/evidence_inventory.gd` (knows)
+- `src/world/floor_scene.gd` (Esc menu, save and load, safe arrival cell), `src/world/floor.tscn` (pause menu)
+- `data/floors/floor_1.json`, `data/floors/floor_2.json` (hint text: Esc opens the menu)
 
 ## QA Test Cases
 
@@ -75,3 +76,12 @@
 
 - Depends on: `production/epics/pixel-style/story-011-remaining-screens.md`
 - Unlocks: `production/epics/longer-game/story-013-floors-3-4.md`
+
+---
+
+## Completion Notes
+**Completed**: 2026-10-28
+**Criteria**: 8/8 passing (none deferred)
+**Deviations**: ADVISORY — "Quit" ends the game on the desktop; returning to a title screen waits for story 015, and the web export (story 016) will need a different exit. Only two floors exist, so the stairs logic has so far run between those two; the pairing check (every staircase has a matching one beside its arrival cell) will cover floors 3-6 as they arrive. If a saved or arrival cell is not walkable, the player falls back to the floor's spawn point. All UI text is hardcoded (no localization system yet). `SaveGame.save_path` is a static value so tests can point it at a scratch file.
+**Test Evidence**: waived at qa.level minimal; a playtest record (keyboard-only: save after beating floor 1, wipe, load) and screenshots in production/qa/evidence/story-012-navigation-and-saves/ and production/qa/evidence/story-012-navigation-and-saves-evidence.md; 22 headless save-rule checks and the full keyboard-only playthrough, all run against a scratch save file (not kept in the repo)
+**Reviewed by**: self, no independent review

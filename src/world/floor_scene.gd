@@ -34,6 +34,7 @@ var _npc_nodes: Dictionary = {}
 @onready var _dialogue_box: DialogueBox = $Hud/DialogueBox
 @onready var _evidence_screen: EvidenceScreen = $Hud/EvidenceScreen
 @onready var _showdown_screen: ShowdownScreen = $Hud/ShowdownScreen
+@onready var _pause_menu: PauseMenu = $Hud/PauseMenu
 
 
 func _ready() -> void:
@@ -47,12 +48,16 @@ func _ready() -> void:
 	_dialogue_box.bind(_runner, _inventory)
 	_evidence_screen.bind(_inventory, GameSession.challenges())
 	_showdown_screen.showdown_won.connect(_on_showdown_won)
-	for modal: Control in [_dialogue_box, _evidence_screen, _showdown_screen]:
+	for modal: Control in [_dialogue_box, _evidence_screen, _showdown_screen, _pause_menu]:
 		modal.visibility_changed.connect(_refresh_lock)
+	_pause_menu.save_requested.connect(_on_save_requested)
+	_pause_menu.load_requested.connect(_on_load_requested)
+	_pause_menu.quit_requested.connect(get_tree().quit)
 	_inventory.evidence_collected.connect(_on_evidence_collected)
 	var start := _layout.spawn
 	if arrival_cell != null:
-		start = arrival_cell
+		if _layout.is_walkable(arrival_cell):
+			start = arrival_cell
 		arrival_cell = null
 	_player.setup(_layout, start)
 	_player.moved_to.connect(_on_player_moved)
@@ -80,6 +85,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		_interact_with(_player.cell + _player.facing)
 	elif event.is_action_pressed("open_evidence"):
 		_evidence_screen.open()
+	elif event.is_action_pressed("ui_cancel"):
+		_pause_menu.open(SaveGame.has_save())
 
 
 func _draw() -> void:
@@ -124,7 +131,7 @@ func _spawn_npcs() -> void:
 
 
 func _modal_open() -> bool:
-	return _dialogue_box.visible or _evidence_screen.visible or _showdown_screen.visible
+	return _dialogue_box.visible or _evidence_screen.visible or _showdown_screen.visible 			or _pause_menu.visible
 
 
 func _refresh_lock() -> void:
@@ -178,6 +185,21 @@ func _on_showdown_won(boss_id: String) -> void:
 		get_tree().change_scene_to_file(ENDING_SCENE)
 	else:
 		_runner.start(DialogueRunner.message_dialogue(_active_boss_npc["name"], _active_boss_npc["defeated_message"]))
+
+
+func _on_save_requested() -> void:
+	if SaveGame.write(SaveGame.build(scene_file_path, _player.cell)):
+		_pause_menu.show_message("Game saved.", true)
+	else:
+		_pause_menu.show_message("Could not save the game.", false)
+
+
+func _on_load_requested() -> void:
+	var save := SaveGame.read()
+	if save.has("error"):
+		_pause_menu.show_message(save["error"], false)
+		return
+	SaveGame.apply(save, get_tree())
 
 
 func _on_evidence_collected(_evidence_id: String) -> void:

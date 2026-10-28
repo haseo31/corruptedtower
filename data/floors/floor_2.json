@@ -28,7 +28,7 @@
 		"########################################"
 	],
 	"spawn": [2, 12],
-	"hint": "I: evidence   E: talk   Esc: back",
+	"hint": "I: evidence   E: talk   Esc: menu",
 	"objective": "Expose the Spokesperson",
 	"objective_boss": "disinformation_boss",
 	"objective_done": "",

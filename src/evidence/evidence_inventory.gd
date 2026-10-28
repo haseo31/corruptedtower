@@ -71,6 +71,11 @@ func is_verified(evidence_id: String) -> bool:
 	return item != null and item.verified
 
 
+## True if this id is a piece of evidence that exists in the game (collected or not).
+func knows(evidence_id: String) -> bool:
+	return _catalog.has(evidence_id)
+
+
 ## How many collected items are verified.
 func verified_count() -> int:
 	var count := 0
