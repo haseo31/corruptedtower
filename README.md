@@ -444,7 +444,7 @@ MIT License. See [LICENSE](LICENSE) for details.
 The game in this folder can be exported as a web page that runs on any static host (itch.io, GitHub Pages, a school server). It needs no install for players.
 
 1. Install the Godot 4.7.2 export templates once (Godot editor: Editor > Manage Export Templates, or see `production/epics/longer-game/story-016-web-export.md`).
-2. Build: `"tools/godot/Godot_v4.7.2-stable_win64_console.exe" --headless --path . --export-release "Web" build/web/index.html` (also the `commands.build` entry in `project.yaml`). The result is in `build/web/` and is not committed.
+2. Build: `bash tools/build_web.sh` (also the `commands.build` entry in `project.yaml`). The result is in `build/web/` and is not committed.
 3. Try it locally: `python -m http.server 8000 --directory build/web`, then open http://localhost:8000.
 4. Publish: upload the contents of `build/web/` to a static host. The build is single-threaded, so it needs no special server headers.
 

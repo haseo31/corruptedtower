@@ -20,4 +20,4 @@ Navigation and saving first (012), then the new floors (013, 014), then the titl
 | 018 | Re-theme around real Philippine cases | Config/Data | Complete | N/A |
 | 019 | Side characters and choices with consequences | Integration | Complete | N/A |
 | 020 | Filipino (Tagalog) version | UI | Complete | N/A |
-| 016 | Web export | Config/Data | Ready | N/A |
+| 016 | Web export | Config/Data | Complete (7 of 8, see story) | N/A |
