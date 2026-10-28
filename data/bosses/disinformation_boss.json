@@ -8,17 +8,27 @@
 		{
 			"id": "lie_context",
 			"text": "That quote was not taken out of context. It says what it says.",
-			"counter_evidence_ids": ["original_statement"]
+			"counter_evidence_ids": [
+				"original_statement"
+			],
+			"reaction": "The full statement says the opposite."
 		},
 		{
 			"id": "lie_support",
 			"text": "Thousands of ordinary citizens have spoken up in our favor.",
-			"counter_evidence_ids": ["bot_list"]
+			"counter_evidence_ids": [
+				"bot_list"
+			],
+			"reaction": "Those 'citizens' were bots made this week."
 		},
 		{
 			"id": "lie_video",
 			"text": "The video is real and has never been edited.",
-			"counter_evidence_ids": ["edited_clip"]
+			"counter_evidence_ids": [
+				"edited_clip"
+			],
+			"reaction": "The editing log proves the cut."
 		}
-	]
+	],
+	"intro": "Whatever you heard, it is not true. Not a word of it."
 }

@@ -31,6 +31,7 @@ const PAGES: Array = [
 	["Showdowns", [
 		"Talk to a boss to start a showdown. The boss tells a lie.",
 		"Present the evidence that disproves it. Right proof counters the lie.",
+		"Later bosses tell lies that need two or more pieces of proof. The screen shows it, for example proof 1 of 2: present each piece.",
 		"Wrong or unverified evidence raises the Cover-up meter. If it fills, you lose the round and try again.",
 		"Counter every lie to expose the boss and unlock the stairs up.",
 	]],

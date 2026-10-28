@@ -23,6 +23,9 @@ TRACKS = {
     "poll": (STYLE + "busy election polling station, marching rhythm, nervous playful melody, mid tempo", 120),
     "hr": (STYLE + "cold corporate personnel office, sneaky walking bass, eerie and sly, minor key", 100),
     "boss": (STYLE + "intense boss battle, fast driving rhythm, urgent arpeggios, high energy, dark", 150),
+    "vault": (STYLE + "cold steel bank vault, slow pulsing bass, metallic bell arpeggios, money and greed, tense, minor key", 105),
+    "archive": (STYLE + "dusty secret archive at night, whispering low arpeggios, slow dread, mysterious, minor key, sparse", 85),
+    "final_boss": (STYLE + "epic final boss battle, fast relentless drums, dramatic minor key, climactic, urgent heroic melody, intense", 160),
     "ending": (STYLE + "hopeful bittersweet ending theme, warm major key, gentle melody, slow, triumphant at the end", 80),
 }
 

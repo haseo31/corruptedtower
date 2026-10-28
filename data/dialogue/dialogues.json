@@ -470,6 +470,292 @@
 					"next": "greet"
 				}
 			}
+		},
+		{
+			"id": "accountant",
+			"start": "greet",
+			"nodes": {
+				"greet": {
+					"speaker": "Accountant",
+					"lines": [
+						"I only count what I am told to count.",
+						"Please keep your voice down."
+					],
+					"choices": [
+						{
+							"text": "Ask about the invoices",
+							"next": "q0"
+						},
+						{
+							"text": "Ask why she is so nervous",
+							"next": "q1"
+						},
+						{
+							"text": "Say goodbye"
+						}
+					]
+				},
+				"q0_again": {
+					"speaker": "Accountant",
+					"lines": [
+						"You have the invoices already. I never gave them to you."
+					]
+				},
+				"q0": {
+					"speaker": "Accountant",
+					"lines": [
+						"Twelve invoices, one supplier, the same office chairs. Each one ten times the market price.",
+						"I signed them because I was told to. Take this batch before I change my mind."
+					],
+					"redirect_if_has": {
+						"evidence": "invoice_batch",
+						"node": "q0_again"
+					},
+					"give_evidence": "invoice_batch"
+				},
+				"q1": {
+					"speaker": "Accountant",
+					"lines": [
+						"People who question the Secretary's budget do not stay on this floor very long."
+					],
+					"next": "greet"
+				}
+			}
+		},
+		{
+			"id": "inspector",
+			"start": "greet",
+			"nodes": {
+				"greet": {
+					"speaker": "Site Inspector",
+					"lines": [
+						"Hard hat on, eyes open. That is the whole job."
+					],
+					"choices": [
+						{
+							"text": "Ask about the new school",
+							"next": "q0"
+						},
+						{
+							"text": "Ask why he did not report it",
+							"next": "q1"
+						},
+						{
+							"text": "Say goodbye"
+						}
+					]
+				},
+				"q0_again": {
+					"speaker": "Site Inspector",
+					"lines": [
+						"I gave you the photo. The report I filed was returned with my name crossed out."
+					]
+				},
+				"q0": {
+					"speaker": "Site Inspector",
+					"lines": [
+						"I went to the address myself. An empty field and a rusty sign.",
+						"The school was paid for in full. Here is my photo, with the date on it."
+					],
+					"redirect_if_has": {
+						"evidence": "ghost_project",
+						"node": "q0_again"
+					},
+					"give_evidence": "ghost_project"
+				},
+				"q1": {
+					"speaker": "Site Inspector",
+					"lines": [
+						"I did. The report came back with my name crossed out. Real reports have names on them.",
+						"That is how you know to doubt a document: ask who signed it."
+					],
+					"next": "greet"
+				}
+			}
+		},
+		{
+			"id": "contractor",
+			"start": "greet",
+			"nodes": {
+				"greet": {
+					"speaker": "Contractor",
+					"lines": [
+						"Best builder in the district. Ask anyone. Ask me, I will tell you."
+					],
+					"choices": [
+						{
+							"text": "Ask how he won the contract",
+							"next": "q0"
+						},
+						{
+							"text": "Ask who owns his company",
+							"next": "q1"
+						},
+						{
+							"text": "Say goodbye"
+						}
+					]
+				},
+				"q0": {
+					"speaker": "Contractor",
+					"lines": [
+						"Best bid wins, always. The process is completely open.",
+						"Open to those who know whom to call."
+					],
+					"next": "greet"
+				},
+				"q1": {
+					"speaker": "Contractor",
+					"lines": [
+						"A family company. New, yes. A cousin of someone in the Secretary's office has papers on it.",
+						"Anyone can start a company in a week. The question is whose cousin is in the office. The registry card is on the desk at the back of the hall."
+					],
+					"next": "greet"
+				}
+			}
+		},
+		{
+			"id": "keeper",
+			"start": "greet",
+			"nodes": {
+				"greet": {
+					"speaker": "Archive Keeper",
+					"lines": [
+						"Records Archive. Please touch nothing. Everything is under orders from above."
+					],
+					"choices": [
+						{
+							"text": "Ask for the public spending report",
+							"next": "q0"
+						},
+						{
+							"text": "Ask why the shelves are locked",
+							"next": "q1"
+						},
+						{
+							"text": "Say goodbye"
+						}
+					]
+				},
+				"q0_again": {
+					"speaker": "Archive Keeper",
+					"lines": [
+						"That is the only copy I may give out."
+					]
+				},
+				"q0": {
+					"speaker": "Archive Keeper",
+					"lines": [
+						"Here is the public copy. Notice anything missing?",
+						"Every page about money. We call that 'transparency'."
+					],
+					"redirect_if_has": {
+						"evidence": "redacted_report",
+						"node": "q0_again"
+					},
+					"give_evidence": "redacted_report"
+				},
+				"q1": {
+					"speaker": "Archive Keeper",
+					"lines": [
+						"Orders from above. Transparency here means we publish the title page.",
+						"When a record is public but unreadable, ask who decided what to hide."
+					],
+					"next": "greet"
+				}
+			}
+		},
+		{
+			"id": "journalist",
+			"start": "greet",
+			"nodes": {
+				"greet": {
+					"speaker": "Journalist",
+					"lines": [
+						"Press pass, no press room. I only get into places like this by waiting."
+					],
+					"choices": [
+						{
+							"text": "Ask about information requests",
+							"next": "q0"
+						},
+						{
+							"text": "Ask why she keeps trying",
+							"next": "q1"
+						},
+						{
+							"text": "Say goodbye"
+						}
+					]
+				},
+				"q0_again": {
+					"speaker": "Journalist",
+					"lines": [
+						"I gave you the letters. Use them well."
+					]
+				},
+				"q0": {
+					"speaker": "Journalist",
+					"lines": [
+						"Three requests for public records, three refusals. The same one line every time.",
+						"A refusal with no reason and no appeal is a warning sign. Take the letters."
+					],
+					"redirect_if_has": {
+						"evidence": "foi_denial",
+						"node": "q0_again"
+					},
+					"give_evidence": "foi_denial"
+				},
+				"q1": {
+					"speaker": "Journalist",
+					"lines": [
+						"Because someone has to keep asking.",
+						"Corruption loves a tired citizen."
+					],
+					"next": "greet"
+				}
+			}
+		},
+		{
+			"id": "shredder",
+			"start": "greet",
+			"nodes": {
+				"greet": {
+					"speaker": "Night Shift",
+					"lines": [
+						"I only work nights. The days are not for me."
+					],
+					"choices": [
+						{
+							"text": "Ask about the shredder",
+							"next": "q0"
+						},
+						{
+							"text": "Ask who gave the order",
+							"next": "q1"
+						},
+						{
+							"text": "Say goodbye"
+						}
+					]
+				},
+				"q0": {
+					"speaker": "Night Shift",
+					"lines": [
+						"Four pallets, the night before the audit. Nobody told me why.",
+						"The log is on the desk by the stacks. I did not tell you that."
+					],
+					"next": "greet"
+				},
+				"q1": {
+					"speaker": "Night Shift",
+					"lines": [
+						"A signature I was told to forget.",
+						"Destroying records before an audit is a confession in paper strips."
+					],
+					"next": "greet"
+				}
+			}
 		}
 	]
 }

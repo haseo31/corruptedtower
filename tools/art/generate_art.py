@@ -204,6 +204,26 @@ THEMES = {
         "b98a55": "7a3c34", "8a6038": "5a2820", "a87c4a": "6a3028", "d4a56a": "9a5a4c",
         "6a4828": "40201a",
     },
+    "vault": {  # floor 5: cold steel hall, gold carpet, slate walls, green strongbox desks
+        "8fa3b8": "6f8f98", "9aaec3": "7ca0a8", "7a8ea5": "5e7e86", "a6bace": "8ab0b8",
+        "8c3c46": "b8902c", "aa525c": "d4aa40", "7a3039": "987420", "6a2830": "7a5c18",
+        "d9d2c0": "4a5a68", "cdc5b0": "42525e", "b0a58c": "34424e", "6e6252": "1e2830",
+        "857865": "2e3c48", "efe9d8": "6a7e8c",
+        "6b6f8a": "3a5a4a", "4a4d66": "2a4438", "8a8fae": "4e7662", "2f3147": "1a2e24",
+        "3c3f58": "223a2e", "7a7e9c": "5e8a74",
+        "b98a55": "d4b050", "8a6038": "a08030", "a87c4a": "c09840", "d4a56a": "ecd080",
+        "6a4828": "705018",
+    },
+    "archive": {  # floor 6: dim violet stacks, blood-red carpet, near-black walls, dark wood shelves
+        "8fa3b8": "5a4a6a", "9aaec3": "66567a", "7a8ea5": "4a3a58", "a6bace": "746488",
+        "8c3c46": "7a1c28", "aa525c": "9a2838", "7a3039": "5e121c", "6a2830": "480c14",
+        "d9d2c0": "2e2438", "cdc5b0": "281e32", "b0a58c": "1c1426", "6e6252": "100a18",
+        "857865": "20182a", "efe9d8": "4a3e5a",
+        "6b6f8a": "5a3a2a", "4a4d66": "3e281c", "8a8fae": "7a5440", "2f3147": "241610",
+        "3c3f58": "30201a", "7a7e9c": "6a4a38",
+        "b98a55": "c8b890", "8a6038": "98884e", "a87c4a": "b0a070", "d4a56a": "e4d8b0",
+        "6a4828": "605030",
+    },
 }
 
 
@@ -444,6 +464,37 @@ CHARACTERS = {
         "overlays": ["glasses", "papers"],
         "body": "skirt",
     },
+    "accountant": {
+        "hair_style": "bun", "hair": "3a2a22", "hair_shade": "5a4034",
+        "colors": {"C": "3a8a8a", "c": "2a6a6a", "T": "e8e4d8", "t": "c4c0b0", "B": "2a3a4a"},
+        "overlays": ["glasses", "papers"],
+        "body": "skirt",
+    },
+    "contractor": {
+        "hair_style": "slick", "hair": "7a5a2a", "hair_shade": "9a7a40",
+        "colors": {"C": "e8a020", "c": "c08010", "T": "d8d0b0", "t": "b0a888", "P": "6a5a3a", "R": "c03030"},
+        "overlays": ["moustache", "tie"],
+    },
+    "inspector": {
+        "hair_style": "spiky", "hair": "4a3a2a", "hair_shade": "6a5a44",
+        "colors": {"C": "e8d020", "c": "c0a810", "T": "6a8a4a", "t": "4e6a34", "P": "4a5a3a"},
+        "overlays": ["papers", "lanyard"],
+    },
+    "keeper": {
+        "hair_style": "bun", "hair": "d0d0d8", "hair_shade": "a8a8b4",
+        "colors": {"C": "7a5a8a", "c": "5a3e6a", "T": "7a5a8a", "t": "5a3e6a", "B": "3a2a4a"},
+        "overlays": ["glasses", "papers"],
+        "body": "skirt",
+    },
+    "journalist": {
+        "hair_style": "spiky", "hair": "8a2a2a", "hair_shade": "b04040",
+        "colors": {"C": "5a5a6a", "c": "40404e", "T": "c8a060", "t": "a08040", "P": "3a3a4a", "Y": "e8e8f0"},
+        "overlays": ["lanyard", "papers"],
+    },
+    "shredder": {
+        "colors": {"C": "2a2a34", "c": "1a1a22", "T": "3a3a4a", "t": "2a2a36", "P": "2a2a34"},
+        "overlays": ["hood", "moustache"],
+    },
 }
 
 
@@ -642,7 +693,36 @@ DIRECTOR_FRAMES = [
     [p for p in CREST if p[:2] != (5, 16)] + [(5, 16, "W")] + CANE + [(9, 6, "h"), (14, 6, "h")],
 ]
 
+# The Budget Secretary: the Director's build, but bald and clean-shaven in a green suit, holding
+# a bag of money; the Minister of Secrecy: a black coat with a black censor bar over the eyes.
+BUDGET = [r.replace("H", "S").replace("h", "s").replace("M", "S").replace("m", "s") if 1 <= i <= 12 else r
+          for i, r in enumerate(DIRECTOR)]
+BUDGET_PALETTE = dict(DIRECTOR_PALETTE, C="2f6a3a", c="1e4a28", W="f4f2e8", O="e8c030", D="8a5a30")
+GLASSES = [(7, 6, "O"), (8, 6, "O"), (9, 6, "O"), (7, 8, "O"), (8, 8, "O"), (9, 8, "O"), (14, 6, "O"),
+           (15, 6, "O"), (16, 6, "O"), (14, 8, "O"), (15, 8, "O"), (16, 8, "O"), (10, 7, "O"), (13, 7, "O")]
+TIE = [(11, 14, "O"), (12, 14, "O"), (11, 15, "O"), (12, 15, "O"), (11, 16, "O"), (12, 16, "O"), (11, 17, "O")]
+MONEY_BAG = [(0, 15, "D"), (1, 15, "D"), (2, 15, "D"), (0, 16, "D"), (1, 16, "O"), (2, 16, "D"), (3, 16, "D"),
+             (0, 17, "D"), (1, 17, "O"), (2, 17, "O"), (3, 17, "D"), (0, 18, "D"), (1, 18, "D"), (2, 18, "D"),
+             (3, 18, "D")]
+BUDGET_FRAMES = [
+    GLASSES + TIE + MONEY_BAG,
+    GLASSES + TIE + MONEY_BAG + [(1, 13, "O"), (2, 12, "W"), (4, 14, "O")],
+]
+
+MINISTER = [r.replace("M", "H").replace("m", "h") if 8 <= i <= 12 else r for i, r in enumerate(DIRECTOR)]
+MINISTER_PALETTE = dict(DIRECTOR_PALETTE, C="261a36", c="170f24", W="c8c0d8", O="b02838", H="d8d4dc",
+                        h="9c98a4", S="d8b090", s="b88c6c", K="0a0810", D="b02838")
+CENSOR = [(x, y, "K") for x in range(7, 17) for y in (6, 7)]
+STAMP = [(x, y, "R") for x in range(4, 9) for y in range(16, 20)] + [(5, 17, "W"), (6, 17, "W"), (7, 17, "W"),
+                                                                    (5, 18, "W"), (7, 18, "W")]
+MINISTER_FRAMES = [
+    CENSOR + STAMP + CANE,
+    CENSOR + STAMP + CANE + [(2, 4, "W"), (3, 8, "W"), (21, 5, "W"), (20, 9, "W"), (1, 12, "W")],
+]
+
 BOSSES = {
+    "budget_secretary": (BUDGET, BUDGET_PALETTE, BUDGET_FRAMES),
+    "minister": (MINISTER, MINISTER_PALETTE, MINISTER_FRAMES),
     "deputy_director": (DEPUTY, DEPUTY_PALETTE, DEPUTY_FRAMES),
     "spokesperson": (SPOKESPERSON, SPOKESPERSON_PALETTE, SPOKESPERSON_FRAMES),
     "campaign_manager": (CAMPAIGN, CAMPAIGN_PALETTE, CAMPAIGN_FRAMES),
@@ -806,7 +886,8 @@ def make_font(out):
 
 ICON = 16
 ICON_ORDER = ["ledger_page", "meeting_photo", "text_messages", "original_statement", "bot_list", "edited_clip",
-              "cash_envelopes", "vote_receipts", "rigged_poll", "hiring_file", "qualification_list", "payroll_records"]
+              "cash_envelopes", "vote_receipts", "rigged_poll", "hiring_file", "qualification_list", "payroll_records",
+              "ghost_project", "invoice_batch", "shell_company", "redacted_report", "foi_denial", "shredding_log"]
 DARK = rgb("3c281c")
 
 
@@ -989,8 +1070,80 @@ def icon_payroll():
     return t
 
 
+def icon_ghost_project():
+    t = blank(ICON, ICON)
+    _fill(t, 2, 2, 13, 13, rgb("f2efe4"))
+    _outline(t, 2, 2, 13, 13, DARK)
+    _fill(t, 3, 3, 12, 7, rgb("9ac8e8"))
+    _fill(t, 3, 8, 12, 12, rgb("8aa860"))
+    _fill(t, 7, 6, 8, 11, rgb("7a5a38"))
+    _fill(t, 5, 4, 10, 6, rgb("c8b070"))
+    _outline(t, 5, 4, 10, 6, DARK)
+    return t
+
+
+def icon_invoices():
+    t = blank(ICON, ICON)
+    _fill(t, 2, 1, 11, 11, rgb("cfcabb"))
+    _outline(t, 2, 1, 11, 11, DARK)
+    _fill(t, 4, 4, 13, 14, rgb("f2efe4"))
+    _outline(t, 4, 4, 13, 14, DARK)
+    for y in (6, 8, 10):
+        for x in range(6, 10):
+            t[y][x] = rgb("9a98a0")
+    _fill(t, 10, 11, 12, 12, rgb("c03030"))
+    return t
+
+
+def icon_shell_company():
+    t = blank(ICON, ICON)
+    _fill(t, 2, 6, 13, 13, rgb("6a4a2a"))
+    _outline(t, 2, 6, 13, 13, DARK)
+    _outline(t, 6, 3, 9, 6, DARK)
+    _fill(t, 7, 8, 8, 10, rgb("e8c030"))
+    for x in range(3, 13):
+        t[9][x] = rgb("4a3220") if x not in (7, 8) else t[9][x]
+    return t
+
+
+def icon_redacted():
+    t = blank(ICON, ICON)
+    _fill(t, 3, 1, 12, 14, rgb("f2efe4"))
+    _outline(t, 3, 1, 12, 14, DARK)
+    for y in (3, 5, 7, 9):
+        _fill(t, 5, y, 10, y, rgb("1a1a22"))
+    for x in range(5, 8):
+        t[11][x] = rgb("9a98a0")
+    return t
+
+
+def icon_denial():
+    t = blank(ICON, ICON)
+    _fill(t, 2, 2, 13, 13, rgb("f2efe4"))
+    _outline(t, 2, 2, 13, 13, DARK)
+    for x in range(4, 10):
+        t[4][x] = rgb("9a98a0")
+        t[5][x] = rgb("9a98a0")
+    _fill(t, 5, 7, 12, 11, rgb("c03030"))
+    for x in range(6, 12):
+        t[9][x] = rgb("f4f2e8")
+    return t
+
+
+def icon_shredding():
+    t = blank(ICON, ICON)
+    _fill(t, 2, 2, 13, 6, rgb("4a4d5a"))
+    _outline(t, 2, 2, 13, 6, DARK)
+    _fill(t, 4, 4, 11, 4, rgb("1a1a22"))
+    for i, x in enumerate(range(3, 13, 2)):
+        _fill(t, x, 7, x, 12 + (i % 2), rgb("e8e4d8"))
+    return t
+
+
 ICON_MAKERS = [icon_ledger, icon_photo, icon_phone, icon_statement, icon_bots, icon_clip,
-               icon_envelopes, icon_receipts, icon_poll, icon_hiring, icon_qualification, icon_payroll]
+               icon_envelopes, icon_receipts, icon_poll, icon_hiring, icon_qualification, icon_payroll,
+               icon_ghost_project, icon_invoices, icon_shell_company, icon_redacted, icon_denial,
+               icon_shredding]
 
 
 def make_icons(out):

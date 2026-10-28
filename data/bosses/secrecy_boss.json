@@ -1,0 +1,54 @@
+{
+	"id": "secrecy_boss",
+	"display_name": "The Minister of Secrecy",
+	"sprite": "minister",
+	"music": "final_boss",
+	"intro": "You climbed all the way up here. How sweet. Nothing in this tower is for you to see.",
+	"cover_up_max": 3,
+	"wrong_evidence_penalty": 1,
+	"lies": [
+		{
+			"id": "lie_open",
+			"text": "Our records are open to every citizen.",
+			"reaction": "Every page about money is blacked out.",
+			"counter_evidence_ids": [
+				"redacted_report"
+			]
+		},
+		{
+			"id": "lie_requests",
+			"text": "We have never refused a request for information.",
+			"reaction": "Refused, refused, refused. The same line every time.",
+			"counter_evidence_ids": [
+				"foi_denial"
+			]
+		},
+		{
+			"id": "lie_destroyed",
+			"text": "No record in this building was ever destroyed.",
+			"reaction": "Four pallets of paper, the night before the audit.",
+			"counter_evidence_ids": [
+				"shredding_log"
+			]
+		},
+		{
+			"id": "lie_shaped",
+			"text": "Nobody here ever shaped what the public could see.",
+			"reaction": "Bots to cheer, edits to hide. You decided what they saw.",
+			"counter_all": [
+				"bot_list",
+				"edited_clip"
+			]
+		},
+		{
+			"id": "lie_clean",
+			"text": "This tower is clean. There is no corruption here.",
+			"reaction": "Bribes, bought votes and a family payroll. All of it, from every floor.",
+			"counter_all": [
+				"ledger_page",
+				"vote_receipts",
+				"payroll_records"
+			]
+		}
+	]
+}

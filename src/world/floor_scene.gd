@@ -15,7 +15,12 @@ static var arrival_cell: Variant = null
 const ENDING_SCENE: String = "res://src/ui/ending_screen.tscn"
 const TITLE_SCENE: String = "res://src/ui/title_screen.tscn"
 ## The music track for a floor theme ("" is the plain office).
-const MUSIC_BY_THEME: Dictionary = {"": "office", "poll": "poll", "hr": "hr"}
+const MUSIC_BY_THEME: Dictionary = {"": "office", "poll": "poll", "hr": "hr", "vault": "vault", "archive": "archive"}
+## How many floors the tower has (the progress strip and the title card show it).
+const TOWER_FLOORS: int = 6
+## How long the floor title card stays fully visible, and how long it takes to fade.
+const TITLE_CARD_HOLD: float = 2.2
+const TITLE_CARD_FADE: float = 0.6
 
 var _layout: FloorLayout
 var _atlas: TileAtlas
@@ -26,6 +31,7 @@ var _active_boss_npc: Dictionary = {}
 ## The NPC nodes by cell, so one can turn to face the player.
 var _npc_nodes: Dictionary = {}
 
+@onready var _hud: CanvasLayer = $Hud
 @onready var _actors: Node2D = $Actors
 @onready var _player: FloorPlayer = $Actors/Player
 @onready var _camera: Camera2D = $Actors/Player/Camera2D
@@ -80,6 +86,8 @@ func _ready() -> void:
 	_hint_label.add_theme_color_override("font_color", PixelTheme.MUTED)
 	_hint_label.text = _layout.hint
 	_refresh_objective()
+	_show_tower_progress()
+	_show_title_card()
 	queue_redraw()
 
 
@@ -140,6 +148,54 @@ func _spawn_npcs() -> void:
 		_npc_nodes[cell] = node
 
 
+## The strip of floor boxes under the floor name, showing how far up the tower the player is.
+func _show_tower_progress() -> void:
+	if _layout.floor_number < 1:
+		return
+	var strip := TowerProgress.new()
+	strip.position = Vector2(4, 24)
+	_hud.add_child(strip)
+	# Right after the floor name, so every panel (dialogue, evidence, showdown) draws over it.
+	_hud.move_child(strip, _floor_name_box.get_index() + 1)
+	strip.setup(_layout.floor_number, TOWER_FLOORS)
+
+
+## A card with the floor's name and goal, shown for a moment when the player arrives.
+func _show_title_card() -> void:
+	if _layout.floor_number < 1:
+		return
+	var card := PanelContainer.new()
+	card.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	PixelTheme.apply(card)
+	var box := VBoxContainer.new()
+	box.add_theme_constant_override("separation", 4)
+	card.add_child(box)
+	var count := Label.new()
+	count.text = "FLOOR %d OF %d" % [_layout.floor_number, TOWER_FLOORS]
+	count.add_theme_color_override("font_color", PixelTheme.DANGER)
+	count.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	box.add_child(count)
+	var title := Label.new()
+	title.text = _layout.name.get_slice(": ", 1) if ": " in _layout.name else _layout.name
+	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	box.add_child(title)
+	var goal := Label.new()
+	goal.text = _layout.objective
+	goal.add_theme_color_override("font_color", PixelTheme.MUTED)
+	goal.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	box.add_child(goal)
+	_hud.add_child(card)
+	_hud.move_child(card, _floor_name_box.get_index() + 1)
+	card.set_anchors_and_offsets_preset(Control.PRESET_CENTER_TOP, Control.PRESET_MODE_MINSIZE, 0)
+	card.position.y = 56.0
+	Audio.play_sfx("floor_start")
+	var tween := create_tween()
+	tween.tween_interval(TITLE_CARD_HOLD)
+	if not ShowdownScreen.reduce_motion:
+		tween.tween_property(card, "modulate:a", 0.0, TITLE_CARD_FADE)
+	tween.tween_callback(card.queue_free)
+
+
 func _modal_open() -> bool:
 	return _dialogue_box.visible or _evidence_screen.visible or _showdown_screen.visible 			or _pause_menu.visible
 
@@ -184,7 +240,8 @@ func _talk_to_boss(npc: Dictionary) -> void:
 		_runner.start(DialogueRunner.message_dialogue(npc["name"], npc["defeated_message"]))
 		return
 	_active_boss_npc = npc
-	Audio.play_music("boss")
+	Audio.play_music(boss.music)
+	Audio.play_sfx("boss_intro")
 	_showdown_screen.start(boss, _inventory)
 
 

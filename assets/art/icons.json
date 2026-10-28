@@ -12,6 +12,12 @@
     "rigged_poll": 8,
     "hiring_file": 9,
     "qualification_list": 10,
-    "payroll_records": 11
+    "payroll_records": 11,
+    "ghost_project": 12,
+    "invoice_batch": 13,
+    "shell_company": 14,
+    "redacted_report": 15,
+    "foi_denial": 16,
+    "shredding_log": 17
   }
 }

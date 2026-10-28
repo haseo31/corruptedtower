@@ -1,0 +1,100 @@
+{
+	"name": "Floor 5: Budget Office",
+	"floor_number": 5,
+	"tile_size": 16,
+	"theme": "vault",
+	"rows": [
+		"########################################",
+		"#.........#..................#.........#",
+		"#.........#..................#.........#",
+		"#.DDDDDD..#...DDDDDDDDDDDD...#.........#",
+		"#.........#..................#..DDDDD..#",
+		"#.........#..................#.........#",
+		"#.........#..................#.........#",
+		"#.DDD.....#...DDD......DDD...#.........#",
+		"#.........#..................#.........#",
+		"#.........#..................#.........#",
+		"#.........#..................#.........#",
+		"#......................................#",
+		"#cccccccccccccccccccccccccccccccccccccc#",
+		"#......................................#",
+		"#.........#..................#.........#",
+		"#.........#..................#.........#",
+		"#.........#..................#.........#",
+		"#.........#..................#.........#",
+		"#.........#..................#.........#",
+		"#.DDDDDD..#..................#.........#",
+		"#.........#...DDDDDDDDDDDD...#..DDDDD..#",
+		"#.........#..................#.........#",
+		"#.........#..................#.........#",
+		"########################################"
+	],
+	"spawn": [
+		2,
+		12
+	],
+	"hint": "I: evidence   E: talk   Esc: menu",
+	"objective": "Expose the Budget Secretary",
+	"objective_boss": "budget_boss",
+	"objective_done": "Take the stairs up",
+	"npcs": [
+		{
+			"x": 5,
+			"y": 9,
+			"name": "Junior Accountant",
+			"sprite": "accountant",
+			"dialogue": "accountant"
+		},
+		{
+			"x": 22,
+			"y": 9,
+			"name": "Site Inspector",
+			"sprite": "inspector",
+			"dialogue": "inspector"
+		},
+		{
+			"x": 19,
+			"y": 15,
+			"name": "Contractor",
+			"sprite": "contractor",
+			"dialogue": "contractor"
+		},
+		{
+			"x": 36,
+			"y": 12,
+			"name": "Budget Secretary",
+			"sprite": "budget_secretary",
+			"boss": "res://data/bosses/budget_boss.json",
+			"defeated_message": "The money was never mine to keep. Fine. The way up is open."
+		}
+	],
+	"clues": [
+		{
+			"x": 19,
+			"y": 3,
+			"evidence_id": "shell_company"
+		}
+	],
+	"transitions": [
+		{
+			"x": 1,
+			"y": 12,
+			"scene": "res://src/world/floor_4.tscn",
+			"spawn": [
+				37,
+				12
+			]
+		},
+		{
+			"x": 38,
+			"y": 12,
+			"scene": "res://src/world/floor_6.tscn",
+			"spawn": [
+				2,
+				12
+			],
+			"requires_boss": "budget_boss",
+			"locked_message": "The stairs are locked. Expose the Budget Secretary first."
+		}
+	]
+}

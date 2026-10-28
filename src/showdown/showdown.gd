@@ -13,6 +13,7 @@ signal showdown_lost
 enum State { ACTIVE, WON, LOST }
 enum Result {
 	COUNTERED, ## The evidence countered the current lie.
+	PROGRESS, ## Right evidence for a lie that needs several items; more are still needed.
 	WRONG_EVIDENCE, ## Wrong or unverified evidence; the Cover-up meter rose.
 	IGNORED, ## The showdown is already over.
 }
@@ -24,6 +25,19 @@ var cover_up: int = 0
 
 var _boss: BossData
 var _lie_index: int = 0
+## The items already presented towards the current lie, when it needs several.
+var _matched: Array[String] = []
+
+
+## How many items are presented and how many are needed for the current lie, as (have, need).
+## A lie that one item counters is (0, 1); a finished showdown is (0, 0).
+func lie_progress() -> Vector2i:
+	if state != State.ACTIVE:
+		return Vector2i.ZERO
+	var lie := _boss.lies[_lie_index]
+	if lie.counter_all_ids.is_empty():
+		return Vector2i(0, 1)
+	return Vector2i(_matched.size(), lie.counter_all_ids.size())
 
 
 func _init(boss: BossData) -> void:
@@ -37,12 +51,23 @@ func current_lie() -> BossData.Lie:
 	return _boss.lies[_lie_index]
 
 
+## The lie that the last COUNTERED turn removed, so the screen can show the boss's reaction.
+var last_countered: BossData.Lie = null
+
+
 ## Plays one turn. Only verified evidence that counters the current lie succeeds.
 func present_evidence(evidence_id: String, verified: bool) -> Result:
 	if state != State.ACTIVE:
 		return Result.IGNORED
 	var lie := _boss.lies[_lie_index]
-	if verified and evidence_id in lie.counter_evidence_ids:
+	if verified and lie.accepts(evidence_id):
+		if not lie.counter_all_ids.is_empty():
+			if evidence_id not in _matched:
+				_matched.append(evidence_id)
+			if _matched.size() < lie.counter_all_ids.size():
+				return Result.PROGRESS
+		_matched.clear()
+		last_countered = lie
 		_lie_index += 1
 		lie_removed.emit(lie.id)
 		if _lie_index >= _boss.lies.size():
@@ -68,3 +93,5 @@ func restart() -> void:
 	state = State.ACTIVE
 	cover_up = 0
 	_lie_index = 0
+	_matched.clear()
+	last_countered = null

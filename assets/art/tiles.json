@@ -20,6 +20,18 @@
     "wall_face_hr": 16,
     "wall_block_hr": 17,
     "desk_hr": 18,
-    "desk_paper_hr": 19
+    "desk_paper_hr": 19,
+    "floor_vault": 20,
+    "carpet_vault": 21,
+    "wall_face_vault": 22,
+    "wall_block_vault": 23,
+    "desk_vault": 24,
+    "desk_paper_vault": 25,
+    "floor_archive": 26,
+    "carpet_archive": 27,
+    "wall_face_archive": 28,
+    "wall_block_archive": 29,
+    "desk_archive": 30,
+    "desk_paper_archive": 31
   }
 }

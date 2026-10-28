@@ -8,12 +8,20 @@
 		{
 			"id": "lie_clean_books",
 			"text": "Every peso of the road project was spent exactly as announced.",
-			"counter_evidence_ids": ["ledger_page"]
+			"counter_evidence_ids": [
+				"ledger_page"
+			],
+			"reaction": "The numbers do not match the announcement."
 		},
 		{
 			"id": "lie_no_deal",
 			"text": "I have never even met the contractor.",
-			"counter_evidence_ids": ["meeting_photo", "text_messages"]
+			"counter_evidence_ids": [
+				"meeting_photo",
+				"text_messages"
+			],
+			"reaction": "Photographed and texted. So much for 'never met'."
 		}
-	]
+	],
+	"intro": "Ah, a visitor. Please do not waste my time with accusations."
 }

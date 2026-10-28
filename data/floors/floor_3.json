@@ -95,5 +95,6 @@
 			"requires_boss": "vote_boss",
 			"locked_message": "The stairs are locked. Expose the Campaign Manager first."
 		}
-	]
+	],
+	"floor_number": 3
 }

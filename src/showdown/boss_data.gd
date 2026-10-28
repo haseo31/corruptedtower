@@ -8,7 +8,17 @@ extends RefCounted
 class Lie extends RefCounted:
 	var id: String = ""
 	var text: String = ""
+	## Any one of these verified items counters the lie.
 	var counter_evidence_ids: Array[String] = []
+	## When not empty, every one of these verified items must be presented (in any order)
+	## to counter the lie, and counter_evidence_ids stays empty.
+	var counter_all_ids: Array[String] = []
+	## What the boss admits (shown by the showdown) when this lie is countered.
+	var reaction: String = ""
+
+	## Whether presenting this item can count towards countering the lie.
+	func accepts(evidence_id: String) -> bool:
+		return evidence_id in counter_evidence_ids or evidence_id in counter_all_ids
 
 
 var id: String = ""
@@ -19,6 +29,10 @@ var sprite: String = ""
 var cover_up_max: int = 3
 ## How much the Cover-up meter rises when wrong or unverified evidence is presented.
 var wrong_evidence_penalty: int = 1
+## A line the boss says when the showdown opens (empty for none).
+var intro: String = ""
+## The music track the showdown plays.
+var music: String = "boss"
 ## The lies in the order the player must counter them.
 var lies: Array[Lie] = []
 
@@ -29,6 +43,8 @@ static func from_dict(data: Dictionary) -> BossData:
 	boss.id = str(data.get("id", ""))
 	boss.display_name = str(data.get("display_name", ""))
 	boss.sprite = str(data.get("sprite", ""))
+	boss.intro = str(data.get("intro", ""))
+	boss.music = str(data.get("music", "boss"))
 	boss.cover_up_max = int(data.get("cover_up_max", 0))
 	boss.wrong_evidence_penalty = int(data.get("wrong_evidence_penalty", 0))
 	if boss.id.is_empty() or boss.cover_up_max < 1 or boss.wrong_evidence_penalty < 1:
@@ -45,10 +61,15 @@ static func from_dict(data: Dictionary) -> BossData:
 		var lie := Lie.new()
 		lie.id = str(entry.get("id", ""))
 		lie.text = str(entry.get("text", ""))
+		lie.reaction = str(entry.get("reaction", ""))
 		for evidence_id: Variant in entry.get("counter_evidence_ids", []):
 			lie.counter_evidence_ids.append(str(evidence_id))
-		if lie.id.is_empty() or lie.counter_evidence_ids.is_empty():
-			push_error("BossData '%s': each lie needs an id and counter evidence" % boss.id)
+		for evidence_id: Variant in entry.get("counter_all", []):
+			lie.counter_all_ids.append(str(evidence_id))
+		var one_way := not lie.counter_evidence_ids.is_empty()
+		var all_way := not lie.counter_all_ids.is_empty()
+		if lie.id.is_empty() or one_way == all_way or (all_way and lie.counter_all_ids.size() < 2):
+			push_error("BossData '%s': each lie needs an id and either counter_evidence_ids or counter_all (two or more items)" % boss.id)
 			return null
 		boss.lies.append(lie)
 	return boss

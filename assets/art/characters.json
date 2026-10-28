@@ -1,4 +1,17 @@
 {
+  "accountant": {
+    "columns": 3,
+    "frame": [
+      16,
+      20
+    ],
+    "rows": [
+      "down",
+      "up",
+      "left",
+      "right"
+    ]
+  },
   "applicant": {
     "columns": 3,
     "frame": [
@@ -51,6 +64,16 @@
       "right"
     ]
   },
+  "budget_secretary": {
+    "columns": 2,
+    "frame": [
+      24,
+      24
+    ],
+    "rows": [
+      "down"
+    ]
+  },
   "campaign_manager": {
     "columns": 2,
     "frame": [
@@ -62,6 +85,19 @@
     ]
   },
   "clerk": {
+    "columns": 3,
+    "frame": [
+      16,
+      20
+    ],
+    "rows": [
+      "down",
+      "up",
+      "left",
+      "right"
+    ]
+  },
+  "contractor": {
     "columns": 3,
     "frame": [
       16,
@@ -107,6 +143,19 @@
       "right"
     ]
   },
+  "inspector": {
+    "columns": 3,
+    "frame": [
+      16,
+      20
+    ],
+    "rows": [
+      "down",
+      "up",
+      "left",
+      "right"
+    ]
+  },
   "intern": {
     "columns": 3,
     "frame": [
@@ -133,6 +182,42 @@
       "right"
     ]
   },
+  "journalist": {
+    "columns": 3,
+    "frame": [
+      16,
+      20
+    ],
+    "rows": [
+      "down",
+      "up",
+      "left",
+      "right"
+    ]
+  },
+  "keeper": {
+    "columns": 3,
+    "frame": [
+      16,
+      20
+    ],
+    "rows": [
+      "down",
+      "up",
+      "left",
+      "right"
+    ]
+  },
+  "minister": {
+    "columns": 2,
+    "frame": [
+      24,
+      24
+    ],
+    "rows": [
+      "down"
+    ]
+  },
   "player": {
     "columns": 3,
     "frame": [
@@ -147,6 +232,19 @@
     ]
   },
   "poll_worker": {
+    "columns": 3,
+    "frame": [
+      16,
+      20
+    ],
+    "rows": [
+      "down",
+      "up",
+      "left",
+      "right"
+    ]
+  },
+  "shredder": {
     "columns": 3,
     "frame": [
       16,

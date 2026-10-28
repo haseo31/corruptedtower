@@ -70,67 +70,133 @@
 			"evidence_id": "cash_envelopes",
 			"claim": "Envelopes of cash are marked with voters' names. Which source should you NOT trust?",
 			"options": [
-				"A police inventory listing the envelopes, signed and dated at the scene",
-				"A forwarded message saying 'my cousin saw cash being handed out', with no name",
-				"A photo with a visible time stamp, confirmed by the precinct's own log"
+				"A handwritten note from a poll watcher, with the date, time, place and a phone number to call",
+				"A polished 'Election Integrity Bureau' statement with a seal that says the envelopes are fake, with no author or evidence",
+				"A police inventory of the envelopes, signed and dated at the scene"
 			],
 			"fake_index": 1,
-			"explanation": "A rumor passed along without a name cannot be checked. A signed inventory and a logged photo can be traced to people who answer for them."
+			"explanation": "A seal and a fancy name prove nothing. The plain handwritten note can be checked: it says who, when and where, and gives a way to ask. A report with no author and no evidence cannot be checked."
 		},
 		{
 			"evidence_id": "vote_receipts",
 			"claim": "Receipts show voters were paid for proof of their ballot. Which source is unreliable?",
 			"options": [
+				"A neatly designed 'Citizens' Watch' summary saying 'receipts were forged by the opposition', with no names or numbers",
 				"A receipt book obtained by the election commission, with serial numbers",
-				"A typed list of 'paid voters' posted by an account that hides its owner",
-				"Sworn statements from three voters who each received payment"
+				"A shaky phone recording of a voter describing the payment, with the voter's name and barangay on file"
 			],
-			"fake_index": 1,
-			"explanation": "An anonymous typed list could contain anything. Numbered receipts and sworn statements come from sources that can be questioned."
+			"fake_index": 0,
+			"explanation": "Good design is not good evidence. The summary names nobody and gives no numbers. The shaky recording and the numbered receipts both lead to real people and records."
 		},
 		{
 			"evidence_id": "rigged_poll",
 			"claim": "A poll says 98% of voters support the campaign. Which source is the unreliable one?",
 			"options": [
-				"The pollster's published method and sample, listing how people were chosen",
-				"A banner reading '98% LOVE US!' with no sample size or method",
-				"An independent poll with a different result and a public method"
+				"An independent poll with a different result and a public method",
+				"A university study presented on a glossy poster, quoting '98%' with no sample size or method",
+				"A photocopied page from a local pollster listing how many people were asked and how they were chosen"
 			],
 			"fake_index": 1,
-			"explanation": "A number with no method is just a slogan. A trustworthy poll shows who was asked and how they were chosen."
+			"explanation": "A glossy poster is not a method. A photocopied page that shows who was asked and how can be checked, even if it looks plain."
 		},
 		{
 			"evidence_id": "hiring_file",
 			"claim": "A file says a relative was hired with no interview. What should you NOT trust?",
 			"options": [
+				"A formal letter on 'Office of Good Governance' paper saying 'all hiring was fair', unsigned and undated",
 				"The personnel office's own signed hiring record",
-				"A chain post claiming 'the whole office is family', with no names or dates",
-				"The civil service board's published appointment notice"
+				"A coffee-stained notebook kept by the receptionist, with dates and names of every interview held that year"
 			],
-			"fake_index": 1,
-			"explanation": "'The whole office is family' sounds big but names no one. Signed records and public notices say who was hired, when and by whom."
+			"fake_index": 0,
+			"explanation": "Official-looking paper does not make a claim true. An unsigned, undated letter cannot be traced. The messy notebook and the signed record both name dates and people."
 		},
 		{
 			"evidence_id": "qualification_list",
 			"claim": "A ranked list shows the person hired placed last. Which source is unreliable?",
 			"options": [
+				"A clean, printed list from 'the Director's office' with no signatures and scores in a different font",
 				"The ranking sheet signed by the three-person panel",
-				"A retyped list on plain paper, with the scores changed in a different font",
-				"The civil service board's copy of the scores"
+				"A crumpled copy of the same sheet kept by one panelist, with their signature and the date"
 			],
-			"fake_index": 1,
-			"explanation": "A list with different fonts and no signatures may have been edited. Compare it with the official copy held by someone else."
+			"fake_index": 0,
+			"explanation": "A tidy list with mismatched fonts and no signatures may have been edited. A crumpled copy is still signed, so it can be compared with the panel's own sheet."
 		},
 		{
 			"evidence_id": "payroll_records",
 			"claim": "Payroll records list relatives paid for jobs with no duties. Which source is unreliable?",
 			"options": [
-				"The treasury's payroll export, with department codes",
+				"A spreadsheet screenshot with the Treasury logo, no title, date or file name",
 				"The auditor's report that matches each name to a job description",
-				"A screenshot of a spreadsheet with no title, date or source"
+				"A scruffy photocopy of the payroll with department codes and the treasury clerk's initials"
 			],
-			"fake_index": 2,
-			"explanation": "A screenshot with no title, date or source could be from anywhere. Treasury data and audit reports can be traced and compared."
+			"fake_index": 0,
+			"explanation": "A logo is easy to paste on a screenshot. With no title, date or file name it cannot be traced. The scruffy photocopy has codes and initials someone can verify."
+		},
+		{
+			"evidence_id": "ghost_project",
+			"claim": "A photo shows the new school was never built. Which source should you NOT trust?",
+			"options": [
+				"A blurry phone photo from a passing driver, with its date and GPS place in the file details",
+				"A glossy brochure from the Budget Office showing an artist's drawing of 'the completed school', with no photos of the site",
+				"The inspector's signed site report with the date of the visit"
+			],
+			"fake_index": 1,
+			"explanation": "A drawing is not proof that anything exists. The blurry photo is ugly but its date and place can be checked, and so can the signed report."
+		},
+		{
+			"evidence_id": "invoice_batch",
+			"claim": "Invoices show chairs bought at ten times the market price. Which source is unreliable?",
+			"options": [
+				"A price list on the supplier's letterhead saying 'our prices are always fair', with no dates or item numbers",
+				"The invoices themselves, with numbers and the Budget Office's stamp",
+				"A pencil-written comparison by a junior accountant listing three other shops' prices with their phone numbers"
+			],
+			"fake_index": 0,
+			"explanation": "A seller saying its own prices are fair is not a check. The pencil comparison gives shops anyone can call, and the numbered invoices can be matched to payments."
+		},
+		{
+			"evidence_id": "shell_company",
+			"claim": "A registry card shows the winning company was founded a week before the bid. Which source is unreliable?",
+			"options": [
+				"A company website with a professional photo of 'our 30-year history', with no registration number",
+				"The government business registry entry with the founding date and the owner's name",
+				"A faded newspaper notice of the company's founding, with the date and the paper's stamp"
+			],
+			"fake_index": 0,
+			"explanation": "A website can say anything about its own history. The registry and the old notice are kept by others, so the founding date can be compared."
+		},
+		{
+			"evidence_id": "redacted_report",
+			"claim": "A public report has every page about money blacked out. Which source should you NOT trust?",
+			"options": [
+				"A grainy scan of the full report from before the black marker, stamped by the archive with a date",
+				"A press release called 'Transparency Report' that says 'nothing was withheld', with no copy of the report attached",
+				"The archive's own log showing who ordered the pages blacked out"
+			],
+			"fake_index": 1,
+			"explanation": "Claiming nothing was hidden is not showing it. The grainy scan and the archive log can be compared with the blacked-out copy."
+		},
+		{
+			"evidence_id": "foi_denial",
+			"claim": "Three requests for public records were refused with the same one line. Which source is unreliable?",
+			"options": [
+				"A hand-signed letter from a citizen listing the dates of each refused request and the refusal numbers",
+				"A friendly statement titled 'We Welcome Your Questions' with no examples of requests answered",
+				"The office's own registry showing the requests and the refusals"
+			],
+			"fake_index": 1,
+			"explanation": "A welcome message is not a record. The letter and the registry give dates and numbers that others can check."
+		},
+		{
+			"evidence_id": "shredding_log",
+			"claim": "A log shows four pallets of records were shredded before the audit. Which source is unreliable?",
+			"options": [
+				"A spotless certificate from 'the Office of Archives' saying 'no records were destroyed', with no signature",
+				"The shredding service's signed invoice for the night, with the truck number",
+				"A night guard's note on the gate log with the time the truck left"
+			],
+			"fake_index": 0,
+			"explanation": "A spotless certificate with no signature can be written by anyone. The invoice and the gate log are kept by other people and can be matched."
 		}
 	]
 }

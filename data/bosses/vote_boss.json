@@ -10,21 +10,25 @@
 			"text": "Not a single peso changed hands. We ran a clean campaign.",
 			"counter_evidence_ids": [
 				"cash_envelopes"
-			]
+			],
+			"reaction": "Envelopes with voters' names on them."
 		},
 		{
 			"id": "lie_no_buying",
 			"text": "Nobody was ever paid for a vote. Voters love us for free.",
 			"counter_evidence_ids": [
 				"vote_receipts"
-			]
+			],
+			"reaction": "Receipts do not lie."
 		},
 		{
 			"id": "lie_polls",
 			"text": "Our polls prove everyone is behind us. The people have spoken.",
 			"counter_evidence_ids": [
 				"rigged_poll"
-			]
+			],
+			"reaction": "A number with no method is only a slogan."
 		}
-	]
+	],
+	"intro": "The voters love us. Ask anyone. Anyone I have already asked."
 }

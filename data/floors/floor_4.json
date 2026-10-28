@@ -35,7 +35,7 @@
 	"hint": "I: evidence   E: talk   Esc: menu",
 	"objective": "Expose the Director General",
 	"objective_boss": "nepotism_boss",
-	"objective_done": "",
+	"objective_done": "Take the stairs up",
 	"npcs": [
 		{
 			"x": 6,
@@ -64,8 +64,7 @@
 			"name": "Director General",
 			"sprite": "director_general",
 			"boss": "res://data/bosses/nepotism_boss.json",
-			"final": true,
-			"defeated_message": "The family name will not save me now."
+			"defeated_message": "The family name will not save me now. Go on, climb."
 		}
 	],
 	"clues": [
@@ -84,6 +83,18 @@
 				37,
 				12
 			]
+		},
+		{
+			"x": 38,
+			"y": 12,
+			"scene": "res://src/world/floor_5.tscn",
+			"spawn": [
+				2,
+				12
+			],
+			"requires_boss": "nepotism_boss",
+			"locked_message": "The stairs are locked. Expose the Director General first."
 		}
-	]
+	],
+	"floor_number": 4
 }

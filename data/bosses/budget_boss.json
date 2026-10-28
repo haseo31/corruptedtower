@@ -1,0 +1,43 @@
+{
+	"id": "budget_boss",
+	"display_name": "The Budget Secretary",
+	"sprite": "budget_secretary",
+	"intro": "Public money is delicate. Do not touch what you do not understand.",
+	"cover_up_max": 3,
+	"wrong_evidence_penalty": 1,
+	"lies": [
+		{
+			"id": "lie_built",
+			"text": "Every project in this budget was built and delivered.",
+			"reaction": "An empty field and a rusty sign. No school.",
+			"counter_evidence_ids": [
+				"ghost_project"
+			]
+		},
+		{
+			"id": "lie_prices",
+			"text": "We paid fair market prices for everything.",
+			"reaction": "Ten times the market price. Twelve times over.",
+			"counter_evidence_ids": [
+				"invoice_batch"
+			]
+		},
+		{
+			"id": "lie_tender",
+			"text": "Every contract went to the best bidder in an open tender.",
+			"reaction": "A company that did not exist a week before the bid.",
+			"counter_evidence_ids": [
+				"shell_company"
+			]
+		},
+		{
+			"id": "lie_funds",
+			"text": "Not one peso left this office without a record.",
+			"reaction": "The ledger and the empty field. The money went somewhere, and it was not a school.",
+			"counter_all": [
+				"ledger_page",
+				"ghost_project"
+			]
+		}
+	]
+}

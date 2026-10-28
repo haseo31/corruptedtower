@@ -87,5 +87,6 @@
 			"requires_boss": "disinformation_boss",
 			"locked_message": "The stairs are locked. Expose the Spokesperson first."
 		}
-	]
+	],
+	"floor_number": 2
 }

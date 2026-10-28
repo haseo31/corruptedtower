@@ -59,6 +59,36 @@
 			"id": "payroll_records",
 			"title": "Payroll records",
 			"description": "Payroll records listing relatives of the Director General paid for jobs with no duties."
+		},
+		{
+			"id": "ghost_project",
+			"title": "Site inspection photo",
+			"description": "A dated photo of the lot where the new school was paid for. It is an empty field with a rusty sign."
+		},
+		{
+			"id": "invoice_batch",
+			"title": "Invoice batch",
+			"description": "Twelve invoices from one supplier for the same office chairs, each at ten times the market price."
+		},
+		{
+			"id": "shell_company",
+			"title": "Company registry card",
+			"description": "The registry card of the company that won the tender. It was founded a week before the bid, by the Secretary's cousin."
+		},
+		{
+			"id": "redacted_report",
+			"title": "Redacted report",
+			"description": "A public spending report where every page about money is blacked out."
+		},
+		{
+			"id": "foi_denial",
+			"title": "Request denial letters",
+			"description": "Three requests for public records, all refused with the same one-line reason and no way to appeal."
+		},
+		{
+			"id": "shredding_log",
+			"title": "Shredding log",
+			"description": "A service log showing four pallets of records shredded the night before the audit."
 		}
 	]
 }

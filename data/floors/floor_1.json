@@ -27,20 +27,57 @@
 		"#......................................#",
 		"########################################"
 	],
-	"spawn": [2, 12],
+	"spawn": [
+		2,
+		12
+	],
 	"hint": "I: evidence   E: talk   Esc: menu",
 	"objective": "Expose the Deputy Director",
 	"objective_boss": "bribery_boss",
 	"objective_done": "Take the stairs up",
 	"npcs": [
-		{"x": 8, "y": 7, "name": "Clerk", "sprite": "clerk", "dialogue": "clerk"},
-		{"x": 24, "y": 14, "name": "Janitor", "sprite": "janitor", "dialogue": "janitor"},
-		{"x": 36, "y": 12, "name": "Deputy Director", "sprite": "deputy_director", "boss": "res://data/bosses/bribery_boss.json", "defeated_message": "Your evidence is undeniable. The way up is open."}
+		{
+			"x": 8,
+			"y": 7,
+			"name": "Clerk",
+			"sprite": "clerk",
+			"dialogue": "clerk"
+		},
+		{
+			"x": 24,
+			"y": 14,
+			"name": "Janitor",
+			"sprite": "janitor",
+			"dialogue": "janitor"
+		},
+		{
+			"x": 36,
+			"y": 12,
+			"name": "Deputy Director",
+			"sprite": "deputy_director",
+			"boss": "res://data/bosses/bribery_boss.json",
+			"defeated_message": "Your evidence is undeniable. The way up is open."
+		}
 	],
 	"clues": [
-		{"x": 16, "y": 4, "evidence_id": "meeting_photo"}
+		{
+			"x": 16,
+			"y": 4,
+			"evidence_id": "meeting_photo"
+		}
 	],
 	"transitions": [
-		{"x": 38, "y": 12, "scene": "res://src/world/floor_2.tscn", "spawn": [2, 12], "requires_boss": "bribery_boss", "locked_message": "The stairs are locked. Expose the Deputy Director first."}
-	]
+		{
+			"x": 38,
+			"y": 12,
+			"scene": "res://src/world/floor_2.tscn",
+			"spawn": [
+				2,
+				12
+			],
+			"requires_boss": "bribery_boss",
+			"locked_message": "The stairs are locked. Expose the Deputy Director first."
+		}
+	],
+	"floor_number": 1
 }

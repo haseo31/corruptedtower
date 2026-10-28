@@ -10,21 +10,34 @@
 			"text": "Everyone in my office earned their job on merit alone.",
 			"counter_evidence_ids": [
 				"qualification_list"
-			]
+			],
+			"reaction": "The ranking says someone else earned that job."
 		},
 		{
 			"id": "lie_family",
 			"text": "My relatives received no special treatment. None at all.",
 			"counter_evidence_ids": [
 				"hiring_file"
-			]
+			],
+			"reaction": "Signed by your own office."
 		},
 		{
 			"id": "lie_ghost",
 			"text": "Nobody on my payroll is paid for doing nothing.",
 			"counter_evidence_ids": [
 				"payroll_records"
+			],
+			"reaction": "Paid for doing nothing."
+		},
+		{
+			"id": "lie_audit",
+			"text": "My office has nothing to hide from an audit.",
+			"reaction": "Hiring files and payroll together. An audit would find all of it.",
+			"counter_all": [
+				"hiring_file",
+				"payroll_records"
 			]
 		}
-	]
+	],
+	"intro": "My family is my business. And my business is nobody's business."
 }

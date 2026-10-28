@@ -12,8 +12,8 @@ Navigation and saving first (012), then the new floors (013, 014), then the titl
 
 | # | Story | Type | Status | ADR |
 |---|-------|------|--------|-----|
-| 012 | Floor navigation and save/load | Integration | Ready | N/A |
-| 013 | Floors 3 and 4 | Integration | Ready | N/A |
-| 014 | Floors 5 and 6 and difficulty | Integration | Ready | N/A |
+| 012 | Floor navigation and save/load | Integration | Complete | N/A |
+| 013 | Floors 3 and 4 | Integration | Complete | N/A |
+| 014 | Floors 5 and 6 and difficulty | Integration | Complete | N/A |
 | 015 | Title screen and multiple endings | UI | Ready | N/A |
 | 016 | Web export | Config/Data | Ready | N/A |

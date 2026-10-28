@@ -1,0 +1,90 @@
+{
+	"name": "Floor 6: Records Archive",
+	"floor_number": 6,
+	"tile_size": 16,
+	"theme": "archive",
+	"rows": [
+		"########################################",
+		"#............................#.........#",
+		"#...D...D...D...D...D...D....#.........#",
+		"#...D...D...D...D...D...D....#.........#",
+		"#...D...D...D...D...D...D....#.........#",
+		"#...D...D...D...D...D...D....#..DDDDD..#",
+		"#...D...D...D...D...D...D....#.........#",
+		"#...D...D...D...D...D...D....#.........#",
+		"#...D...D...D...D...D...D....#.........#",
+		"#...D...D...D...D...D...D....#.........#",
+		"#............................#.........#",
+		"#......................................#",
+		"#cccccccccccccccccccccccccccccccccccccc#",
+		"#......................................#",
+		"#............................#.........#",
+		"#...D...D...D...D...D...D....#.........#",
+		"#...D...D...D...D...D...D....#.........#",
+		"#...D...D...D...D...D...D....#.........#",
+		"#...D...D...D...D...D...D....#.........#",
+		"#...D...D...D...D...D...D....#..DDDDD..#",
+		"#...D...D...D...D...D...D....#.........#",
+		"#...D...D...D...D...D...D....#.........#",
+		"#............................#.........#",
+		"########################################"
+	],
+	"spawn": [
+		2,
+		12
+	],
+	"hint": "I: evidence   E: talk   Esc: menu",
+	"objective": "Expose the Minister of Secrecy",
+	"objective_boss": "secrecy_boss",
+	"objective_done": "",
+	"npcs": [
+		{
+			"x": 6,
+			"y": 12,
+			"name": "Archive Keeper",
+			"sprite": "keeper",
+			"dialogue": "keeper"
+		},
+		{
+			"x": 14,
+			"y": 12,
+			"name": "Journalist",
+			"sprite": "journalist",
+			"dialogue": "journalist"
+		},
+		{
+			"x": 22,
+			"y": 18,
+			"name": "Night Shift",
+			"sprite": "shredder",
+			"dialogue": "shredder"
+		},
+		{
+			"x": 36,
+			"y": 12,
+			"name": "Minister of Secrecy",
+			"sprite": "minister",
+			"boss": "res://data/bosses/secrecy_boss.json",
+			"final": true,
+			"defeated_message": "Every page. Every pallet. Fine. Open the doors and let them all see."
+		}
+	],
+	"clues": [
+		{
+			"x": 24,
+			"y": 15,
+			"evidence_id": "shredding_log"
+		}
+	],
+	"transitions": [
+		{
+			"x": 1,
+			"y": 12,
+			"scene": "res://src/world/floor_5.tscn",
+			"spawn": [
+				37,
+				12
+			]
+		}
+	]
+}

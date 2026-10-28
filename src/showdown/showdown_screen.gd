@@ -53,7 +53,7 @@ func start(boss: BossData, inventory: EvidenceInventory) -> void:
 		_boss_sprite.hide()
 	else:
 		_place_sprite(_boss_sprite, boss.sprite, "down", BOSS_FEET)
-	_show_evidence_choices(HINT)
+	_show_evidence_choices(HINT if boss.intro.is_empty() else "\"%s\"\n%s" % [boss.intro, HINT])
 	show()
 	_focus_first_button()
 
@@ -109,6 +109,8 @@ func _on_evidence_pressed(evidence_id: String) -> void:
 	if result == Showdown.Result.COUNTERED:
 		Audio.play_sfx("counter")
 		_flash_boss()
+	elif result == Showdown.Result.PROGRESS:
+		Audio.play_sfx("correct")
 	else:
 		Audio.play_sfx("wrong")
 		_shake()
@@ -119,7 +121,10 @@ func _on_evidence_pressed(evidence_id: String) -> void:
 		Audio.play_sfx("lose")
 		_show_end("The cover-up holds. Verify more evidence, then try again.", "Try again", _on_retry)
 	elif result == Showdown.Result.COUNTERED:
-		_feedback_label.text = "That exposes the lie."
+		var reaction := _showdown.last_countered.reaction
+		_feedback_label.text = "That exposes the lie." if reaction.is_empty() else "That exposes the lie. %s" % reaction
+	elif result == Showdown.Result.PROGRESS:
+		_feedback_label.text = "That is part of the answer. This lie needs more than one piece of proof."
 	else:
 		_feedback_label.text = "That does not hold up. Only verified evidence counts."
 
@@ -147,7 +152,9 @@ func _on_retry() -> void:
 
 func _update_status() -> void:
 	var lie := _showdown.current_lie()
-	_lie_label.text = "" if lie == null else "\"%s\"" % lie.text
+	var progress := _showdown.lie_progress()
+	var needs_several := progress.y > 1
+	_lie_label.text = "" if lie == null else "\"%s\"%s" % [lie.text, "  (proof %d of %d)" % [progress.x, progress.y] if needs_several else ""]
 	_lie_label.visible = lie != null
 	_cover_up_bar.value = _showdown.cover_up
 	_meter_label.text = "Cover-up %d / %d" % [_showdown.cover_up, _boss.cover_up_max]
