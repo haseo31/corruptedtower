@@ -9,6 +9,8 @@ extends Control
 ## Characters revealed per second. Static so one setting covers every floor; a future
 ## options menu can change it, and tests set it very high to skip the typing.
 static var text_speed: float = 45.0
+## A text blip sounds once per this many revealed characters.
+const BLIP_EVERY: int = 3
 
 const ARROW: String = "▼"
 const ARROW_BLINK_SECONDS: float = 0.4
@@ -56,7 +58,10 @@ func _process(delta: float) -> void:
 		return
 	if not _line_complete:
 		_revealed += delta * text_speed
-		_text_label.visible_characters = int(_revealed)
+		var shown := int(_revealed)
+		if shown / BLIP_EVERY != _text_label.visible_characters / BLIP_EVERY:
+			Audio.play_sfx("blip")
+		_text_label.visible_characters = shown
 		if int(_revealed) >= _line_length:
 			_finish_line()
 	elif _arrow_label.visible:

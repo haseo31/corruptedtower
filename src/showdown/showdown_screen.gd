@@ -107,12 +107,16 @@ func _on_evidence_pressed(evidence_id: String) -> void:
 	var result := _showdown.present_from(_inventory, evidence_id)
 	_update_status()
 	if result == Showdown.Result.COUNTERED:
+		Audio.play_sfx("counter")
 		_flash_boss()
 	else:
+		Audio.play_sfx("wrong")
 		_shake()
 	if _showdown.state == Showdown.State.WON:
+		Audio.play_sfx("win")
 		_show_end("The cover-up collapses. You exposed %s." % _boss.display_name, "Continue", _on_continue)
 	elif _showdown.state == Showdown.State.LOST:
+		Audio.play_sfx("lose")
 		_show_end("The cover-up holds. Verify more evidence, then try again.", "Try again", _on_retry)
 	elif result == Showdown.Result.COUNTERED:
 		_feedback_label.text = "That exposes the lie."

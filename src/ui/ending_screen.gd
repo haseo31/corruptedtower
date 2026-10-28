@@ -20,6 +20,7 @@ func _ready() -> void:
 	PixelTheme.apply(self)
 	_title_label.add_theme_color_override("font_color", PixelTheme.DANGER)
 	_score_label.add_theme_color_override("font_color", PixelTheme.NOTICE)
+	Audio.play_music("ending")
 	var inventory := GameSession.inventory()
 	_score_label.text = "Evidence verified: %d of %d" % [inventory.verified_count(), inventory.catalog_size()]
 	_restart_button.pressed.connect(_on_restart_pressed)

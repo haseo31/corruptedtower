@@ -26,6 +26,7 @@ var _opener: Button
 func _ready() -> void:
 	PixelTheme.apply(self)
 	GameSettings.load_and_apply()
+	Audio.play_music("title")
 	_status_label.add_theme_color_override("font_color", PixelTheme.DANGER)
 	_hint_label.add_theme_color_override("font_color", Color("b8a8d8"))
 	_backdrop.reduced_motion = GameSettings.reduce_motion

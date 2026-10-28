@@ -11,6 +11,8 @@ func _init() -> void:
 	autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	focus_entered.connect(queue_redraw)
 	focus_exited.connect(queue_redraw)
+	focus_entered.connect(func() -> void: Audio.play_sfx("ui_move"))
+	pressed.connect(func() -> void: Audio.play_sfx("ui_select"))
 
 
 func _draw() -> void:

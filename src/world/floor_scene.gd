@@ -14,6 +14,8 @@ static var arrival_cell: Variant = null
 
 const ENDING_SCENE: String = "res://src/ui/ending_screen.tscn"
 const TITLE_SCENE: String = "res://src/ui/title_screen.tscn"
+## The music track for a floor theme ("" is the plain office).
+const MUSIC_BY_THEME: Dictionary = {"": "office", "poll": "poll", "hr": "hr"}
 
 var _layout: FloorLayout
 var _atlas: TileAtlas
@@ -49,6 +51,7 @@ func _ready() -> void:
 	_dialogue_box.bind(_runner, _inventory)
 	_evidence_screen.bind(_inventory, GameSession.challenges())
 	_showdown_screen.showdown_won.connect(_on_showdown_won)
+	_showdown_screen.visibility_changed.connect(_restore_floor_music)
 	for modal: Control in [_dialogue_box, _evidence_screen, _showdown_screen, _pause_menu]:
 		modal.visibility_changed.connect(_refresh_lock)
 	_pause_menu.save_requested.connect(_on_save_requested)
@@ -60,6 +63,7 @@ func _ready() -> void:
 		if _layout.is_walkable(arrival_cell):
 			start = arrival_cell
 		arrival_cell = null
+	Audio.play_music(MUSIC_BY_THEME.get(_layout.theme, "office"))
 	_player.setup(_layout, start)
 	_player.moved_to.connect(_on_player_moved)
 	_spawn_npcs()
@@ -180,7 +184,13 @@ func _talk_to_boss(npc: Dictionary) -> void:
 		_runner.start(DialogueRunner.message_dialogue(npc["name"], npc["defeated_message"]))
 		return
 	_active_boss_npc = npc
+	Audio.play_music("boss")
 	_showdown_screen.start(boss, _inventory)
+
+
+func _restore_floor_music() -> void:
+	if not _showdown_screen.visible:
+		Audio.play_music(MUSIC_BY_THEME.get(_layout.theme, "office"))
 
 
 func _on_showdown_won(boss_id: String) -> void:
@@ -199,6 +209,7 @@ func _on_quit_requested() -> void:
 
 func _on_save_requested() -> void:
 	if SaveGame.write(SaveGame.build(scene_file_path, _player.cell)):
+		Audio.play_sfx("save")
 		_pause_menu.show_message("Game saved.", true)
 	else:
 		_pause_menu.show_message("Could not save the game.", false)
@@ -213,15 +224,19 @@ func _on_load_requested() -> void:
 
 
 func _on_evidence_collected(_evidence_id: String) -> void:
+	Audio.play_sfx("pickup")
 	queue_redraw()
 
 
 func _on_player_moved(cell: Vector2i) -> void:
 	var transition := _layout.transition_at(cell)
 	if transition.is_empty():
+		Audio.play_sfx("step")
 		return
 	if not _is_unlocked(transition):
+		Audio.play_sfx("locked")
 		_runner.start(DialogueRunner.message_dialogue("", transition["locked_message"]))
 		return
+	Audio.play_sfx("stairs")
 	arrival_cell = transition["spawn"]
 	get_tree().change_scene_to_file(transition["scene"])
