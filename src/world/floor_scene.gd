@@ -30,6 +30,10 @@ var _runner: DialogueRunner
 var _active_boss_npc: Dictionary = {}
 ## The NPC nodes by cell, so one can turn to face the player.
 var _npc_nodes: Dictionary = {}
+## The case files (see Lessons) and the two panels that show them.
+var _lessons: Dictionary = {}
+var _case_file: CaseFilePanel
+var _journal: JournalPanel
 
 @onready var _hud: CanvasLayer = $Hud
 @onready var _actors: Node2D = $Actors
@@ -63,6 +67,8 @@ func _ready() -> void:
 	_pause_menu.save_requested.connect(_on_save_requested)
 	_pause_menu.load_requested.connect(_on_load_requested)
 	_pause_menu.quit_requested.connect(_on_quit_requested)
+	_pause_menu.journal_requested.connect(_on_journal_requested)
+	_build_lesson_panels()
 	_inventory.evidence_collected.connect(_on_evidence_collected)
 	var start := _layout.spawn
 	if arrival_cell != null:
@@ -196,8 +202,51 @@ func _show_title_card() -> void:
 	tween.tween_callback(card.queue_free)
 
 
+## The case file and journal panels, centred on the screen above every other panel.
+func _build_lesson_panels() -> void:
+	_lessons = Lessons.load_json()
+	var center := CenterContainer.new()
+	center.set_anchors_preset(Control.PRESET_FULL_RECT)
+	center.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_hud.add_child(center)
+	_case_file = CaseFilePanel.new()
+	_case_file.hide()
+	center.add_child(_case_file)
+	_journal = JournalPanel.new()
+	_journal.hide()
+	_journal.case_selected.connect(_on_journal_case_selected)
+	center.add_child(_journal)
+	for panel: Control in [_case_file, _journal]:
+		panel.visibility_changed.connect(_refresh_lock)
+
+
+## Shows the case file for an exposed boss, then calls 'then'. With no case file for the
+## boss, calls 'then' at once.
+func _show_case_file(boss_id: String, then: Callable) -> void:
+	var cases: Dictionary = _lessons.get("cases", {})
+	if not cases.has(boss_id):
+		then.call()
+		return
+	_case_file.closed.connect(then, CONNECT_ONE_SHOT)
+	_case_file.show_pages(cases[boss_id]["title"], Lessons.case_pages(cases[boss_id]))
+
+
+func _on_journal_requested() -> void:
+	_pause_menu.close()
+	_open_journal("")
+
+
+func _open_journal(focus_boss: String) -> void:
+	_journal.open(_lessons.get("cases", {}), _lessons.get("order", []), GameSession.is_defeated, focus_boss)
+
+
+func _on_journal_case_selected(boss_id: String) -> void:
+	_journal.hide()
+	_show_case_file(boss_id, _open_journal.bind(boss_id))
+
+
 func _modal_open() -> bool:
-	return _dialogue_box.visible or _evidence_screen.visible or _showdown_screen.visible 			or _pause_menu.visible
+	return _dialogue_box.visible or _evidence_screen.visible or _showdown_screen.visible 			or _pause_menu.visible or _case_file.visible or _journal.visible
 
 
 func _refresh_lock() -> void:
@@ -254,6 +303,11 @@ func _on_showdown_won(boss_id: String) -> void:
 	GameSession.mark_defeated(boss_id)
 	_refresh_objective()
 	queue_redraw()
+	_show_case_file(boss_id, _after_case_file)
+
+
+## What happens once the case file after a boss is closed: the ending, or the boss's last words.
+func _after_case_file() -> void:
 	if _active_boss_npc.get("final", false):
 		get_tree().change_scene_to_file(ENDING_SCENE)
 	else:

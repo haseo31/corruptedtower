@@ -1,0 +1,156 @@
+{
+	"_note": "Case files shown after each boss and in the Tower Journal. 'real_world' text must stay factual: each line names its source and year. The 'story' pages are made up, based on what really happens. Plain ASCII only (the pixel font has no accents or curly quotes).",
+	"lessons": [
+		{
+			"boss_id": "bribery_boss",
+			"title": "Case file 1: Kickbacks",
+			"trick": {
+				"name": "Follow the money",
+				"text": "When the announced budget and the real payments do not match, someone is taking a cut. Compare the numbers. Ask who was paid, who approved it, and who met whom before the contract was awarded."
+			},
+			"real_world": {
+				"text": "Asking for or taking a gift, share or percentage in connection with a government contract is a crime under the Anti-Graft and Corrupt Practices Act (Republic Act 3019, 1960). The penalty includes prison and perpetual disqualification from public office. The 1987 Constitution says a public office is a public trust.",
+				"sources": "RA 3019, Sec. 3(b) (lawphil.net). 1987 Constitution, Art. XI, Sec. 1."
+			},
+			"story": {
+				"text": "Aling Nena sells vegetables beside a barangay road that was 'repaved' last year, for millions of pesos on paper. After one rainy season it is full of potholes, and a jeepney driver breaks an axle. Nobody asks where the extra money went. Every peso skimmed off a project is a peso that did not make the road last."
+			},
+			"action": "Projects are announced in public. Compare the posted cost, contractor and finish date with what you can see. Government buying is posted on PhilGEPS (philgeps.gov.ph). If something looks wrong, take dated photos and ask in writing.",
+			"words": [
+				{"term": "COA", "meaning": "The Commission on Audit. It checks how government money is spent."},
+				{"term": "Kickback", "meaning": "A secret cut paid to an official for awarding a contract."},
+				{"term": "Graft", "meaning": "Using a public office for private gain."}
+			]
+		},
+		{
+			"boss_id": "disinformation_boss",
+			"title": "Case file 2: Lies that look real",
+			"trick": {
+				"name": "Who, when, how",
+				"text": "A quote can be cut so it says the opposite. A crowd of supporters can be fake accounts. A video can be edited. Before you share, ask: who made this, when, and can I find the full original? Does an independent fact-checker cover it?"
+			},
+			"real_world": {
+				"text": "Newsrooms and universities started Tsek.ph in 2019 to fact-check claims before elections, following the International Fact-Checking Network's code. Lawmakers have called for probes and held Senate hearings on alleged paid 'troll farms' and fake accounts. Some claims made in those hearings are disputed.",
+				"sources": "Tsek.ph / VERA Files, 2019. Inquirer. Asia News Network, report on Senate hearing, April 2025."
+			},
+			"story": {
+				"text": "Mark's lola in Bulacan gets a forwarded video saying her neighborhood clinic is 'closed for good'. It is an old clip with new text added. She skips her check-up. Lies spread faster than corrections, and the people who profit from the confusion are not the ones who pay for it."
+			},
+			"action": "Pause before you share. Search the claim on tsek.ph or with a fact-checker you trust. Look for the original source, not a screenshot of it. Check the date.",
+			"words": [
+				{"term": "Troll farm", "meaning": "A group paid to post fake or misleading content, often with fake accounts."},
+				{"term": "Bot", "meaning": "An automated account that pretends to be a real person."},
+				{"term": "Fact-check", "meaning": "Looking for the original source and independent proof of a claim."}
+			]
+		},
+		{
+			"boss_id": "vote_boss",
+			"title": "Case file 3: Buying votes",
+			"trick": {
+				"name": "Name the price",
+				"text": "A handout before an election is not kindness if it comes with a request for your vote. Ask: who is paying for this, and what will they take back once they are in office?"
+			},
+			"real_world": {
+				"text": "Vote-buying and vote-selling are election offenses under Section 261 of the Omnibus Election Code (1985), for the giver and the taker. COMELEC has a Committee on Kontra Bigay that takes reports, and its 2025 rules count digital payments such as e-wallets as possible vote-buying.",
+				"sources": "Omnibus Election Code (BP 881), Sec. 261. COMELEC Resolution No. 11104 (2025). ABS-CBN News, May 2025."
+			},
+			"story": {
+				"text": "Mang Berto takes 500 pesos 'for the barangay fiesta' from a campaign worker. The candidate wins. When the barangay health center asks for money for medicine, the answer is that there is no budget. Five hundred pesos once, against a health center that lacks supplies for years."
+			},
+			"action": "Do not sell your vote, and do not accept money that comes with a favor. If you see vote-buying, write down the place, time and people, take a photo only if it is safe, and report it to COMELEC's Kontra Bigay committee. Never confront anyone.",
+			"words": [
+				{"term": "Vote-buying", "meaning": "Giving money or gifts to win a vote. A crime for the giver and the taker."},
+				{"term": "COMELEC", "meaning": "The Commission on Elections. It runs elections and enforces election laws."},
+				{"term": "Kontra Bigay", "meaning": "COMELEC's committee against vote-buying. 'Bigay' means 'give'."}
+			]
+		},
+		{
+			"boss_id": "nepotism_boss",
+			"title": "Case file 4: Jobs for family",
+			"trick": {
+				"name": "Who got the job, and why",
+				"text": "A government job should go to the person who qualifies, not to the boss's relative. Compare the ranking, the interview and the family tree. A 'ghost employee' is paid for work that is never done, or by a name that does not exist."
+			},
+			"real_world": {
+				"text": "The Administrative Code of 1987 forbids appointing relatives of the appointing authority within the third degree, by blood or marriage. The Local Government Code of 1991 extends this to the fourth degree. The Civil Service Commission treats nepotism as a grave offense that can mean dismissal. The Constitution says the State shall prohibit political dynasties 'as may be defined by law'.",
+				"sources": "EO 292 (1987), Book V, Sec. 59. RA 7160 (1991), Sec. 79. 1987 Constitution, Art. II, Sec. 26. CSC statements."
+			},
+			"story": {
+				"text": "Jenny placed first in the exam for a clerk post at the municipal hall. The job went to the mayor's nephew, who ranked far below her. Jenny now works far from home. The town loses a good worker, and everybody learns that connections beat merit."
+			},
+			"action": "Hiring and appointments are public. If you think a hiring broke the rules, you can report it to the Civil Service Commission, starting with its Contact Center ng Bayan (text 0908-881-6565). Keep the names, dates and documents.",
+			"words": [
+				{"term": "Nepotism", "meaning": "Giving a job to a relative because of the family tie."},
+				{"term": "Padrino system", "meaning": "Getting ahead through a powerful patron instead of merit."},
+				{"term": "Ghost employee", "meaning": "Someone on the payroll who does no work, or does not exist."}
+			]
+		},
+		{
+			"boss_id": "budget_boss",
+			"title": "Case file 5: Ghost projects",
+			"trick": {
+				"name": "See it with your own eyes",
+				"text": "A project on paper is not a project in real life. Check that it exists: the site, the date, the cost and the contractor. Ask who inspected it, who signed, and who owns the company that got the contract."
+			},
+			"real_world": {
+				"text": "In 2013 the Supreme Court declared the PDAF, the 'pork barrel', unconstitutional, after a Commission on Audit special audit found billions of pesos of lawmakers' funds had gone to NGOs. In 2025 the public works secretary said at least 421 of about 8,000 inspected flood control projects were 'ghost projects'. President Marcos created the Independent Commission for Infrastructure to investigate.",
+				"sources": "Belgica v. Ochoa, G.R. No. 208566 (2013). COA special audit, 2007-2009 PDAF. Inquirer, 2025. Executive Order No. 94 (2025)."
+			},
+			"story": {
+				"text": "Lola Fe was told a new flood wall protects her street. When the typhoon rains came, the water rose to her stairs again, and she slept at the evacuation center while her grandchildren missed school for two weeks. The wall was paid for. The wall was never built."
+			},
+			"action": "Look up projects near you and compare the list with what you see. If a project is missing or unfinished, take dated photos and report it to the Commission on Audit, the Department of Public Works and Highways, or the Ombudsman.",
+			"words": [
+				{"term": "PDAF", "meaning": "Priority Development Assistance Fund, the lawmakers' 'pork barrel'. Struck down in 2013."},
+				{"term": "Ghost project", "meaning": "A project that is paid for but not built, or not built as paid."},
+				{"term": "Ombudsman", "meaning": "The office that investigates and prosecutes public officials."}
+			]
+		},
+		{
+			"boss_id": "secrecy_boss",
+			"title": "Case file 6: Hidden records",
+			"trick": {
+				"name": "Ask in writing",
+				"text": "Secrecy hides everything else. Blacked-out pages, refused requests and shredded records all do one thing: stop you from checking. Ask for the record in writing, keep the reply, and appeal a refusal."
+			},
+			"real_world": {
+				"text": "The Constitution guarantees the people's right to information on matters of public concern. Executive Order No. 2 (2016) lets people request records of the executive branch through the eFOI portal at foi.gov.ph. It has a list of exceptions that critics say can restrict access.",
+				"sources": "1987 Constitution, Art. III, Sec. 7. Executive Order No. 2 (2016). Philstar, Nov. 2016. foi.gov.ph."
+			},
+			"story": {
+				"text": "Reporter Ana files three requests for a city's spending records. Three times she gets the same one-line refusal. Meanwhile the city's contractor opens a new office tower. When records are secret, the only people who can check the numbers are the people who wrote them."
+			},
+			"action": "File a request for records at foi.gov.ph and keep the reference number. If it is refused, ask for the reason in writing and appeal. You can also read COA's published audit reports at coa.gov.ph.",
+			"words": [
+				{"term": "FOI", "meaning": "Freedom of Information: the right to request government records."},
+				{"term": "Redaction", "meaning": "Blacking out parts of a document before it is shown."},
+				{"term": "Transparency", "meaning": "Letting the public see how decisions and money are handled."}
+			]
+		}
+	],
+	"finale": {
+		"heading": "After the tower",
+		"pages": [
+			{
+				"title": "The real numbers",
+				"body": "Transparency International's Corruption Perceptions Index scores countries from 0 (very corrupt) to 100 (very clean), from experts' views. In 2025 the Philippines scored 32 and ranked 120th of 182 countries, its lowest score since 2012. Behind each number are real people: flooded streets, unfinished roads and services that never arrive.",
+				"footer": "Source: Transparency International CPI 2025, published Feb. 2026 (BusinessWorld, Philstar)."
+			},
+			{
+				"title": "Four habits",
+				"body": "1. Check the source: who, when, how.\n2. Follow the money: compare announced budgets with what you can see.\n3. Ask in writing: a request leaves a trail.\n4. Say no to the small stuff: do not sell your vote, and do not pay a fixer.",
+				"footer": ""
+			},
+			{
+				"title": "Where to report",
+				"body": "Office of the Ombudsman: complaints against public officials (ombudsman.gov.ph).\nCommission on Audit: audit reports (coa.gov.ph).\nCOMELEC Kontra Bigay: vote-buying.\nCivil Service Commission: Contact Center ng Bayan, text 0908-881-6565.\nARTA: red tape and fixers (arta.gov.ph).",
+				"footer": "Contact details change. Check each official site before you send anything."
+			},
+			{
+				"title": "Filing a complaint takes effort",
+				"body": "A complaint to the Ombudsman needs a sworn complaint-affidavit and your evidence. There is no filing fee, but a notary charges to swear it. Keep dated photos, documents and names. Your safety comes first: never confront anyone if it is not safe.",
+				"footer": "Source: Office of the Ombudsman, 'Filing of Complaint' (ombudsman.gov.ph)."
+			}
+		]
+	}
+}

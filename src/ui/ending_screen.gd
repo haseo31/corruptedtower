@@ -21,12 +21,16 @@ const CAST_SPACING: float = 64.0
 @onready var _message_label: Label = %MessageLabel
 @onready var _score_label: Label = %ScoreLabel
 @onready var _accuracy_label: Label = %AccuracyLabel
+@onready var _action_button: Button = %ActionButton
 @onready var _title_button: Button = %TitleButton
 @onready var _restart_button: Button = %RestartButton
 @onready var _cast: Control = %Cast
 
 ## The ending being shown (an entry of data/endings.json), for tests.
 var ending: Dictionary = {}
+
+var _lessons: Dictionary = {}
+var _guide: CaseFilePanel
 
 
 func _ready() -> void:
@@ -45,10 +49,30 @@ func _ready() -> void:
 	_score_label.text = "Evidence verified: %d of %d" % [inventory.verified_count(), inventory.catalog_size()]
 	_accuracy_label.text = "Careful play: %d%% (%d right, %d wrong)" % [
 		GameSession.accuracy_percent(), GameSession.good_choices, GameSession.wrong_choices]
+	_lessons = Lessons.load_json()
+	_action_button.pressed.connect(_on_action_pressed)
 	_title_button.pressed.connect(_on_title_pressed)
 	_restart_button.pressed.connect(_on_restart_pressed)
-	_title_button.grab_focus()
+	_build_guide()
+	_action_button.grab_focus()
 	_place_cast()
+
+
+## The closing "After the tower" guide, shown over the screen.
+func _build_guide() -> void:
+	var center := CenterContainer.new()
+	center.set_anchors_preset(Control.PRESET_FULL_RECT)
+	center.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(center)
+	_guide = CaseFilePanel.new()
+	_guide.hide()
+	_guide.closed.connect(_action_button.grab_focus)
+	center.add_child(_guide)
+
+
+func _on_action_pressed() -> void:
+	var finale: Dictionary = _lessons.get("finale", {})
+	_guide.show_pages(str(finale.get("heading", "After the tower")), Lessons.finale_pages(finale))
 
 
 ## Stands the exposed bosses in a row with the player in the middle.

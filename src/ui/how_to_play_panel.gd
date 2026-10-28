@@ -37,7 +37,7 @@ const PAGES: Array = [
 	]],
 	["Stairs, saving and score", [
 		"Stairs stay locked until that floor's boss is exposed. You can walk back down at any time.",
-		"Open the pause menu with Esc and choose Save. Choose Continue on the title screen to come back.",
+		"Open the pause menu with Esc and choose Save. Choose Continue on the title screen to come back. The pause menu also holds the Tower Journal, where you can reread each case file.",
 		"At the top of the tower, your ending depends on careful play: how often your first answer was right, in fact-checks and showdowns. Check before you choose.",
 	]],
 ]
