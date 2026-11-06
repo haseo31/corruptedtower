@@ -25,7 +25,7 @@
 The Corrupted Tower is a 16-bit top-down game about corruption in the Philippines, built with this studio framework. Six floors, 21 pieces of evidence, English and Filipino, music and sound effects.
 
 1. Install [Godot 4.7.2](https://godotengine.org/download/archive/) (the standard build, not .NET).
-2. Clone this repository and check out the `mvp-corrupted-tower` branch.
+2. Clone this repository.
 3. In Godot, choose Import, pick `project.godot`, then press F5.
 
 Press Esc in the game for the pause menu (save, load, journal, settings). The web version is built with `bash tools/build_web.sh`.
