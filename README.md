@@ -20,6 +20,18 @@
 
 ---
 
+## Run The Corrupted Tower
+
+The Corrupted Tower is a 16-bit top-down game about corruption in the Philippines, built with this studio framework. Six floors, 21 pieces of evidence, English and Filipino, music and sound effects.
+
+1. Install [Godot 4.7.2](https://godotengine.org/download/archive/) (the standard build, not .NET).
+2. Clone this repository and check out the `mvp-corrupted-tower` branch.
+3. In Godot, choose Import, pick `project.godot`, then press F5.
+
+Press Esc in the game for the pause menu (save, load, journal, settings). The web version is built with `bash tools/build_web.sh`.
+
+---
+
 ## Why This Exists
 
 Building a game solo with AI is powerful — but a single chat session has no structure. No one stops you from hardcoding magic numbers, skipping design docs, or writing spaghetti code. There's no QA pass, no design review, no one asking "does this actually fit the game's vision?"
